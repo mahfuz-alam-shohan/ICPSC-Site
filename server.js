@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { promises as fs } from 'fs';
 
 dotenv.config();
 
@@ -51,6 +52,7 @@ app.post('/api/save', async (req, res) => {
     });
     const json = await result.json();
     if (!result.ok) return res.status(result.status).json(json);
+    await fs.writeFile(join(__dirname, path), content, 'utf8');
     res.json({ ok: true, commit: json.commit?.sha });
   } catch (err) {
     res.status(500).json({ error: err.message });
