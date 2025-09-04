@@ -40,8 +40,10 @@
   <div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
     <div class="bg-white dark:bg-[#0f172a] p-6 rounded-xl w-80 shadow">
       <h3 class="font-bold mb-4 text-center">Admin Login</h3>
-      <label class="block mb-2 text-sm">Token</label>
-      <input id="tokenInput" type="password" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0b1220] p-2 rounded">
+      <label class="block mb-2 text-sm">User ID</label>
+      <input id="loginUser" type="text" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0b1220] p-2 rounded">
+      <label class="block mt-4 mb-2 text-sm">Password</label>
+      <input id="loginPass" type="password" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0b1220] p-2 rounded">
       <div class="mt-4 flex justify-end gap-2">
         <button id="loginCancel" class="ghost">Cancel</button>
         <button id="loginOk" class="cta">Login</button>
@@ -108,8 +110,9 @@
     revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
     const modeToggle=document.getElementById('modeToggle');if(modeToggle){modeToggle.addEventListener('click',()=>document.documentElement.classList.toggle('dark'));}
     const repoOwner='YOUR_GITHUB_USERNAME',repoName='ICPSC-Site',branch='main';
-    let token='',loggedIn=false,editing=false;
-    const editToggle=document.getElementById('editToggle'),saveBtn=document.getElementById('saveBtn'),loginModal=document.getElementById('loginModal'),loginOk=document.getElementById('loginOk'),loginCancel=document.getElementById('loginCancel'),tokenInput=document.getElementById('tokenInput');
+    const token='YOUR_GITHUB_TOKEN',adminUser='admin123',adminPass='admin456';
+    let loggedIn=false,editing=false;
+    const editToggle=document.getElementById('editToggle'),saveBtn=document.getElementById('saveBtn'),loginModal=document.getElementById('loginModal'),loginOk=document.getElementById('loginOk'),loginCancel=document.getElementById('loginCancel'),userInput=document.getElementById('loginUser'),passInput=document.getElementById('loginPass');
     if(editToggle){
       const textSel='h1,h2,h3,h4,p,span,label';
       function imgChooser(e){
@@ -161,15 +164,13 @@
         toggleEditing();
       });
       saveBtn.addEventListener('click',saveChanges);
-      loginOk.addEventListener('click',async()=>{
-        token=tokenInput.value.trim();
-        if(!token)return;
-        const res=await fetch('https://api.github.com/user',{headers:{Authorization:`token ${token}`}});
-        if(res.ok){
-          const info=await res.json();
-          if(info.login!==repoOwner){alert('Not authorized');return;}
-          loggedIn=true;loginModal.classList.add('hidden');toggleEditing();
-        }else alert('Invalid token');
+      loginOk.addEventListener('click',()=>{
+        const u=userInput.value.trim(),p=passInput.value.trim();
+        if(u===adminUser && p===adminPass){
+          loggedIn=true;
+          loginModal.classList.add('hidden');
+          toggleEditing();
+        }else alert('Invalid credentials');
       });
       loginCancel.addEventListener('click',()=>loginModal.classList.add('hidden'));
     }
