@@ -18,6 +18,8 @@ This repository contains the school website and a small server for saving edits 
 3. **Run the server**
    ```bash
    npm start
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser. The page is served from the same server and save requests go to `/api/save`.
 
 When you edit content on the page and click save, the server commits `index.html` to your repository using the token stored on the server.
 
