@@ -36,7 +36,18 @@
   </style>
 </head>
 <body class="bg-gradient-to-b from-[#f8fbff] to-[#eef6ff] text-slate-800 selection:bg-[#ffd166]/60">
-  <div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button></div></div></div>
+  <div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="saveBtn" class="tbtn hidden" aria-label="Save edits">💾</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button></div></div></div>
+  <div id="loginModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+    <div class="bg-white dark:bg-[#0f172a] p-6 rounded-xl w-80 shadow">
+      <h3 class="font-bold mb-4 text-center">Admin Login</h3>
+      <label class="block mb-2 text-sm">Token</label>
+      <input id="tokenInput" type="password" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0b1220] p-2 rounded">
+      <div class="mt-4 flex justify-end gap-2">
+        <button id="loginCancel" class="ghost">Cancel</button>
+        <button id="loginOk" class="cta">Login</button>
+      </div>
+    </div>
+  </div>
   <header class="header">
     <div class="wrap">
       <a href="#" class="brand">
@@ -96,7 +107,72 @@
     const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
     revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
     const modeToggle=document.getElementById('modeToggle');if(modeToggle){modeToggle.addEventListener('click',()=>document.documentElement.classList.toggle('dark'));}
-    const editToggle=document.getElementById('editToggle');if(editToggle){const textSel='h1,h2,h3,h4,p,span,label';function imgChooser(e){const input=document.createElement('input');input.type='file';input.accept='image/*';input.onchange=()=>{const file=input.files[0];if(file)e.target.src=URL.createObjectURL(file)};input.click()}let editing=false;editToggle.addEventListener('click',()=>{editing=!editing;document.documentElement.classList.toggle('editing',editing);document.querySelectorAll(textSel).forEach(el=>{editing?el.setAttribute('contenteditable','true'):el.removeAttribute('contenteditable')});document.querySelectorAll('img').forEach(img=>{editing?img.addEventListener('click',imgChooser):img.removeEventListener('click',imgChooser)});});}
+    const repoOwner='YOUR_GITHUB_USERNAME',repoName='ICPSC-Site',branch='main';
+    let token='',loggedIn=false,editing=false;
+    const editToggle=document.getElementById('editToggle'),saveBtn=document.getElementById('saveBtn'),loginModal=document.getElementById('loginModal'),loginOk=document.getElementById('loginOk'),loginCancel=document.getElementById('loginCancel'),tokenInput=document.getElementById('tokenInput');
+    if(editToggle){
+      const textSel='h1,h2,h3,h4,p,span,label';
+      function imgChooser(e){
+        const target=e.target;
+        const input=document.createElement('input');
+        input.type='file';input.accept='image/*';
+        input.onchange=()=>{
+          const file=input.files[0];
+          if(!file)return;
+          const reader=new FileReader();
+          reader.onload=ev=>{
+            const img=new Image();
+            img.onload=()=>{
+              const canvas=document.createElement('canvas');
+              canvas.width=target.clientWidth;
+              canvas.height=target.clientHeight;
+              const ctx=canvas.getContext('2d');
+              ctx.drawImage(img,0,0,canvas.width,canvas.height);
+              target.src=canvas.toDataURL('image/png');
+            };
+            img.src=ev.target.result;
+          };
+          reader.readAsDataURL(file);
+        };
+        input.click();
+      }
+      function toggleEditing(){
+        editing=!editing;
+        document.documentElement.classList.toggle('editing',editing);
+        document.querySelectorAll(textSel).forEach(el=>{
+          editing?el.setAttribute('contenteditable','true'):el.removeAttribute('contenteditable');
+        });
+        document.querySelectorAll('img').forEach(img=>{
+          editing?img.addEventListener('click',imgChooser):img.removeEventListener('click',imgChooser);
+        });
+        saveBtn.classList.toggle('hidden',!editing);
+      }
+      async function saveChanges(){
+        const html=document.documentElement.outerHTML;
+        const content=btoa(unescape(encodeURIComponent(html)));
+        const api=`https://api.github.com/repos/${repoOwner}/${repoName}/contents/index.html`;
+        const get=await fetch(api+`?ref=${branch}`,{headers:{Authorization:`token ${token}`}});
+        const data=await get.json();
+        const res=await fetch(api,{method:'PUT',headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({message:'Update via onsite editor',content,sha:data.sha,branch})});
+        if(res.ok){alert('Saved to GitHub');toggleEditing();}else alert('Save failed');
+      }
+      editToggle.addEventListener('click',()=>{
+        if(!loggedIn){loginModal.classList.remove('hidden');return;}
+        toggleEditing();
+      });
+      saveBtn.addEventListener('click',saveChanges);
+      loginOk.addEventListener('click',async()=>{
+        token=tokenInput.value.trim();
+        if(!token)return;
+        const res=await fetch('https://api.github.com/user',{headers:{Authorization:`token ${token}`}});
+        if(res.ok){
+          const info=await res.json();
+          if(info.login!==repoOwner){alert('Not authorized');return;}
+          loggedIn=true;loginModal.classList.add('hidden');toggleEditing();
+        }else alert('Invalid token');
+      });
+      loginCancel.addEventListener('click',()=>loginModal.classList.add('hidden'));
+    }
   </script>
 
   <script>
