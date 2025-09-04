@@ -109,9 +109,8 @@
     const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
     revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
     const modeToggle=document.getElementById('modeToggle');if(modeToggle){modeToggle.addEventListener('click',()=>document.documentElement.classList.toggle('dark'));}
-    const repoOwner='YOUR_GITHUB_USERNAME',repoName='ICPSC-Site',branch='main';
-    const token='YOUR_GITHUB_TOKEN',adminUser='admin123',adminPass='admin456';
-    let loggedIn=false,editing=false;
+      const adminUser='admin123',adminPass='admin456';
+      let loggedIn=false,editing=false;
     const editToggle=document.getElementById('editToggle'),saveBtn=document.getElementById('saveBtn'),loginModal=document.getElementById('loginModal'),loginOk=document.getElementById('loginOk'),loginCancel=document.getElementById('loginCancel'),userInput=document.getElementById('loginUser'),passInput=document.getElementById('loginPass');
     if(editToggle){
       const textSel='h1,h2,h3,h4,p,span,label';
@@ -150,15 +149,11 @@
         });
         saveBtn.classList.toggle('hidden',!editing);
       }
-      async function saveChanges(){
-        const html=document.documentElement.outerHTML;
-        const content=btoa(unescape(encodeURIComponent(html)));
-        const api=`https://api.github.com/repos/${repoOwner}/${repoName}/contents/index.html`;
-        const get=await fetch(api+`?ref=${branch}`,{headers:{Authorization:`token ${token}`}});
-        const data=await get.json();
-        const res=await fetch(api,{method:'PUT',headers:{Authorization:`token ${token}`,'Content-Type':'application/json'},body:JSON.stringify({message:'Update via onsite editor',content,sha:data.sha,branch})});
-        if(res.ok){alert('Saved to GitHub');toggleEditing();}else alert('Save failed');
-      }
+        async function saveChanges(){
+          const html=document.documentElement.outerHTML;
+          const res=await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:html})});
+          if(res.ok){alert('Saved to GitHub');toggleEditing();}else alert('Save failed');
+        }
       editToggle.addEventListener('click',()=>{
         if(!loggedIn){loginModal.classList.remove('hidden');return;}
         toggleEditing();
