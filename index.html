@@ -8,16 +8,18 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
-    :root{--ink:#0f172a;--muted:#475569;--brand:#006a4e;--brand2:#d62d20;--link:#d62d20}
+    :root{--ink:#0f172a;--muted:#475569;--brand:#006a4e;--brand2:#d62d20;--link:#d62d20;--topbar-h:32px;--header-h:64px;--ticker-h:0px}
     html,body{overflow-x:hidden}
     *{box-sizing:border-box}body{font-family:"Noto Sans Bengali","Inter",ui-sans-serif,-apple-system;line-height:1.5;padding-top:calc(var(--topbar-h,0) + var(--header-h,0) + var(--ticker-h,0))}
     .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
-    .topbar{position:fixed;top:0;left:0;width:100%;z-index:70;background:#006a4e;color:#fff;font-size:.8rem}.topbar .wrap{display:flex;justify-content:space-between;padding:.5rem 1rem}.topbar .left{display:flex;gap:1rem}.tlink{color:inherit;text-decoration:none}.tbtn{border:1px solid #004c35;padding:.2rem .5rem;border-radius:.5rem;background:transparent;color:inherit}.dark .topbar{background:#004c35;color:#e2e8f0}.dark .tbtn{border-color:#065f46;color:#e2e8f0}
+    .topbar{position:fixed;top:0;left:0;width:100%;z-index:70;background:#006a4e;color:#fff;font-size:.8rem}.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:.5rem 1rem;white-space:nowrap}.topbar .left{display:flex;gap:1rem}.tlink{color:inherit;text-decoration:none}.tbtn{border:1px solid #004c35;padding:.2rem .5rem;border-radius:.5rem;background:transparent;color:inherit}.dark .topbar{background:#004c35;color:#e2e8f0}.dark .tbtn{border-color:#065f46;color:#e2e8f0}
     .header{position:fixed;top:var(--topbar-h,0);left:0;width:100%;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0}.header .wrap{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem}.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}.brand img{width:72px;height:72px;object-fit:contain;flex-shrink:0}.btext strong{display:block;font-weight:900;white-space:nowrap}.btext span{display:block;font-size:.78rem;color:#64748b;white-space:nowrap}
     .nav{display:none;gap:.25rem;align-items:center}@media(min-width:768px){.nav{display:flex}}.nav-btn{padding:.5rem .75rem;border-radius:.75rem;font-weight:700}
-    .cta{background:linear-gradient(120deg,var(--brand),var(--brand2));color:#fff;padding:.55rem 1rem;border-radius:.8rem;font-weight:800;box-shadow:0 12px 24px rgba(34,197,94,.18);text-decoration:none}
+    .cta{padding:.55rem 1rem;border-radius:.8rem;font-weight:800;text-decoration:none;box-shadow:0 4px 8px rgba(2,6,23,.08)}
+    .cta.green{background:linear-gradient(135deg,var(--brand),#fff);color:var(--ink)}
+    .cta.red{background:linear-gradient(135deg,var(--brand2),#fff);color:var(--ink)}
     .ghost{border:1px solid #e2e8f0;padding:.5rem 1rem;border-radius:.8rem;font-weight:700;text-decoration:none}
-    .hamb{display:inline-flex;border:1px solid #e2e8f0;border-radius:.8rem;padding:.4rem .6rem}@media(min-width:768px){.hamb{display:none}}.mob{border-top:1px solid #e2e8f0;background:#fff}.mlink{display:block;padding:.7rem 1rem;text-decoration:none;font-weight:700}.mlink:hover{background:#e2e8f0}.mlink.special{background:linear-gradient(120deg,var(--brand),var(--brand2));color:#fff;border-radius:.6rem;margin:.5rem 1rem;text-align:center}
+    .hamb{display:inline-flex;border:1px solid #e2e8f0;border-radius:.8rem;padding:.4rem .6rem}@media(min-width:768px){.hamb{display:none}}.mob{border-top:1px solid #e2e8f0;background:#fff}.mlink{display:block;padding:.7rem 1rem;text-decoration:none;font-weight:700}.mlink:hover{background:#e2e8f0}.mlink.special{background:linear-gradient(135deg,var(--brand),#fff);color:var(--ink);border-radius:.6rem;margin:.5rem 1rem;text-align:center}
     .mega{position:relative}
     .mega .panel{position:absolute;left:50%;top:100%;transform:translateX(-50%);width:min(640px,92vw);background:#fff;border:1px solid #e2e8f0;border-radius:1rem;box-shadow:0 24px 60px rgba(2,6,23,.15);padding:1rem;display:none;grid-template-columns:1fr 1fr;gap:1rem;z-index:50}
     .mega .panel .col h4{font-weight:800;font-size:.85rem;margin-bottom:.3rem}
@@ -42,6 +44,9 @@
     .divider.wave{height:56px;background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%23e2e8f0\"/></svg>') center/cover no-repeat}.divider.wave.flip{transform:scaleY(-1)}
     .footer{border-top:1px solid #e2e8f0;background:#fff}.footer .wrap{padding:1.2rem 1rem;display:flex;justify-content:center;font-size:.9rem;color:#64748b}
 .dark body{background:linear-gradient(to bottom,#02110b,#06281b);color:#e2e8f0}.dark .header{background:rgba(3,48,33,.93);border-color:#064e3b}.dark .brand{color:#f1f5f9}.dark .btext span{color:#94a3b8}.dark .ticker{background:#b91c1c;color:#f1f5f9;border-color:#7f1d1d}.dark .tick{color:#fee2e2}.dark .card,.dark .leader,.dark .counter{background:#06281b;border-color:#064e3b}.dark .timeline{border-color:#064e3b}.dark .link{color:#fca5a5}.dark .divider.wave{background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z" fill="%23064e3b"/></svg>') center/cover no-repeat}.dark .section-tag{background:#064e3b;border-color:#065f46;color:#bbf7d0}.dark .muted{color:#94a3b8}.dark .lede,.dark .counter label,.dark .gtitle{color:#cbd5e1}.dark .counter span{color:#f1f5f9}.dark h1,.dark h2,.dark h3,.dark h4,.dark h5,.dark h6,.dark p,.dark span,.dark label,.dark strong,.dark .nav-btn,.dark .mlink,.dark .tlink{color:#f1f5f9}.dark .qopts button{background:#041f15;border-color:#064e3b;color:#f1f5f9}.dark .qtext,.dark .qmeta{color:#f1f5f9}.dark .leader .chip{border-color:#064e3b;background:#041f15;color:#f1f5f9}.dark .mob{background:#06281b;border-color:#064e3b}.dark .mlink:hover{background:#064e3b}.dark .hamb{border-color:#064e3b;color:#f1f5f9}
+.dark .cta.green{background:linear-gradient(135deg,#065f46,#d1fae5);color:#041f15}
+.dark .cta.red{background:linear-gradient(135deg,#b91c1c,#fee2e2);color:#450a0a}
+.dark .mlink.special{background:linear-gradient(135deg,#065f46,#d1fae5);color:#041f15}
     .editing [contenteditable]{outline:1px dashed #0ea5e9}.editing img{outline:1px dashed #0ea5e9;cursor:pointer}
     #balloons{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
     .balloon{position:absolute;left:var(--x);bottom:-80px;width:40px;height:55px;border-radius:50% 50% 45% 45%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),var(--color) 60%);animation:rise var(--dur) linear infinite,sway 3s ease-in-out infinite}
@@ -67,7 +72,7 @@
       <input id="loginPass" type="password" class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0b1220] p-2 rounded">
       <div class="mt-4 flex justify-end gap-2">
         <button id="loginCancel" class="ghost">Cancel</button>
-        <button id="loginOk" class="cta">Login</button>
+        <button id="loginOk" class="cta green">Login</button>
       </div>
     </div>
   </div>
@@ -84,7 +89,7 @@
         <a class="nav-btn" href="#brain">Brain&nbsp;Challenge</a>
         <a class="nav-btn" href="#notices">Notices</a>
         <button type="button" class="nav-btn mute-music">Stop Music</button>
-        <a class="cta" href="#admission">Apply</a>
+        <a class="cta green" href="#admission">Apply</a>
       </nav>
       <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
     </div>
@@ -93,7 +98,7 @@
 
   <div class="ticker" role="region" aria-label="Latest notices"><div class="wrap"><div id="tickerTrack" class="ticker-track"><a href="#" class="tick">একাদশ শ্রেণিতে ভর্তি (২০২৫–২৬) — Apply now</a><a href="#" class="tick">HSC Model Test Routine — Download PDF</a><a href="#" class="tick">Science Fair — Registration open (Robotics, IoT, AI)</a><a href="#" class="tick">Holiday Notice — Campus closed on Friday</a></div></div></div>
 
-  <section class="hero" id="welcome"><div class="wrap text-center flex flex-col items-center"><span class="section-tag welcome-tag">Welcome</span><h1 class="display whitespace-nowrap">Enter To Learn, <span class="grad">Leave To Serve</span></h1><p class="lede">Descipline • Lead • Character — Ispahani Cantonment Public School & College ক্যাম্পাসে প্রযুক্তিতে সমৃদ্ধ শিক্ষানুভূতি।</p><div class="btns"><a class="cta" href="#notices">সর্বশেষ নোটিশ</a><a class="cta" href="#gallery">গ্যালারি</a><a class="cta" href="#brain">Brain Challenge</a><a class="cta" href="#admission">Apply Now</a><button type="button" class="cta mute-music">Stop Music</button></div></div></section>
+  <section class="hero" id="welcome"><div class="wrap text-center flex flex-col items-center"><span class="section-tag welcome-tag">Welcome</span><h1 class="display whitespace-nowrap">Enter To Learn, <span class="grad">Leave To Serve</span></h1><p class="lede">Descipline • Lead • Character — Ispahani Cantonment Public School & College ক্যাম্পাসে প্রযুক্তিতে সমৃদ্ধ শিক্ষানুভূতি।</p><div class="btns"><a class="cta red" href="#notices">সর্বশেষ নোটিশ</a><a class="cta green" href="#gallery">গ্যালারি</a><a class="cta red" href="#brain">Brain Challenge</a><a class="cta green" href="#admission">Apply Now</a><button type="button" class="cta red mute-music">Stop Music</button></div></div></section>
   <div class="divider wave" aria-hidden="true"></div>
 
   <section id="notices" class="section"><div class="wrap"><span class="section-tag">Notices</span><div class="head"><h2>নোটিশ</h2><a class="link" href="#">সব নোটিশ →</a></div><ol class="timeline"><li><div class="dot"></div><div class="card"><h3>একাদশ শ্রেণিতে ভর্তি বিজ্ঞপ্তি (২০২৫–২০২৬)</h3><p>নির্ধারিত সময়ের মধ্যে অনলাইনে আবেদন করুন। প্রয়োজনীয় কাগজপত্রের তালিকা PDF এ দেখুন।</p><a class="link" href="#">PDF</a></div></li><li><div class="dot"></div><div class="card"><h3>Model Test Routine — HSC</h3><p>আসন্ন মডেল টেস্টের রুটিন ডাউনলোড করুন।</p><a class="link" href="#">Download</a></div></li><li><div class="dot"></div><div class="card"><h3>Science Fair Registration</h3><p>ক্লাস ৬–১২: Robotics, IoT, AI, Green Energy.</p><a class="link" href="#">Register</a></div></li></ol></div></section>
@@ -110,18 +115,20 @@
   <section id="cocurricular" class="section"><div class="wrap"><span class="section-tag">Activities</span><div class="head"><h2>সহ-পাঠ্য কার্যক্রম</h2></div><div class="grid cards"><article class="card pop"><h3>Debate</h3><ul class="bul"><li>Critical thinking</li><li>Public speaking</li></ul></article><article class="card pop"><h3>Sports</h3><ul class="bul"><li>Football, Cricket</li><li>Table Tennis, Chess</li></ul></article><article class="card pop"><h3>Cultural</h3><ul class="bul"><li>Music & Drama</li><li>Recitation</li></ul></article></div></div></section>
   <section id="clubs" class="section"><div class="wrap"><span class="section-tag">Clubs & Societies</span><div class="grid cards"><article class="card"><h3>Science Club</h3><ul class="bul"><li>Robotics, IoT</li><li>Science fairs</li></ul></article><article class="card"><h3>Language Club</h3><ul class="bul"><li>Bangla & English</li><li>Writing & debate</li></ul></article><article class="card"><h3>Photography</h3><ul class="bul"><li>Workshops</li><li>Campus stories</li></ul></article></div></div></section>
 
-  <section id="brain" class="section"><div class="wrap"><span class="section-tag">Fun + Logic</span><div class="head"><div class="title"><h2>Brain Challenge</h2></div><span class="muted">Think fast. Trickier than they look.</span></div><div class="quiz card"><div id="qText" class="qtext"></div><div id="qOptions" class="qopts"></div><div class="qactions"><button id="btnHint" class="ghost">Hint</button><button id="btnExplain" class="ghost">Explain</button><button id="btnNext" class="cta">Next</button></div><div class="qmeta">Question <span id="qNum">1</span>/<span id="qTotal">8</span> • Score: <span id="qScore">0</span></div></div></div></section>
+  <section id="brain" class="section"><div class="wrap"><span class="section-tag">Fun + Logic</span><div class="head"><div class="title"><h2>Brain Challenge</h2></div><span class="muted">Think fast. Trickier than they look.</span></div><div class="quiz card"><div id="qText" class="qtext"></div><div id="qOptions" class="qopts"></div><div class="qactions"><button id="btnHint" class="ghost">Hint</button><button id="btnExplain" class="ghost">Explain</button><button id="btnNext" class="cta green">Next</button></div><div class="qmeta">Question <span id="qNum">1</span>/<span id="qTotal">8</span> • Score: <span id="qScore">0</span></div></div></div></section>
 
   <section id="gallery" class="section"><div class="wrap"><span class="section-tag">Gallery</span><div class="head"><h2>গ্যালারি</h2></div><div class="gallery-block"><h3 class="gtitle">Events</h3><div class="strip loop" data-speed="40"><img src="assets/gallery-1.png" alt="Annual Day"><img src="assets/gallery-2.png" alt="Science Fair"><img src="assets/gallery-3.png" alt="Cultural Fest"><img src="assets/gallery-4.png" alt="Parade"></div></div><div class="gallery-block"><h3 class="gtitle">Campus Life</h3><div class="strip loop" data-speed="45"><img src="assets/gallery-5.png" alt="Library"><img src="assets/gallery-6.png" alt="Classrooms"><img src="assets/gallery-7.png" alt="Assembly"><img src="assets/gallery-8.png" alt="ICT Lab"></div></div><div class="gallery-block"><h3 class="gtitle">Sports</h3><div class="strip loop" data-speed="35"><img src="assets/gallery-9.png" alt="Football"><img src="assets/gallery-10.png" alt="Cricket"><img src="assets/gallery-11.png" alt="Table Tennis"><img src="assets/gallery-12.png" alt="Chess"></div></div></div></section>
 
-  <section id="admission" class="section"><div class="wrap"><span class="section-tag">Admission</span><div class="head"><h2>ভর্তি</h2><span class="muted">Clear steps • Online apply</span></div><div class="cta-row"><a class="cta" href="#">Apply Online</a><a class="ghost" href="#">Instructions (PDF)</a></div></div></section>
+  <section id="admission" class="section"><div class="wrap"><span class="section-tag">Admission</span><div class="head"><h2>ভর্তি</h2><span class="muted">Clear steps • Online apply</span></div><div class="cta-row"><a class="cta green" href="#">Apply Online</a><a class="ghost" href="#">Instructions (PDF)</a></div></div></section>
   <section id="contact" class="section"><div class="wrap"><span class="section-tag">Contact</span><div class="head"><h2>যোগাযোগ</h2></div><div class="card"><p>Cumilla Cantonment 3501, Cumilla • Phone: 03239933170 • Mobile: 01733063001 • Email: ipscm1@gmail.com</p></div></div></section>
   <footer class="footer"><div class="wrap"><div>© <span id="year"></span> Ispahani Cantonment Public School & College, Comilla.</div></div></footer>
 
   <script>
     document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
     const setOffsets=()=>{const tb=document.querySelector('.topbar'),hd=document.querySelector('.header'),tk=document.querySelector('.ticker'),r=document.documentElement;if(tb)r.style.setProperty('--topbar-h',tb.offsetHeight+'px');if(hd)r.style.setProperty('--header-h',hd.offsetHeight+'px');if(tk)r.style.setProperty('--ticker-h',tk.offsetHeight+'px');};
-    window.addEventListener('load',setOffsets);window.addEventListener('resize',setOffsets);
+    setOffsets();
+    window.addEventListener('load',setOffsets);
+    window.addEventListener('resize',setOffsets);
     const mobileToggle=document.getElementById('mobileToggle'),mobileNav=document.getElementById('mobileNav');if(mobileToggle)mobileToggle.addEventListener('click',()=>mobileNav.classList.toggle('hidden'));
     const bgAudio=document.getElementById('bgAudio');
     if(bgAudio){bgAudio.volume=0.2;document.querySelectorAll('.mute-music').forEach(btn=>{btn.addEventListener('click',e=>{e.preventDefault&&e.preventDefault();bgAudio.muted=!bgAudio.muted;document.querySelectorAll('.mute-music').forEach(b=>b.textContent=bgAudio.muted?'Play Music':'Stop Music');});});}
