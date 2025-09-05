@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clubs & Societies - Ispahani Cantonment Public School & College</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    :root{--ink:#0f172a;--muted:#475569;--brand-red:#7f1d1d;--brand-green:#14532d;--link:var(--brand-green);--topbar-h:32px;--header-h:60px;--ticker-h:0}
+    html{scroll-behavior:smooth}
+    html,body{overflow-x:hidden}
+    [id]{scroll-margin-top:calc(var(--topbar-h,0) + var(--header-h,0) + var(--ticker-h,0) + 1rem)}
+    *{box-sizing:border-box}body{font-family:"Noto Sans Bengali","Inter",ui-sans-serif,-apple-system;line-height:1.5;padding-top:calc(var(--topbar-h,0) + var(--header-h,0));background:#f8fafc;background-image:radial-gradient(circle at 20% 20%,rgba(127,29,29,.08),transparent 60%),radial-gradient(circle at 80% 80%,rgba(20,83,45,.08),transparent 60%);background-attachment:fixed;}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
+    .topbar{position:fixed;top:0;left:0;width:100%;z-index:70;background:var(--brand-green);color:#fff;font-size:.8rem}.topbar .wrap{display:flex;justify-content:center;align-items:center;padding:.3rem .75rem;white-space:nowrap;gap:1rem}
+    .header{position:fixed;top:var(--topbar-h,0);left:0;width:100%;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0}.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.5rem .75rem;flex-wrap:nowrap}.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);flex:1;min-width:0}.brand img{width:56px;height:56px;object-fit:contain;flex-shrink:0}.btext strong{display:block;font-weight:900}.btext span{display:block;font-size:.78rem;color:#64748b}.controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+    .nav{display:none;gap:.25rem;align-items:center;flex:1;justify-content:flex-end}@media(min-width:768px){.nav{display:flex}}.nav-btn{padding:.5rem .75rem;border-radius:.75rem;font-weight:700}
+    .nav-btn.icon{padding:.5rem;font-size:1.25rem;line-height:1}
+    .mega>.nav-btn::after{content:"\25BE";margin-left:.25rem;font-size:.65em;display:inline-block;transition:transform .2s}
+    .mega:hover>.nav-btn::after{transform:rotate(180deg)}
+    .cta{padding:.55rem 1rem;border-radius:.8rem;font-weight:800;text-decoration:none;box-shadow:0 4px 8px rgba(2,6,23,.08);color:#fff}
+    .cta.green{background:linear-gradient(135deg,var(--brand-green),#1e7a3f)}
+    .cta.red{background:linear-gradient(135deg,var(--brand-red),#b91c1c)}
+    .ghost{border:1px solid #e2e8f0;padding:.5rem 1rem;border-radius:.8rem;font-weight:700;text-decoration:none}
+    .hamb{display:inline-flex;border:1px solid #e2e8f0;border-radius:.8rem;padding:.4rem .6rem}@media(min-width:768px){.hamb{display:none}}.mob{border-top:1px solid #e2e8f0;background:#fff}.mlink{display:block;padding:.7rem 1rem;text-decoration:none;font-weight:700}.mlink:hover{background:#e2e8f0}.mlink.special{background:var(--brand-red);color:#fff;border-radius:.6rem;margin:.5rem 1rem;text-align:center}
+    .mob .mitem{border-top:1px solid #e2e8f0}
+    .mob .mhead{display:block;width:100%;padding:.7rem 1rem;font-weight:700;text-align:left;background:transparent;border:0}
+    .mob .mhead::after{content:"\25BE";float:right;transition:transform .2s}
+    .mob .mhead.open{background:#e2e8f0}
+    .mob .mhead.open::after{transform:rotate(180deg)}
+    .mob .msub{display:none;flex-direction:column}
+    .mob .msub.open{display:flex}
+    .mob .msub .mlink{padding:.5rem 1.5rem;border-top:1px solid #e2e8f0;font-weight:600}
+    .mega{position:relative}
+    .mega .panel{position:absolute;left:50%;top:100%;transform:translateX(-50%);width:min(320px,92vw);background:#fff;border:1px solid #e2e8f0;border-radius:1rem;box-shadow:0 24px 60px rgba(2,6,23,.15);padding:1rem;display:none;grid-template-columns:1fr;gap:.5rem;z-index:50}
+    .mega .panel .col{display:flex;flex-direction:column}
+    .mega .panel .col+ .col{border-top:1px solid #e2e8f0;padding-top:.5rem;margin-top:.5rem}
+    .mega .panel .col h4{font-weight:800;font-size:.85rem;margin-bottom:.3rem}
+    .mega .panel .col a{display:block;padding:.25rem .5rem;border-radius:.5rem;text-decoration:none;color:var(--ink)}
+    .mega .panel .col a:hover{background:#f1f5f9}
+    .mega:hover .panel{display:grid}
+    .nav-btn:hover,.nav-btn:focus{background:#e2e8f0}
+    .section{padding:2.2rem 0}.head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:.8rem 0}.head h2{font-size:1.6rem;font-weight:900}.head .title{display:flex;align-items:center;gap:.5rem}.muted{color:#64748b}
+    .footer{border-top:1px solid #e2e8f0;background:#fff}.footer .wrap{padding:1.2rem 1rem;display:flex;justify-content:center;font-size:.9rem;color:#64748b}
+    #decor{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+    .shape{position:absolute;width:80px;height:80px;opacity:.12;animation:drift 30s linear infinite}
+    .shape.circle{border-radius:50%;background:radial-gradient(circle,var(--brand-green),var(--brand-red))}
+    .shape.square{background:linear-gradient(135deg,var(--brand-red),#fff)}
+    .shape.triangle{background:linear-gradient(135deg,#fff,var(--brand-green));clip-path:polygon(50% 0,0 100%,100% 100%)}
+    @keyframes drift{from{transform:translateY(0) rotate(0deg)}to{transform:translateY(-40px) rotate(360deg)}}
+    @media(max-width:640px){.brand img{width:48px;height:48px}.btext strong{font-size:.9rem}.btext span{font-size:.65rem}}
+  </style>
+</head>
+<body class="text-slate-800 selection:bg-[#ffd166]/60">
+  <div id="decor"></div>
+  <div class="topbar"><div class="wrap"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div></div>
+  <header class="header">
+    <div class="wrap">
+      <a href="../index.html" class="brand"><img src="../assets/logo.png" alt="Logo"><div class="btext"><strong>ICPSC</strong><span>Since 1962</span></div></a>
+      <nav class="nav" aria-label="Primary">
+        <div class="mega"><button class="nav-btn" aria-haspopup="true">About</button><div class="panel two"><div class="col"><h4>Overview</h4><a href="../index.html#welcome">Welcome</a><a href="../index.html#leadership">Leadership</a><a href="../index.html#history">History</a></div><div class="col"><h4>Contact</h4><a href="../index.html#contact">Campus</a><a href="../index.html#contact">Location & Map</a><a href="../index.html#contact">Email & Phone</a></div></div></div>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true">Academics</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="../index.html#academics">Primary</a><a href="../index.html#academics">High School</a><a href="../index.html#academics">College</a></div><div class="col"><h4>Resources</h4><a href="../index.html#resources">Syllabus (PDF)</a><a href="../index.html#resources">Question Bank</a><a href="../index.html#resources">e-Library</a></div></div></div>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true">Campus</button><div class="panel two"><div class="col"><h4>Facilities</h4><a href="../index.html#facilities">Labs & Library</a><a href="../index.html#facilities">ICT</a><a href="../index.html#facilities">Playgrounds</a></div><div class="col"><h4>Activities</h4><a href="../index.html#cocurricular">Co-Curricular</a><a href="../index.html#clubs">Clubs & Societies</a><a href="../index.html#gallery">Gallery</a></div></div></div>
+        <a class="nav-btn" href="../index.html#admission">Apply</a>
+        <a id="loginNav" class="cta red" href="../index.html#login">Login</a>
+      </nav>
+      <div class="controls">
+        <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+    <div id="mobileNav" class="mob hidden">
+      <div class="mitem">
+        <button class="mhead">About</button>
+        <div class="msub">
+          <a class="mlink" href="../index.html#welcome">Welcome</a>
+          <a class="mlink" href="../index.html#leadership">Leadership</a>
+          <a class="mlink" href="../index.html#history">History</a>
+          <a class="mlink" href="../index.html#contact">Campus</a>
+          <a class="mlink" href="../index.html#contact">Location &amp; Map</a>
+          <a class="mlink" href="../index.html#contact">Email &amp; Phone</a>
+        </div>
+      </div>
+      <div class="mitem">
+        <button class="mhead">Academics</button>
+        <div class="msub">
+          <a class="mlink" href="../index.html#academics">Primary</a>
+          <a class="mlink" href="../index.html#academics">High School</a>
+          <a class="mlink" href="../index.html#academics">College</a>
+          <a class="mlink" href="../index.html#resources">Syllabus (PDF)</a>
+          <a class="mlink" href="../index.html#resources">Question Bank</a>
+          <a class="mlink" href="../index.html#resources">e-Library</a>
+        </div>
+      </div>
+      <div class="mitem">
+        <button class="mhead">Campus</button>
+        <div class="msub">
+          <a class="mlink" href="../index.html#facilities">Labs &amp; Library</a>
+          <a class="mlink" href="../index.html#facilities">ICT</a>
+          <a class="mlink" href="../index.html#facilities">Playgrounds</a>
+          <a class="mlink" href="../index.html#cocurricular">Co-Curricular</a>
+          <a class="mlink" href="../index.html#clubs">Clubs &amp; Societies</a>
+          <a class="mlink" href="../index.html#gallery">Gallery</a>
+        </div>
+      </div>
+      <a class="mlink" href="../index.html#admission">Apply</a>
+      <a id="loginNavM" class="mlink special" href="../index.html#login">Login</a>
+    </div>
+  </header>
+
+  <section class="section"><div class="wrap"><div class="head"><h2>Clubs &amp; Societies</h2></div></div></section>
+  <section id="debating" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-comments"></i>Debating Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="science" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-flask"></i>Science Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="ict" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-computer"></i>ICT Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="art" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-palette"></i>Art Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="gk" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-lightbulb"></i>General Knowledge Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="math" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-square-root-variable"></i>Math Olympiad Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="language" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-book-open"></i>Language &amp; Literature Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="music" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-music"></i>Music &amp; Dance Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="sports" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-football"></i>Sports Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+  <section id="taekwondo" class="section"><div class="wrap"><div class="head"><h2 class="flex items-center gap-2"><i class="fa-solid fa-user-ninja"></i>Taekwondo Club</h2></div><p class="muted">Details coming soon.</p></div></section>
+
+  <footer class="footer"><div class="wrap"><div>© <span id="year"></span> Ispahani Cantonment Public School & College, Comilla.</div></div></footer>
+
+  <script>
+    document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
+    const setOffsets=()=>{const tb=document.querySelector('.topbar'),hd=document.querySelector('.header'),tk=document.querySelector('.ticker'),r=document.documentElement;if(tb)r.style.setProperty('--topbar-h',tb.offsetHeight+'px');if(hd)r.style.setProperty('--header-h',hd.offsetHeight+'px');if(tk)r.style.setProperty('--ticker-h',tk.offsetHeight+'px');};
+    const mobileNav=document.getElementById('mobileNav');
+    const handleResize=()=>{
+      if(window.innerWidth>=768 && mobileNav && !mobileNav.classList.contains('hidden')) mobileNav.classList.add('hidden');
+      setOffsets();
+    };
+    setOffsets();
+    window.addEventListener('load',setOffsets);
+    window.addEventListener('resize',handleResize);
+    const mobileToggle=document.getElementById('mobileToggle');
+    if(mobileToggle&&mobileNav){
+      mobileToggle.addEventListener('click',()=>{mobileNav.classList.toggle('hidden');setOffsets();});
+      mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.add('hidden');setOffsets();}));
+      mobileNav.querySelectorAll('.mhead').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const sub=btn.nextElementSibling;
+          mobileNav.querySelectorAll('.msub').forEach(s=>{if(s!==sub){s.classList.remove('open');s.previousElementSibling.classList.remove('open');}});
+          sub.classList.toggle('open');
+          btn.classList.toggle('open');
+          setOffsets();
+        });
+      });
+    }
+    const decor=document.getElementById('decor');
+    if(decor){
+      const types=['circle','square','triangle'];
+      for(let i=0;i<12;i++){
+        const d=document.createElement('div');
+        d.className='shape '+types[i%3];
+        d.style.left=Math.random()*100+'%';
+        d.style.top=Math.random()*100+'%';
+        decor.appendChild(d);
+      }
+    }
+  </script>
+</body>
+</html>
