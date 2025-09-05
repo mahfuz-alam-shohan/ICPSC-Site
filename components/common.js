@@ -1,6 +1,9 @@
 async function loadComponents(){
   const script=document.currentScript;
-  const base=script?script.dataset.base||'.':'.';
+  let base='.';
+  if(script){
+    base=script.dataset.base||script.src.replace(/\/components\/common\.js.*$/,'');
+  }
   const headerEl=document.getElementById('header');
   const footerEl=document.getElementById('footer');
   const [h,f]=await Promise.all([
