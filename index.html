@@ -55,6 +55,13 @@
     .balloon{position:absolute;left:var(--x);bottom:-80px;width:40px;height:55px;border-radius:50% 50% 45% 45%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),var(--color) 60%);animation:rise var(--dur) linear infinite,sway 3s ease-in-out infinite}
     .balloon .string{position:absolute;left:50%;bottom:-40px;width:20px;height:40px;transform-origin:top;animation:sway-string 3s ease-in-out infinite}
     .balloon .string path{stroke:#aaa;stroke-width:2;fill:none;animation:curve 3s ease-in-out infinite}
+
+    .plane{position:absolute;top:20px;left:-200px;width:120px;height:40px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40"><path fill="%23555" d="M0 20L120 0v40z"/><rect x="40" y="12" width="40" height="16" fill="%23777"/></svg>') center/contain no-repeat;animation:fly 20s linear infinite}
+    @keyframes fly{from{left:-200px}to{left:100%}}
+    .bomb{position:absolute;top:60px;width:24px;height:40px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 40"><ellipse cx="12" cy="20" rx="10" ry="18" fill="%23222"/><rect x="8" y="0" width="8" height="8" fill="%23222"/></svg>') center/contain no-repeat;animation:drop 3s linear forwards}
+    @keyframes drop{to{top:100%}}
+    .explosion{position:absolute;width:80px;height:80px;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,0 60,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 40,35" fill="%23facc15"/></svg>') center/contain no-repeat;opacity:0;animation:boom .6s forwards}
+    @keyframes boom{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.5)}}
     @keyframes rise{from{bottom:-80px}to{bottom:110%}}
     @keyframes sway{0%,100%{transform:translateX(-10px) rotate(-6deg)}50%{transform:translateX(10px) rotate(6deg)}}
     @keyframes sway-string{0%,100%{transform:translateX(-50%) rotate(8deg)}50%{transform:translateX(-50%) rotate(-8deg)}}
@@ -64,8 +71,9 @@
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
   <audio id="bgAudio" src="assets/bgm.mp3" autoplay muted loop playsinline></audio>
+  <audio id="bombSound" src="assets/bomb.mp3"></audio>
   <div id="balloons"></div>
-  <div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="saveBtn" class="tbtn hidden" aria-label="Save edits">💾</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button></div></div></div>
+<div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="saveBtn" class="tbtn hidden" aria-label="Save edits">💾</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button><button id="animToggle" class="tbtn" aria-label="Toggle animation">Balloons</button></div></div></div>
   <div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
     <div class="bg-white dark:bg-[#0f172a] p-6 rounded-xl w-80 shadow">
       <h3 class="font-bold mb-4 text-center">Admin Login</h3>
@@ -172,8 +180,12 @@
       }).catch(()=>{});
     });
     (function(){const track=document.getElementById('tickerTrack');if(!track)return;track.innerHTML=track.innerHTML+track.innerHTML;})();
-    const balloonHolder=document.getElementById('balloons');
-    if(balloonHolder){
+    const fxHolder=document.getElementById('balloons');
+    const animToggle=document.getElementById('animToggle');
+    const bombSound=document.getElementById('bombSound');
+    if(bombSound)bombSound.volume=0.4;
+    let bombTimer=null,animMode='balloons';
+    const spawnBalloons=()=>{
       const colors=['#ff6b6b','#ffa94d','#74c0fc'];
       colors.forEach((c,i)=>{
         const b=document.createElement('div');
@@ -189,9 +201,36 @@
         p.setAttribute('d','M10 0 Q15 20 10 40');
         s.appendChild(p);
         b.appendChild(s);
-        balloonHolder.appendChild(b);
+        fxHolder.appendChild(b);
       });
-    }
+    };
+    const spawnPlane=()=>{
+      const plane=document.createElement('div');
+      plane.className='plane';
+      fxHolder.appendChild(plane);
+      bombTimer=setInterval(()=>dropBomb(plane),3000);
+    };
+    const dropBomb=plane=>{
+      const b=document.createElement('div');
+      b.className='bomb';
+      b.style.left=(plane.offsetLeft+plane.clientWidth/2-12)+'px';
+      b.style.top=(plane.offsetTop+plane.clientHeight)+'px';
+      fxHolder.appendChild(b);
+      b.addEventListener('animationend',()=>{
+        b.remove();
+        const e=document.createElement('div');
+        e.className='explosion';
+        e.style.left=(plane.offsetLeft+plane.clientWidth/2-40)+'px';
+        e.style.top='calc(100% - 80px)';
+        fxHolder.appendChild(e);
+        bombSound&&bombSound.play().catch(()=>{});
+        setTimeout(()=>e.remove(),600);
+      });
+    };
+    const clearFx=()=>{fxHolder.innerHTML='';if(bombTimer)clearInterval(bombTimer);bombTimer=null;};
+    const setAnim=mode=>{animMode=mode;clearFx();mode==='balloons'?spawnBalloons():spawnPlane();if(animToggle)animToggle.textContent=mode==='balloons'?'Balloons':'Bombs';};
+    if(fxHolder){setAnim('balloons');}
+    if(animToggle){animToggle.addEventListener('click',()=>setAnim(animMode==='balloons'?'bombs':'balloons'));}
     const counters=document.querySelectorAll('.counter span[data-count]');const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=parseInt(el.dataset.count,10);let cur=0;const step=Math.ceil(end/80);const T=setInterval(()=>{cur+=step;if(cur>=end){cur=end;clearInterval(T)}el.textContent=cur.toLocaleString();},16);io.unobserve(el);}})},{threshold:.4});counters.forEach(c=>io.observe(c));
     document.querySelectorAll('.strip.loop').forEach(strip=>{const kids=[...strip.children];kids.forEach(el=>strip.appendChild(el.cloneNode(true)));let pos=0;const speed=parseInt(strip.dataset.speed||'40',10);let last=null,paused=false;const step=t=>{if(last===null)last=t;const dt=(t-last)/1000;last=t;if(!paused){pos+=speed*dt;if(pos>=strip.scrollWidth/2)pos=0;strip.scrollLeft=pos}requestAnimationFrame(step)};strip.addEventListener('mouseenter',()=>paused=true);strip.addEventListener('mouseleave',()=>paused=false);requestAnimationFrame(step)});
     gsap.from('.header',{y:-60,opacity:0,duration:.6});
