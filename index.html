@@ -35,9 +35,10 @@
     .editing [contenteditable]{outline:1px dashed #0ea5e9}.editing img{outline:1px dashed #0ea5e9;cursor:pointer}
     #balloons{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
     .balloon{position:absolute;left:var(--x);bottom:-80px;width:40px;height:55px;border-radius:50% 50% 45% 45%;background:var(--color);animation:rise var(--dur) linear infinite,sway 3s ease-in-out infinite}
-    .balloon::after{content:"";position:absolute;left:50%;bottom:-40px;width:2px;height:40px;background:#aaa;transform:translateX(-50%)}
+    .balloon::after{content:"";position:absolute;left:50%;bottom:-40px;width:2px;height:40px;background:#aaa;transform-origin:top;animation:string 3s ease-in-out infinite}
     @keyframes rise{from{bottom:-80px}to{bottom:110%}}
-    @keyframes sway{0%,100%{transform:translateX(-10px)}50%{transform:translateX(10px)}}
+    @keyframes sway{0%,100%{transform:translateX(-10px) rotate(-6deg)}50%{transform:translateX(10px) rotate(6deg)}}
+    @keyframes string{0%,100%{transform:translateX(-50%) rotate(8deg)}50%{transform:translateX(-50%) rotate(-8deg)}}
     @media(max-width:640px){.display{font-size:1.6rem}.strip img{width:260px;height:160px}.header .wrap{padding:.5rem .75rem}.brand img{width:48px;height:48px}.ticker{top:64px}.counters{grid-template-columns:1fr}}
   </style>
 </head>
