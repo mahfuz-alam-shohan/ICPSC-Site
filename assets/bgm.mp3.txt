@@ -1,2 +1,0 @@
-Place the Bangladesh national anthem here and rename this file to bgm.mp3.
-The <audio> tag in index.html will autoplay it on load.
