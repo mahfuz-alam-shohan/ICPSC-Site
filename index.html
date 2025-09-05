@@ -27,23 +27,34 @@
     .timeline{border-left:3px solid #e2e8f0;margin-left:1rem;display:grid;gap:1rem}.timeline li{position:relative;list-style:none}.timeline .dot{position:absolute;left:-9px;top:.6rem;width:14px;height:14px;background:linear-gradient(120deg,var(--brand),var(--brand2));border-radius:50%}.timeline .card{margin-left:.5rem}
     .leaders{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));justify-items:center;gap:1rem}.leader{width:220px;background:#fff;border:1px solid #e2e8f0;border-radius:1rem;overflow:hidden}.leader img{width:100%;height:220px;object-fit:cover;display:block}.leader .info{padding:.6rem;display:grid;gap:.25rem;text-align:center}.leader .name{font-weight:700}.leader .chip{display:inline-flex;padding:.35rem .6rem;border:1px solid #e2e8f0;border-radius:.6rem;text-decoration:none;font-weight:700}
     .counters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.counter{background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem;text-align:center}.counter span{display:block;font-size:2rem;font-weight:900}.counter label{color:#64748b;font-weight:700}
-    .gallery-block{margin-top:1rem}.gtitle{font-weight:800;margin-bottom:.4rem}.strip{display:flex;gap:.6rem;overflow:hidden}.strip img{width:320px;height:200px;object-fit:cover;border-radius:.75rem;box-shadow:0 6px 16px rgba(2,6,23,.08)}
+    .gallery-block{margin-top:1rem}.gtitle{font-weight:800;margin-bottom:.4rem}.strip{display:flex;gap:.6rem;overflow:hidden}.strip img{width:320px;height:200px;object-fit:cover;border-radius:.75rem;box-shadow:0 6px 16px rgba(2,6,23,.08)}#gallery{position:relative;overflow:hidden}
     .quiz .qtext{font-weight:900;font-size:1.1rem;margin-bottom:.6rem}.qopts{display:grid;gap:.5rem}.qopts button{text-align:left;border:1px solid #e2e8f0;background:#fff;padding:.6rem .75rem;border-radius:.7rem;font-weight:700}.qopts button.correct{border-color:#22c55e}.qopts button.wrong{border-color:#ef4444}.qactions{display:flex;gap:.5rem;margin-top:.6rem}.qmeta{margin-top:.5rem;color:#64748b;font-size:.9rem}
     .divider.wave{height:56px;background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%23e2e8f0\"/></svg>') center/cover no-repeat}.divider.wave.flip{transform:scaleY(-1)}
     .footer{border-top:1px solid #e2e8f0;background:#fff}.footer .wrap{padding:1.2rem 1rem;display:flex;justify-content:center;font-size:.9rem;color:#64748b}
-    .dark body{background:linear-gradient(to bottom,#0b1220,#0f172a);color:#e2e8f0}.dark .header{background:rgba(15,23,42,.93);border-color:#1f2937}.dark .brand{color:#f1f5f9}.dark .btext span{color:#94a3b8}.dark .ticker{background:#0b1325;color:#cbd5e1;border-color:#1f2937}.dark .tick{color:#93c5fd}.dark .card,.dark .lottie{background:#0f172a;border-color:#1f2937}.dark .pill{background:#0b1220;border-color:#1f2937;color:#d1d5db}.dark .timeline{border-color:#1f2937}.dark .link{color:#7dd3fc}.dark .divider.wave{background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%231f2937\"/></svg>') center/cover no-repeat}.dark .section-tag{background:#083344;border-color:#164e63;color:#7dd3fc}.dark .muted{color:#94a3b8}.dark .lede,.dark .counter label,.dark .gtitle{color:#cbd5e1}.dark h1,.dark h2,.dark h3,.dark h4,.dark h5,.dark h6,.dark p,.dark span,.dark label,.dark strong,.dark .nav-btn,.dark .mlink,.dark .tlink{color:#f1f5f9}
+    .dark body{background:linear-gradient(to bottom,#0b1220,#0f172a);color:#e2e8f0}.dark .header{background:rgba(15,23,42,.93);border-color:#1f2937}.dark .brand{color:#f1f5f9}.dark .btext span{color:#94a3b8}.dark .ticker{background:#0b1325;color:#cbd5e1;border-color:#1f2937}.dark .tick{color:#93c5fd}.dark .card,.dark .lottie,.dark .leader{background:#0f172a;border-color:#1f2937}.dark .pill{background:#0b1220;border-color:#1f2937;color:#d1d5db}.dark .timeline{border-color:#1f2937}.dark .link{color:#7dd3fc}.dark .divider.wave{background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%231f2937\"/></svg>') center/cover no-repeat}.dark .section-tag{background:#083344;border-color:#164e63;color:#7dd3fc}.dark .muted{color:#94a3b8}.dark .lede,.dark .counter label,.dark .gtitle{color:#cbd5e1}.dark h1,.dark h2,.dark h3,.dark h4,.dark h5,.dark h6,.dark p,.dark span,.dark label,.dark strong,.dark .nav-btn,.dark .mlink,.dark .tlink{color:#f1f5f9}.dark .qopts button{background:#0b1220;border-color:#1f2937;color:#f1f5f9}.dark .qtext,.dark .qmeta{color:#f1f5f9}.dark .leader .chip{border-color:#1f2937;background:#0b1220;color:#f1f5f9}
     .editing [contenteditable]{outline:1px dashed #0ea5e9}.editing img{outline:1px dashed #0ea5e9;cursor:pointer}
     #balloons{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
-    .balloon{position:absolute;left:var(--x);bottom:-80px;width:40px;height:55px;border-radius:50% 50% 45% 45%;background:var(--color);animation:rise var(--dur) linear infinite,sway 3s ease-in-out infinite}
-    .balloon::after{content:"";position:absolute;left:50%;bottom:-40px;width:2px;height:40px;background:#aaa;transform-origin:top;animation:string 3s ease-in-out infinite}
+    .balloon{position:absolute;left:var(--x);bottom:-80px;width:40px;height:55px;border-radius:50% 50% 45% 45%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),var(--color) 60%);animation:rise var(--dur) linear infinite,sway 3s ease-in-out infinite}
+    .balloon .string{position:absolute;left:50%;bottom:-40px;width:20px;height:40px;transform-origin:top;animation:sway-string 3s ease-in-out infinite}
+    .balloon .string path{stroke:#aaa;stroke-width:2;fill:none;animation:curve 3s ease-in-out infinite}
     @keyframes rise{from{bottom:-80px}to{bottom:110%}}
     @keyframes sway{0%,100%{transform:translateX(-10px) rotate(-6deg)}50%{transform:translateX(10px) rotate(6deg)}}
-    @keyframes string{0%,100%{transform:translateX(-50%) rotate(8deg)}50%{transform:translateX(-50%) rotate(-8deg)}}
+    @keyframes sway-string{0%,100%{transform:translateX(-50%) rotate(8deg)}50%{transform:translateX(-50%) rotate(-8deg)}}
+    @keyframes curve{0%,100%{d:path('M10 0 Q15 20 10 40')}50%{d:path('M10 0 Q5 20 10 40')}}
+    #cartoons{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5}
+    #cartoons .cartoon{position:absolute;font-size:32px}
+    #cartoons .cat{bottom:0;left:-40px;animation:walk-cat 20s linear infinite}
+    #cartoons .kid{bottom:40px;left:-40px;animation:walk-kid 25s linear infinite}
+    .ninja{position:fixed;left:calc(100% - 40px);bottom:-40px;font-size:32px;pointer-events:none;z-index:6;animation:climb 12s linear infinite}
+    @keyframes walk-cat{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 80px))}}
+    @keyframes walk-kid{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 80px))}}
+    @keyframes climb{from{transform:translateY(0)}to{transform:translateY(calc(-100vh - 80px))}}
     @media(max-width:640px){.display{font-size:1.6rem}.strip img{width:260px;height:160px}.header .wrap{padding:.5rem .75rem}.brand img{width:48px;height:48px}.ticker{top:64px}.counters{grid-template-columns:1fr}}
   </style>
 </head>
 <body class="bg-gradient-to-b from-[#f8fbff] to-[#eef6ff] text-slate-800 selection:bg-[#ffd166]/60">
   <div id="balloons"></div>
+  <div class="ninja cartoon">🥷</div>
   <div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="saveBtn" class="tbtn hidden" aria-label="Save edits">💾</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button></div></div></div>
   <div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
     <div class="bg-white dark:bg-[#0f172a] p-6 rounded-xl w-80 shadow">
@@ -98,7 +109,7 @@
 
   <section id="brain" class="section"><div class="wrap"><span class="section-tag">Fun + Logic</span><div class="head"><div class="title"><h2>Brain Challenge</h2></div><span class="muted">Think fast. Trickier than they look.</span></div><div class="quiz card"><div id="qText" class="qtext"></div><div id="qOptions" class="qopts"></div><div class="qactions"><button id="btnHint" class="ghost">Hint</button><button id="btnExplain" class="ghost">Explain</button><button id="btnNext" class="cta">Next</button></div><div class="qmeta">Question <span id="qNum">1</span>/<span id="qTotal">8</span> • Score: <span id="qScore">0</span></div></div></div></section>
 
-  <section id="gallery" class="section"><div class="wrap"><span class="section-tag">Gallery</span><div class="head"><h2>গ্যালারি</h2></div><div class="gallery-block"><h3 class="gtitle">Events</h3><div class="strip loop" data-speed="40"><img src="assets/gallery-1.png" alt="Annual Day"><img src="assets/gallery-2.png" alt="Science Fair"><img src="assets/gallery-3.png" alt="Cultural Fest"><img src="assets/gallery-4.png" alt="Parade"></div></div><div class="gallery-block"><h3 class="gtitle">Campus Life</h3><div class="strip loop" data-speed="45"><img src="assets/gallery-5.png" alt="Library"><img src="assets/gallery-6.png" alt="Classrooms"><img src="assets/gallery-7.png" alt="Assembly"><img src="assets/gallery-8.png" alt="ICT Lab"></div></div><div class="gallery-block"><h3 class="gtitle">Sports</h3><div class="strip loop" data-speed="35"><img src="assets/gallery-9.png" alt="Football"><img src="assets/gallery-10.png" alt="Cricket"><img src="assets/gallery-11.png" alt="Table Tennis"><img src="assets/gallery-12.png" alt="Chess"></div></div></div></section>
+  <section id="gallery" class="section"><div class="wrap"><span class="section-tag">Gallery</span><div class="head"><h2>গ্যালারি</h2></div><div class="gallery-block"><h3 class="gtitle">Events</h3><div class="strip loop" data-speed="40"><img src="assets/gallery-1.png" alt="Annual Day"><img src="assets/gallery-2.png" alt="Science Fair"><img src="assets/gallery-3.png" alt="Cultural Fest"><img src="assets/gallery-4.png" alt="Parade"></div></div><div class="gallery-block"><h3 class="gtitle">Campus Life</h3><div class="strip loop" data-speed="45"><img src="assets/gallery-5.png" alt="Library"><img src="assets/gallery-6.png" alt="Classrooms"><img src="assets/gallery-7.png" alt="Assembly"><img src="assets/gallery-8.png" alt="ICT Lab"></div></div><div class="gallery-block"><h3 class="gtitle">Sports</h3><div class="strip loop" data-speed="35"><img src="assets/gallery-9.png" alt="Football"><img src="assets/gallery-10.png" alt="Cricket"><img src="assets/gallery-11.png" alt="Table Tennis"><img src="assets/gallery-12.png" alt="Chess"></div></div><div id="cartoons"><div class="cartoon cat">🐱</div><div class="cartoon kid">🧒</div><div class="cartoon ninja">🥷</div></div></div></section>
 
   <section id="admission" class="section"><div class="wrap"><span class="section-tag">Admission</span><div class="head"><h2>ভর্তি</h2><span class="muted">Clear steps • Online apply</span></div><div class="cta-row"><a class="cta" href="#">Apply Online</a><a class="ghost" href="#">Instructions (PDF)</a></div></div></section>
   <section id="contact" class="section"><div class="wrap"><span class="section-tag">Contact</span><div class="head"><h2>যোগাযোগ</h2></div><div class="card"><p>Cumilla Cantonment 3501, Cumilla • Phone: 03239933170 • Mobile: 01733063001 • Email: ipscm1@gmail.com</p></div></div></section>
@@ -145,6 +156,18 @@
         b.style.setProperty('--color',c);
         b.style.setProperty('--dur',(14+i*2)+'s');
         b.style.animationDelay=(-i*4)+'s';
+        for(let j=0;j<3;j++){
+          const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+          s.setAttribute('class','string');
+          s.setAttribute('viewBox','0 0 20 40');
+          s.style.left=(50+(j-1)*8)+'%';
+          s.style.animationDelay=(j*0.3)+'s';
+          const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+          p.setAttribute('d','M10 0 Q15 20 10 40');
+          p.style.animationDelay=(j*0.3)+'s';
+          s.appendChild(p);
+          b.appendChild(s);
+        }
         balloonHolder.appendChild(b);
       });
     }
