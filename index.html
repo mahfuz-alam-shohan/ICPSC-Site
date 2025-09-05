@@ -10,7 +10,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
     :root{--ink:#0f172a;--muted:#475569;--brand-red:#7f1d1d;--brand-green:#14532d;--link:var(--brand-green);--topbar-h:32px;--header-h:60px;--ticker-h:40px}
+    html{scroll-behavior:smooth}
     html,body{overflow-x:hidden}
+    [id]{scroll-margin-top:calc(var(--topbar-h,0) + var(--header-h,0) + var(--ticker-h,0) + 1rem)}
     *{box-sizing:border-box}body{font-family:"Noto Sans Bengali","Inter",ui-sans-serif,-apple-system;line-height:1.5;padding-top:calc(var(--topbar-h,0) + var(--header-h,0) + var(--ticker-h,0));background:#f8fafc;background-image:radial-gradient(circle at 20% 20%,rgba(127,29,29,.08),transparent 60%),radial-gradient(circle at 80% 80%,rgba(20,83,45,.08),transparent 60%);background-attachment:fixed;}
     .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
     .topbar{position:fixed;top:0;left:0;width:100%;z-index:70;background:var(--brand-green);color:#fff;font-size:.8rem}.topbar .wrap{display:flex;justify-content:center;align-items:center;padding:.3rem .75rem;white-space:nowrap;gap:1rem}
@@ -104,9 +106,39 @@
       </div>
     </div>
     <div id="mobileNav" class="mob hidden">
-      <div class="mitem"><button class="mhead">About</button><div class="msub"><a class="mlink" href="#welcome">Welcome</a><a class="mlink" href="#leadership">Leadership</a><a class="mlink" href="#history">History</a><a class="mlink" href="#contact">Contact</a></div></div>
-      <div class="mitem"><button class="mhead">Academics</button><div class="msub"><a class="mlink" href="#academics">Programs</a><a class="mlink" href="#resources">Resources</a></div></div>
-      <div class="mitem"><button class="mhead">Campus</button><div class="msub"><a class="mlink" href="#facilities">Facilities</a><a class="mlink" href="#cocurricular">Activities</a><a class="mlink" href="#gallery">Gallery</a></div></div>
+      <div class="mitem">
+        <button class="mhead">About</button>
+        <div class="msub">
+          <a class="mlink" href="#welcome">Welcome</a>
+          <a class="mlink" href="#leadership">Leadership</a>
+          <a class="mlink" href="#history">History</a>
+          <a class="mlink" href="#contact">Campus</a>
+          <a class="mlink" href="#contact">Location &amp; Map</a>
+          <a class="mlink" href="#contact">Email &amp; Phone</a>
+        </div>
+      </div>
+      <div class="mitem">
+        <button class="mhead">Academics</button>
+        <div class="msub">
+          <a class="mlink" href="#academics">Primary</a>
+          <a class="mlink" href="#academics">High School</a>
+          <a class="mlink" href="#academics">College</a>
+          <a class="mlink" href="#resources">Syllabus (PDF)</a>
+          <a class="mlink" href="#resources">Question Bank</a>
+          <a class="mlink" href="#resources">e-Library</a>
+        </div>
+      </div>
+      <div class="mitem">
+        <button class="mhead">Campus</button>
+        <div class="msub">
+          <a class="mlink" href="#facilities">Labs &amp; Library</a>
+          <a class="mlink" href="#facilities">ICT</a>
+          <a class="mlink" href="#facilities">Playgrounds</a>
+          <a class="mlink" href="#cocurricular">Co-Curricular</a>
+          <a class="mlink" href="#clubs">Clubs &amp; Societies</a>
+          <a class="mlink" href="#gallery">Gallery</a>
+        </div>
+      </div>
       <a class="mlink" href="#admission">Apply</a>
       <a id="loginNavM" class="mlink special" href="#login">Login</a>
     </div>
@@ -133,46 +165,46 @@
     <div class="wrap">
       <div class="head"><h2>Clubs & Societies</h2></div>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.html#debating" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-comments text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Debating Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        </a>
+        <a href="pages/clubs.html#science" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-flask text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Science Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        </a>
+        <a href="pages/clubs.html#ict" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-computer text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">ICT Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        </a>
+        <a href="pages/clubs.html#art" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-palette text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Art Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        </a>
+        <a href="pages/clubs.html#gk" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-lightbulb text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">General Knowledge Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        </a>
+        <a href="pages/clubs.html#math" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-square-root-variable text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Math Olympiad Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        </a>
+        <a href="pages/clubs.html#language" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-book-open text-4xl md:text-2xl mb-2"></i>
-          <span class="font-semibold">Language & Literature Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+          <span class="font-semibold">Language &amp; Literature Club</span>
+        </a>
+        <a href="pages/clubs.html#music" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-music text-4xl md:text-2xl mb-2"></i>
-          <span class="font-semibold">Music & Dance Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+          <span class="font-semibold">Music &amp; Dance Club</span>
+        </a>
+        <a href="pages/clubs.html#sports" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-football text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Sports Club</span>
-        </div>
-        <div class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        </a>
+        <a href="pages/clubs.html#taekwondo" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-user-ninja text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Taekwondo Club</span>
-        </div>
+        </a>
       </div>
     </div>
   </section>
