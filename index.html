@@ -5,16 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ispahani Cantonment Public School & College</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p/wZc+h9u5lHppZArYrusS4x+h0cYfZcQ3VIAtF+wNCz7L+G2kZZgwyU0YJIUKGwEuK+Sb9VjA36HkRb114F8g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <style>
-    :root{--ink:#0f172a;--muted:#475569;--brand-red:#7f1d1d;--brand-green:#14532d;--link:var(--brand-green);--topbar-h:32px;--header-h:60px;--ticker-h:40px}
+    :root{--ink:#0f172a;--muted:#475569;--brand-red:#7f1d1d;--brand-green:#14532d;--link:var(--brand-green);}
     html,body{overflow-x:hidden}
-    *{box-sizing:border-box}body{font-family:"Noto Sans Bengali","Inter",ui-sans-serif,-apple-system;line-height:1.5;padding-top:calc(var(--topbar-h,0) + var(--header-h,0) + var(--ticker-h,0));background:#f8fafc;background-image:radial-gradient(circle at 20% 20%,rgba(127,29,29,.08),transparent 60%),radial-gradient(circle at 80% 80%,rgba(20,83,45,.08),transparent 60%);background-attachment:fixed;}
+    *{box-sizing:border-box}body{font-family:"Noto Sans Bengali","Inter",ui-sans-serif,-apple-system;line-height:1.5;background:#f8fafc;background-image:radial-gradient(circle at 20% 20%,rgba(127,29,29,.08),transparent 60%),radial-gradient(circle at 80% 80%,rgba(20,83,45,.08),transparent 60%);background-attachment:fixed;}
     .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
-    .topbar{position:fixed;top:0;left:0;width:100%;z-index:70;background:var(--brand-green);color:#fff;font-size:.8rem}.topbar .wrap{display:flex;justify-content:center;align-items:center;padding:.3rem .75rem;white-space:nowrap;gap:1rem}
-    .header{position:fixed;top:var(--topbar-h,0);left:0;width:100%;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0}.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.5rem .75rem;flex-wrap:nowrap}.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);flex:1;min-width:0}.brand img{width:56px;height:56px;object-fit:contain;flex-shrink:0}.btext strong{display:block;font-weight:900}.btext span{display:block;font-size:.78rem;color:#64748b}.controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
-    .nav{display:none;gap:.25rem;align-items:center;flex:1;justify-content:flex-end}@media(min-width:768px){.nav{display:flex}}.nav-btn{padding:.5rem .75rem;border-radius:.75rem;font-weight:700}
+    .topbar{background:var(--brand-green);color:#fff;font-size:.8rem}.topbar .wrap{display:flex;justify-content:center;align-items:center;padding:.25rem .5rem;gap:.5rem;flex-wrap:wrap}
+  .header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid #e2e8f0}.header .wrap{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;padding:.4rem .5rem}.brand{font-weight:900;text-decoration:none;color:var(--ink)}@media(min-width:768px){.brand{display:none}}    
+    .nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.25rem}@media(max-width:767px){.nav{display:none}}.nav-btn{padding:.5rem .75rem;border-radius:.75rem;font-weight:700}
     .nav-btn.icon{padding:.5rem;font-size:1.25rem;line-height:1}
     .mega>.nav-btn::after{content:"\25BE";margin-left:.25rem;font-size:.65em;display:inline-block;transition:transform .2s}
     .mega:hover>.nav-btn::after{transform:rotate(180deg)}
@@ -22,7 +23,7 @@
     .cta.green{background:linear-gradient(135deg,var(--brand-green),#1e7a3f)}
     .cta.red{background:linear-gradient(135deg,var(--brand-red),#b91c1c)}
     .ghost{border:1px solid #e2e8f0;padding:.5rem 1rem;border-radius:.8rem;font-weight:700;text-decoration:none}
-    .hamb{display:inline-flex;border:1px solid #e2e8f0;border-radius:.8rem;padding:.4rem .6rem}@media(min-width:768px){.hamb{display:none}}.mob{border-top:1px solid #e2e8f0;background:#fff}.mlink{display:block;padding:.7rem 1rem;text-decoration:none;font-weight:700}.mlink:hover{background:#e2e8f0}.mlink.special{background:var(--brand-red);color:#fff;border-radius:.6rem;margin:.5rem 1rem;text-align:center}
+    .hamb{display:inline-flex;border:1px solid #e2e8f0;border-radius:.8rem;padding:.4rem .6rem}@media(min-width:768px){.hamb{display:none}}.mob{position:fixed;top:0;left:0;height:100%;width:260px;background:#fff;border-right:1px solid #e2e8f0;transform:translateX(-100%);transition:transform .3s;z-index:80;overflow-y:auto;padding-top:1rem}.mob.open{transform:translateX(0)}.mlink{display:block;padding:.7rem 1rem;text-decoration:none;font-weight:700}.mlink:hover{background:#e2e8f0}.mlink.special{background:var(--brand-red);color:#fff;border-radius:.6rem;margin:.5rem 1rem;text-align:center}
     .mob .mitem{border-top:1px solid #e2e8f0}
     .mob .mhead{display:block;width:100%;padding:.7rem 1rem;font-weight:700;text-align:left;background:transparent;border:0}
     .mob .mhead::after{content:"\25BE";float:right;transition:transform .2s}
@@ -36,11 +37,15 @@
     .mega .panel .col h4{font-weight:800;font-size:.85rem;margin-bottom:.3rem}
     .mega .panel .col a{display:block;padding:.25rem .5rem;border-radius:.5rem;text-decoration:none;color:var(--ink)}
     .mega .panel .col a:hover{background:#f1f5f9}
+    .mega .panel.one{grid-template-columns:1fr}
     .mega:hover .panel{display:grid}
     .nav-btn:hover,.nav-btn:focus{background:#e2e8f0}
-    .ticker{position:fixed;top:calc(var(--topbar-h,0) + var(--header-h,56px));left:0;width:100%;z-index:50;background:var(--brand-red);color:#fff;border-bottom:1px solid #991b1b}.ticker .wrap{overflow:hidden}.ticker-track{display:flex;gap:2rem;white-space:nowrap;animation:t 26s linear infinite}.ticker:hover .ticker-track{animation-play-state:paused}.tick{color:#ffe4e6;text-decoration:none;padding:.5rem 0}@keyframes t{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .ticker{background:var(--brand-red);color:#fff;border-bottom:1px solid #991b1b}.ticker .wrap{overflow:hidden}.ticker-track{display:flex;gap:2rem;white-space:nowrap;animation:t 26s linear infinite}.ticker:hover .ticker-track{animation-play-state:paused}.tick{color:#ffe4e6;text-decoration:none;padding:.5rem 0}@keyframes t{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media(max-width:767px){.topbar,.ticker{display:none}}
     .section{padding:2.2rem 0}.head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:.8rem 0}.head h2{font-size:1.6rem;font-weight:900}.head .title{display:flex;align-items:center;gap:.5rem}.muted{color:#64748b}.section-tag{display:inline-block;font-size:.75rem;font-weight:800;color:var(--brand-red);background:#fee2e2;border:1px solid #fecaca;border-radius:.5rem;padding:.15rem .5rem}.welcome-tag{display:block;margin:0 auto;text-align:center;font-size:1.25rem}
     .display{font-size:clamp(1rem,5vw,3rem);font-weight:900;letter-spacing:-.02em}.grad{background:linear-gradient(120deg,var(--brand-red),var(--brand-green));-webkit-background-clip:text;color:transparent}.lede{margin-top:.6rem;color:#475569;max-width:58ch}.btns{margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+    .club-btn{display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem;border:1px solid #e2e8f0;border-radius:.75rem;background:#fff;text-decoration:none;font-weight:700;box-shadow:0 2px 4px rgba(2,6,23,.05)}
+    .club-btn i{color:var(--brand-green)}
     .hero{position:relative;overflow:hidden;isolation:isolate;padding:3rem 0}
     .hero::before{content:"";position:absolute;inset:0;background:url('assets/background.png') center/cover no-repeat;opacity:.25;mix-blend-mode:multiply;pointer-events:none}
     .msg-box{background:#fff;background-image:radial-gradient(rgba(127,29,29,.08) 1px,transparent 1px),radial-gradient(rgba(20,83,45,.08) 1px,transparent 1px);background-size:20px 20px;background-position:0 0,10px 10px}
@@ -63,7 +68,7 @@
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
   <div id="decor"></div>
-<div class="topbar"><div class="wrap"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div></div>
+<div class="topbar"><div class="wrap"><img src="assets/ipsc-logo.png" alt="Logo" class="w-8 h-8"><strong>Ispahani Cantonment Public School & College</strong><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div></div>
   <div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-xl w-80 shadow">
       <h3 class="font-bold mb-4 text-center">Admin Login</h3>
@@ -83,34 +88,39 @@
       <div id="msgText" class="mt-2 whitespace-pre-line"></div>
     </div>
   </div>
-  <header class="header">
-    <div class="wrap">
-      <a href="#" class="brand">
-        <img id="logoImg" src="assets/ipsc-logo.png" alt="Logo">
-        <div class="btext"><strong>Ispahani Cantonment Public School & College</strong><span>Comilla Cantonment</span></div>
-      </a>
-      <div class="controls">
-        <nav class="nav" aria-label="Primary">
-          <div class="mega"><button class="nav-btn" aria-haspopup="true">About</button><div class="panel two"><div class="col"><h4>Overview</h4><a href="#welcome">Welcome</a><a href="#leadership">Leadership</a><a href="#history">History</a></div><div class="col"><h4>Contact</h4><a href="#contact">Campus</a><a href="#contact">Location & Map</a><a href="#contact">Email & Phone</a></div></div></div>
-          <div class="mega"><button class="nav-btn" aria-haspopup="true">Academics</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="#academics">Primary</a><a href="#academics">High School</a><a href="#academics">College</a></div><div class="col"><h4>Resources</h4><a href="#resources">Syllabus (PDF)</a><a href="#resources">Question Bank</a><a href="#resources">e-Library</a></div></div></div>
-          <div class="mega"><button class="nav-btn" aria-haspopup="true">Campus</button><div class="panel two"><div class="col"><h4>Facilities</h4><a href="#facilities">Labs & Library</a><a href="#facilities">ICT</a><a href="#facilities">Playgrounds</a></div><div class="col"><h4>Activities</h4><a href="#cocurricular">Co-Curricular</a><a href="#clubs">Clubs & Societies</a><a href="#gallery">Gallery</a></div></div></div>
-          <a class="nav-btn" href="#admission">Apply</a>
-          <a id="loginNav" class="cta red" href="#login">Login</a>
-        </nav>
-        <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
-      </div>
-    </div>
-    <div id="mobileNav" class="mob hidden">
-      <div class="mitem"><button class="mhead">About</button><div class="msub"><a class="mlink" href="#welcome">Welcome</a><a class="mlink" href="#leadership">Leadership</a><a class="mlink" href="#history">History</a><a class="mlink" href="#contact">Contact</a></div></div>
-      <div class="mitem"><button class="mhead">Academics</button><div class="msub"><a class="mlink" href="#academics">Programs</a><a class="mlink" href="#resources">Resources</a></div></div>
-      <div class="mitem"><button class="mhead">Campus</button><div class="msub"><a class="mlink" href="#facilities">Facilities</a><a class="mlink" href="#cocurricular">Activities</a><a class="mlink" href="#gallery">Gallery</a></div></div>
-      <a class="mlink" href="#admission">Apply</a>
-      <a id="loginNavM" class="mlink special" href="#login">Login</a>
-    </div>
-  </header>
-
   <div class="ticker" role="region" aria-label="Latest notices"><div class="wrap"><div id="tickerTrack" class="ticker-track"><a href="#" class="tick">একাদশ শ্রেণিতে ভর্তি (২০২৫–২৬) — Apply now</a><a href="#" class="tick">HSC Model Test Routine — Download PDF</a><a href="#" class="tick">Science Fair — Registration open (Robotics, IoT, AI)</a><a href="#" class="tick">Holiday Notice — Campus closed on Friday</a></div></div></div>
+  <header class="header">
+  <div class="wrap">
+    <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
+    <a href="#" class="brand">Ispahani CPS&C</a>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-btn" href="#">Home</a>
+      <div class="mega"><button class="nav-btn" aria-haspopup="true">About</button><div class="panel two"><div class="col"><h4>Overview</h4><a href="#welcome">Welcome</a><a href="#leadership">Leadership</a><a href="#history">History</a></div><div class="col"><h4>Contact</h4><a href="#contact">Campus</a><a href="#contact">Location & Map</a><a href="#contact">Email & Phone</a></div></div></div>
+      <div class="mega"><button class="nav-btn" aria-haspopup="true">Administrative</button><div class="panel one"><div class="col"><a href="#">Principal</a><a href="#">Chairman</a></div></div></div>
+      <div class="mega"><button class="nav-btn" aria-haspopup="true">Academic</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="#academics">Primary</a><a href="#academics">High School</a><a href="#academics">College</a></div><div class="col"><h4>Resources</h4><a href="#resources">Syllabus</a><a href="#resources">Question Bank</a><a href="#resources">e-Library</a></div></div></div>
+      <a class="nav-btn" href="#admission">Admission</a>
+      <a class="nav-btn" href="#facilities">Facilities</a>
+      <a class="nav-btn" href="#cocurricular">Co-Curricular</a>
+      <div class="mega"><button class="nav-btn" aria-haspopup="true">Club & Society</button><div class="panel one"><div class="col"><a href="#clubs">Debating Club</a><a href="#clubs">Science Club</a><a href="#clubs">ICT Club</a><a href="#clubs">Art Club</a><a href="#clubs">General Knowledge Club</a><a href="#clubs">Math Olympiad Club</a><a href="#clubs">Language & Literature Club</a><a href="#clubs">Music & Dance Club</a><a href="#clubs">Sports Club</a><a href="#clubs">Taekwondo Club</a></div></div></div>
+      <a class="nav-btn" href="#gallery">Gallery</a>
+      <a class="nav-btn" href="#">eRecruitment</a>
+    </nav>
+  </div>
+  <div id="mobileNav" class="mob">
+    <a class="mlink" href="#">Home</a>
+    <div class="mitem"><button class="mhead">About</button><div class="msub"><a class="mlink" href="#welcome">Welcome</a><a class="mlink" href="#leadership">Leadership</a><a class="mlink" href="#history">History</a><a class="mlink" href="#contact">Contact</a></div></div>
+    <div class="mitem"><button class="mhead">Administrative</button><div class="msub"><a class="mlink" href="#">Principal</a><a class="mlink" href="#">Chairman</a></div></div>
+    <div class="mitem"><button class="mhead">Academic</button><div class="msub"><a class="mlink" href="#academics">Programs</a><a class="mlink" href="#resources">Resources</a></div></div>
+    <a class="mlink" href="#admission">Admission</a>
+    <a class="mlink" href="#facilities">Facilities</a>
+    <a class="mlink" href="#cocurricular">Co-Curricular</a>
+    <div class="mitem"><button class="mhead">Club & Society</button><div class="msub"><a class="mlink" href="#clubs">Debating Club</a><a class="mlink" href="#clubs">Science Club</a><a class="mlink" href="#clubs">ICT Club</a><a class="mlink" href="#clubs">Art Club</a><a class="mlink" href="#clubs">General Knowledge Club</a><a class="mlink" href="#clubs">Math Olympiad Club</a><a class="mlink" href="#clubs">Language & Literature Club</a><a class="mlink" href="#clubs">Music & Dance Club</a><a class="mlink" href="#clubs">Sports Club</a><a class="mlink" href="#clubs">Taekwondo Club</a></div></div>
+    <a class="mlink" href="#gallery">Gallery</a>
+    <a class="mlink" href="#">eRecruitment</a>
+  </div>
+</header>
 
+  
 <section class="hero" id="welcome"><div class="wrap text-center flex flex-col items-center"><span class="section-tag welcome-tag">Welcome</span><h1 class="display whitespace-nowrap">Enter To Learn, <span class="grad">Leave To Serve</span></h1><p class="lede">Descipline • Lead • Character — Ispahani Cantonment Public School & College ক্যাম্পাসে প্রযুক্তিতে সমৃদ্ধ শিক্ষানুভূতি।</p><div class="btns"><a class="cta green" href="#admission">Apply Now</a><a class="cta red" href="#notices">Learn More</a></div></div></section>
   <div class="divider wave" aria-hidden="true"></div>
 
@@ -126,7 +136,7 @@
   <section id="academics" class="section"><div class="wrap"><div class="head"><h2>Academics</h2><span class="muted">Curriculum • HSC • ICT</span></div><div class="grid cards"><article class="card pop"><h3>Curriculum</h3><p>Grade 6–10 • HSC Science, Commerce, Arts.</p></article><article id="resources" class="card pop"><h3>Resources</h3><p>Syllabus & Notes (PDF), Question Bank, e-Library.</p></article><article class="card pop"><h3>Exams</h3><p>Term Exams, Model Tests, Practicals, Results.</p></article></div></div></section>
 
   <section id="cocurricular" class="section"><div class="wrap"><div class="head"><h2>Activities</h2></div><div class="grid cards"><article class="card pop"><h3>Debate</h3><ul class="bul"><li>Critical thinking</li><li>Public speaking</li></ul></article><article class="card pop"><h3>Sports</h3><ul class="bul"><li>Football, Cricket</li><li>Table Tennis, Chess</li></ul></article><article class="card pop"><h3>Cultural</h3><ul class="bul"><li>Music & Drama</li><li>Recitation</li></ul></article></div></div></section>
-  <section id="clubs" class="section"><div class="wrap"><div class="head"><h2>Clubs & Societies</h2></div><div class="grid cards"><article class="card"><h3>Science Club</h3><ul class="bul"><li>Robotics, IoT</li><li>Science fairs</li></ul></article><article class="card"><h3>Language Club</h3><ul class="bul"><li>Bangla & English</li><li>Writing & debate</li></ul></article><article class="card"><h3>Photography</h3><ul class="bul"><li>Workshops</li><li>Campus stories</li></ul></article></div></div></section>
+  <section id="clubs" class="section"><div class="wrap"><div class="head"><h2>Clubs & Societies</h2></div><div class="flex flex-wrap justify-center gap-3">  <a class="club-btn" href="#"><i class="fa-solid fa-comments"></i>Debating Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-flask"></i>Science Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-computer"></i>ICT Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-palette"></i>Art Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-lightbulb"></i>General Knowledge Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-square-root-variable"></i>Math Olympiad Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-book"></i>Language & Literature Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-music"></i>Music & Dance Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-futbol"></i>Sports Club</a>  <a class="club-btn" href="#"><i class="fa-solid fa-person-running"></i>Taekwondo Club</a></div></div></section>
 
 
   <section id="gallery" class="section"><div class="wrap"><div class="head"><h2>Gallery</h2></div><div class="gallery-block"><h3 class="gtitle">Events</h3><div class="strip loop" data-speed="40"><img src="assets/gallery-1.png" alt="Annual Day"><img src="assets/gallery-2.png" alt="Science Fair"><img src="assets/gallery-3.png" alt="Cultural Fest"><img src="assets/gallery-4.png" alt="Parade"></div></div><div class="gallery-block"><h3 class="gtitle">Campus Life</h3><div class="strip loop" data-speed="45"><img src="assets/gallery-5.png" alt="Library"><img src="assets/gallery-6.png" alt="Classrooms"><img src="assets/gallery-7.png" alt="Assembly"><img src="assets/gallery-8.png" alt="ICT Lab"></div></div><div class="gallery-block"><h3 class="gtitle">Sports</h3><div class="strip loop" data-speed="35"><img src="assets/gallery-9.png" alt="Football"><img src="assets/gallery-10.png" alt="Cricket"><img src="assets/gallery-11.png" alt="Table Tennis"><img src="assets/gallery-12.png" alt="Chess"></div></div></div></section>
@@ -137,26 +147,17 @@
 
   <script>
     document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
-    const setOffsets=()=>{const tb=document.querySelector('.topbar'),hd=document.querySelector('.header'),tk=document.querySelector('.ticker'),r=document.documentElement;if(tb)r.style.setProperty('--topbar-h',tb.offsetHeight+'px');if(hd)r.style.setProperty('--header-h',hd.offsetHeight+'px');if(tk)r.style.setProperty('--ticker-h',tk.offsetHeight+'px');};
     const mobileNav=document.getElementById('mobileNav');
-    const handleResize=()=>{
-      if(window.innerWidth>=768 && mobileNav && !mobileNav.classList.contains('hidden')) mobileNav.classList.add('hidden');
-      setOffsets();
-    };
-    setOffsets();
-    window.addEventListener('load',setOffsets);
-    window.addEventListener('resize',handleResize);
     const mobileToggle=document.getElementById('mobileToggle');
     if(mobileToggle&&mobileNav){
-      mobileToggle.addEventListener('click',()=>{mobileNav.classList.toggle('hidden');setOffsets();});
-      mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.add('hidden');setOffsets();}));
+      mobileToggle.addEventListener('click',()=>mobileNav.classList.toggle('open'));
+      mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileNav.classList.remove('open')));
       mobileNav.querySelectorAll('.mhead').forEach(btn=>{
         btn.addEventListener('click',()=>{
           const sub=btn.nextElementSibling;
-          mobileNav.querySelectorAll('.msub').forEach(s=>{if(s!==sub){s.classList.remove('open');s.previousElementSibling.classList.remove('open');}});
+          mobileNav.querySelectorAll('.msub').forEach(s=>{if(s!==sub)s.classList.remove('open');});
           sub.classList.toggle('open');
           btn.classList.toggle('open');
-          setOffsets();
         });
       });
     }
@@ -200,7 +201,7 @@
     const loginModal=document.getElementById('loginModal'),loginNav=document.getElementById('loginNav'),loginNavM=document.getElementById('loginNavM'),loginOk=document.getElementById('loginOk'),loginCancel=document.getElementById('loginCancel');
     function openLogin(e){e.preventDefault();loginModal.classList.remove('hidden');}
     if(loginNav) loginNav.addEventListener('click',openLogin);
-    if(loginNavM) loginNavM.addEventListener('click',e=>{openLogin(e);if(mobileNav) mobileNav.classList.add('hidden');setOffsets();});
+    if(loginNavM) loginNavM.addEventListener('click',e=>{openLogin(e);if(mobileNav) mobileNav.classList.remove('open');});
     if(loginCancel) loginCancel.addEventListener('click',()=>loginModal.classList.add('hidden'));
     if(loginOk) loginOk.addEventListener('click',()=>loginModal.classList.add('hidden'));
   </script>
