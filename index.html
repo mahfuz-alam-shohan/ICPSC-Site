@@ -41,20 +41,11 @@
     @keyframes sway{0%,100%{transform:translateX(-10px) rotate(-6deg)}50%{transform:translateX(10px) rotate(6deg)}}
     @keyframes sway-string{0%,100%{transform:translateX(-50%) rotate(8deg)}50%{transform:translateX(-50%) rotate(-8deg)}}
     @keyframes curve{0%,100%{d:path('M10 0 Q15 20 10 40')}50%{d:path('M10 0 Q5 20 10 40')}}
-    #cartoons{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5}
-    #cartoons .cartoon{position:absolute;font-size:32px}
-    #cartoons .cat{bottom:0;left:-40px;animation:walk-cat 20s linear infinite}
-    #cartoons .kid{bottom:40px;left:-40px;animation:walk-kid 25s linear infinite}
-    .ninja{position:fixed;left:calc(100% - 40px);bottom:-40px;font-size:32px;pointer-events:none;z-index:6;animation:climb 12s linear infinite}
-    @keyframes walk-cat{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 80px))}}
-    @keyframes walk-kid{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 80px))}}
-    @keyframes climb{from{transform:translateY(0)}to{transform:translateY(calc(-100vh - 80px))}}
     @media(max-width:640px){.display{font-size:1.6rem}.strip img{width:260px;height:160px}.header .wrap{padding:.5rem .75rem}.brand img{width:48px;height:48px}.ticker{top:64px}.counters{grid-template-columns:1fr}}
   </style>
 </head>
 <body class="bg-gradient-to-b from-[#f8fbff] to-[#eef6ff] text-slate-800 selection:bg-[#ffd166]/60">
   <div id="balloons"></div>
-  <div class="ninja cartoon">🥷</div>
   <div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="saveBtn" class="tbtn hidden" aria-label="Save edits">💾</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button></div></div></div>
   <div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
     <div class="bg-white dark:bg-[#0f172a] p-6 rounded-xl w-80 shadow">
@@ -109,7 +100,7 @@
 
   <section id="brain" class="section"><div class="wrap"><span class="section-tag">Fun + Logic</span><div class="head"><div class="title"><h2>Brain Challenge</h2></div><span class="muted">Think fast. Trickier than they look.</span></div><div class="quiz card"><div id="qText" class="qtext"></div><div id="qOptions" class="qopts"></div><div class="qactions"><button id="btnHint" class="ghost">Hint</button><button id="btnExplain" class="ghost">Explain</button><button id="btnNext" class="cta">Next</button></div><div class="qmeta">Question <span id="qNum">1</span>/<span id="qTotal">8</span> • Score: <span id="qScore">0</span></div></div></div></section>
 
-  <section id="gallery" class="section"><div class="wrap"><span class="section-tag">Gallery</span><div class="head"><h2>গ্যালারি</h2></div><div class="gallery-block"><h3 class="gtitle">Events</h3><div class="strip loop" data-speed="40"><img src="assets/gallery-1.png" alt="Annual Day"><img src="assets/gallery-2.png" alt="Science Fair"><img src="assets/gallery-3.png" alt="Cultural Fest"><img src="assets/gallery-4.png" alt="Parade"></div></div><div class="gallery-block"><h3 class="gtitle">Campus Life</h3><div class="strip loop" data-speed="45"><img src="assets/gallery-5.png" alt="Library"><img src="assets/gallery-6.png" alt="Classrooms"><img src="assets/gallery-7.png" alt="Assembly"><img src="assets/gallery-8.png" alt="ICT Lab"></div></div><div class="gallery-block"><h3 class="gtitle">Sports</h3><div class="strip loop" data-speed="35"><img src="assets/gallery-9.png" alt="Football"><img src="assets/gallery-10.png" alt="Cricket"><img src="assets/gallery-11.png" alt="Table Tennis"><img src="assets/gallery-12.png" alt="Chess"></div></div><div id="cartoons"><div class="cartoon cat">🐱</div><div class="cartoon kid">🧒</div><div class="cartoon ninja">🥷</div></div></div></section>
+  <section id="gallery" class="section"><div class="wrap"><span class="section-tag">Gallery</span><div class="head"><h2>গ্যালারি</h2></div><div class="gallery-block"><h3 class="gtitle">Events</h3><div class="strip loop" data-speed="40"><img src="assets/gallery-1.png" alt="Annual Day"><img src="assets/gallery-2.png" alt="Science Fair"><img src="assets/gallery-3.png" alt="Cultural Fest"><img src="assets/gallery-4.png" alt="Parade"></div></div><div class="gallery-block"><h3 class="gtitle">Campus Life</h3><div class="strip loop" data-speed="45"><img src="assets/gallery-5.png" alt="Library"><img src="assets/gallery-6.png" alt="Classrooms"><img src="assets/gallery-7.png" alt="Assembly"><img src="assets/gallery-8.png" alt="ICT Lab"></div></div><div class="gallery-block"><h3 class="gtitle">Sports</h3><div class="strip loop" data-speed="35"><img src="assets/gallery-9.png" alt="Football"><img src="assets/gallery-10.png" alt="Cricket"><img src="assets/gallery-11.png" alt="Table Tennis"><img src="assets/gallery-12.png" alt="Chess"></div></div></div></section>
 
   <section id="admission" class="section"><div class="wrap"><span class="section-tag">Admission</span><div class="head"><h2>ভর্তি</h2><span class="muted">Clear steps • Online apply</span></div><div class="cta-row"><a class="cta" href="#">Apply Online</a><a class="ghost" href="#">Instructions (PDF)</a></div></div></section>
   <section id="contact" class="section"><div class="wrap"><span class="section-tag">Contact</span><div class="head"><h2>যোগাযোগ</h2></div><div class="card"><p>Cumilla Cantonment 3501, Cumilla • Phone: 03239933170 • Mobile: 01733063001 • Email: ipscm1@gmail.com</p></div></div></section>
@@ -156,18 +147,13 @@
         b.style.setProperty('--color',c);
         b.style.setProperty('--dur',(14+i*2)+'s');
         b.style.animationDelay=(-i*4)+'s';
-        for(let j=0;j<3;j++){
-          const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
-          s.setAttribute('class','string');
-          s.setAttribute('viewBox','0 0 20 40');
-          s.style.left=(50+(j-1)*8)+'%';
-          s.style.animationDelay=(j*0.3)+'s';
-          const p=document.createElementNS('http://www.w3.org/2000/svg','path');
-          p.setAttribute('d','M10 0 Q15 20 10 40');
-          p.style.animationDelay=(j*0.3)+'s';
-          s.appendChild(p);
-          b.appendChild(s);
-        }
+        const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        s.setAttribute('class','string');
+        s.setAttribute('viewBox','0 0 20 40');
+        const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+        p.setAttribute('d','M10 0 Q15 20 10 40');
+        s.appendChild(p);
+        b.appendChild(s);
         balloonHolder.appendChild(b);
       });
     }
