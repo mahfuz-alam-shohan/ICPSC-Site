@@ -23,6 +23,14 @@
     .cta.red{background:linear-gradient(135deg,var(--brand-red),#b91c1c)}
     .ghost{border:1px solid #e2e8f0;padding:.5rem 1rem;border-radius:.8rem;font-weight:700;text-decoration:none}
     .hamb{display:inline-flex;border:1px solid #e2e8f0;border-radius:.8rem;padding:.4rem .6rem}@media(min-width:768px){.hamb{display:none}}.mob{border-top:1px solid #e2e8f0;background:#fff}.mlink{display:block;padding:.7rem 1rem;text-decoration:none;font-weight:700}.mlink:hover{background:#e2e8f0}.mlink.special{background:var(--brand-green);color:#fff;border-radius:.6rem;margin:.5rem 1rem;text-align:center}
+    .mob .mitem{border-top:1px solid #e2e8f0}
+    .mob .mhead{display:block;width:100%;padding:.7rem 1rem;font-weight:700;text-align:left;background:transparent;border:0}
+    .mob .mhead::after{content:"\25BE";float:right;transition:transform .2s}
+    .mob .mhead.open{background:#e2e8f0}
+    .mob .mhead.open::after{transform:rotate(180deg)}
+    .mob .msub{display:none;flex-direction:column}
+    .mob .msub.open{display:flex}
+    .mob .msub .mlink{padding:.5rem 1.5rem;border-top:1px solid #e2e8f0;font-weight:600}
     .mega{position:relative}
     .mega .panel{position:absolute;left:50%;top:100%;transform:translateX(-50%);width:min(640px,92vw);background:#fff;border:1px solid #e2e8f0;border-radius:1rem;box-shadow:0 24px 60px rgba(2,6,23,.15);padding:1rem;display:none;grid-template-columns:1fr 1fr;gap:1rem;z-index:50}
     .mega .panel .col h4{font-weight:800;font-size:.85rem;margin-bottom:.3rem}
@@ -46,26 +54,23 @@
     .quiz .qtext{font-weight:900;font-size:1.1rem;margin-bottom:.6rem}.qopts{display:grid;gap:.5rem}.qopts button{text-align:left;border:1px solid #e2e8f0;background:#fff;padding:.6rem .75rem;border-radius:.7rem;font-weight:700}.qopts button.correct{border-color:#22c55e}.qopts button.wrong{border-color:#ef4444}.qactions{display:flex;gap:.5rem;margin-top:.6rem}.qmeta{margin-top:.5rem;color:#64748b;font-size:.9rem}
     .divider.wave{height:56px;background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%23e2e8f0\"/></svg>') center/cover no-repeat}.divider.wave.flip{transform:scaleY(-1)}
     .footer{border-top:1px solid #e2e8f0;background:#fff}.footer .wrap{padding:1.2rem 1rem;display:flex;justify-content:center;font-size:.9rem;color:#64748b}
-.dark body{background:linear-gradient(to bottom,#0b1220,#0f172a);color:#e2e8f0}.dark .header{background:rgba(15,23,42,.93);border-color:#1e293b}.dark .brand{color:#f1f5f9}.dark .btext span{color:#94a3b8}.dark .ticker{background:#991b1b;color:#f1f5f9;border-color:#7f1d1d}.dark .tick{color:#fecaca}.dark .card,.dark .leader,.dark .counter{background:#1e293b;border-color:#334155}.dark .timeline{border-color:#334155}.dark .link{color:#86efac}.dark .divider.wave{background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z" fill="%23334155"/></svg>') center/cover no-repeat}.dark .section-tag{background:#7f1d1d;border-color:#b91c1c;color:#fecaca}.dark .muted{color:#cbd5e1}.dark .lede,.dark .counter label,.dark .gtitle{color:#cbd5e1}.dark .counter span{color:#f1f5f9}.dark h1,.dark h2,.dark h3,.dark h4,.dark h5,.dark h6,.dark p,.dark span,.dark label,.dark strong,.dark .nav-btn,.dark .mlink,.dark .tlink{color:#f1f5f9}.dark .qopts button{background:#1e293b;border-color:#334155;color:#f1f5f9}.dark .qtext,.dark .qmeta{color:#f1f5f9}.dark .leader .chip{border-color:#334155;background:#1e293b;color:#f1f5f9}.dark .mob{background:#1e293b;border-color:#334155}.dark .mlink:hover{background:#334155}.dark .hamb{border-color:#334155;color:#f1f5f9}
+.dark body{background:linear-gradient(to bottom,#0b1220,#0f172a);color:#e2e8f0}.dark .header{background:rgba(15,23,42,.93);border-color:#1e293b}.dark .brand{color:#f1f5f9}.dark .btext span{color:#94a3b8}.dark .ticker{background:#991b1b;color:#f1f5f9;border-color:#7f1d1d}.dark .tick{color:#fecaca}.dark .card,.dark .leader,.dark .counter{background:#1e293b;border-color:#334155}.dark .timeline{border-color:#334155}.dark .link{color:#86efac}.dark .divider.wave{background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z" fill="%23334155"/></svg>') center/cover no-repeat}.dark .section-tag{background:#7f1d1d;border-color:#b91c1c;color:#fecaca}.dark .muted{color:#cbd5e1}.dark .lede,.dark .counter label,.dark .gtitle{color:#cbd5e1}.dark .counter span{color:#f1f5f9}.dark h1,.dark h2,.dark h3,.dark h4,.dark h5,.dark h6,.dark p,.dark span,.dark label,.dark strong,.dark .nav-btn,.dark .mlink,.dark .tlink{color:#f1f5f9}.dark .qopts button{background:#1e293b;border-color:#334155;color:#f1f5f9}.dark .qtext,.dark .qmeta{color:#f1f5f9}.dark .leader .chip{border-color:#334155;background:#1e293b;color:#f1f5f9}.dark .mob{background:#1e293b;border-color:#334155}.dark .mlink:hover{background:#334155}.dark .hamb{border-color:#334155;color:#f1f5f9}.dark .mitem{border-color:#334155}.dark .mhead{color:#f1f5f9}.dark .mhead.open{background:#334155}.dark .msub .mlink{border-color:#334155}
     .dark .cta.green{background:linear-gradient(135deg,var(--brand-green),#1e7a3f);color:#fff}
     .dark .cta.red{background:linear-gradient(135deg,var(--brand-red),#b91c1c);color:#fff}
     .dark .mlink.special{background:var(--brand-green);color:#fff}
     .editing [contenteditable]{outline:1px dashed #0ea5e9}.editing img{outline:1px dashed #0ea5e9;cursor:pointer}
-    #balloons{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
-    .balloon{position:absolute;left:var(--x);bottom:-80px;width:40px;height:55px;border-radius:50% 50% 45% 45%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),var(--color) 60%);animation:rise var(--dur) linear infinite,sway 3s ease-in-out infinite}
-    .balloon .string{position:absolute;left:50%;bottom:-40px;width:20px;height:40px;transform-origin:top;animation:sway-string 3s ease-in-out infinite}
-    .balloon .string path{stroke:#aaa;stroke-width:2;fill:none;animation:curve 3s ease-in-out infinite}
-
-    @keyframes rise{from{bottom:-80px}to{bottom:110%}}
-    @keyframes sway{0%,100%{transform:translateX(-10px) rotate(-6deg)}50%{transform:translateX(10px) rotate(6deg)}}
-    @keyframes sway-string{0%,100%{transform:translateX(-50%) rotate(8deg)}50%{transform:translateX(-50%) rotate(-8deg)}}
-    @keyframes curve{0%,100%{d:path('M10 0 Q15 20 10 40')}50%{d:path('M10 0 Q5 20 10 40')}}
+    #decor{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+    .shape{position:absolute;bottom:-80px;width:60px;height:60px;opacity:.15;animation:float var(--dur) linear infinite}
+    .shape.circle{border-radius:50%;background:radial-gradient(circle,var(--brand-green),var(--brand-red))}
+    .shape.square{background:linear-gradient(135deg,var(--brand-red),#fff)}
+    .shape.triangle{background:linear-gradient(135deg,#fff,var(--brand-green));clip-path:polygon(50% 0,0 100%,100% 100%)}
+    @keyframes float{to{transform:translateY(-120vh) rotate(360deg)}}
     @media(max-width:640px){.strip img{width:260px;height:160px}.header .wrap{padding:.5rem .75rem}.brand img{width:48px;height:48px}.ticker{top:calc(var(--topbar-h,0) + var(--header-h,64px))}.counters{grid-template-columns:1fr}}@media(max-width:480px){.btext{display:none}}
   </style>
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
   <audio id="bgAudio" src="assets/bgm.mp3" autoplay muted loop playsinline></audio>
-  <div id="balloons"></div>
+  <div id="decor"></div>
 <div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="saveBtn" class="tbtn hidden" aria-label="Save edits">💾</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button></div></div></div>
   <div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
     <div class="bg-white dark:bg-[#0f172a] p-6 rounded-xl w-80 shadow">
@@ -99,7 +104,14 @@
         <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
       </div>
     </div>
-    <div id="mobileNav" class="mob hidden"><a class="mlink" href="#welcome">About</a><a class="mlink" href="#academics">Academics</a><a class="mlink" href="#facilities">Campus</a><a class="mlink" href="#brain">Brain Challenge</a><a class="mlink" href="#notices">Notices</a><a class="mlink special" href="#admission">Apply</a></div>
+    <div id="mobileNav" class="mob hidden">
+      <div class="mitem"><button class="mhead">About</button><div class="msub"><a class="mlink" href="#welcome">Welcome</a><a class="mlink" href="#leadership">Leadership</a><a class="mlink" href="#history">History</a><a class="mlink" href="#contact">Contact</a></div></div>
+      <div class="mitem"><button class="mhead">Academics</button><div class="msub"><a class="mlink" href="#academics">Programs</a><a class="mlink" href="#resources">Resources</a></div></div>
+      <div class="mitem"><button class="mhead">Campus</button><div class="msub"><a class="mlink" href="#facilities">Facilities</a><a class="mlink" href="#cocurricular">Activities</a><a class="mlink" href="#gallery">Gallery</a></div></div>
+      <a class="mlink" href="#brain">Brain Challenge</a>
+      <a class="mlink" href="#notices">Notices</a>
+      <a class="mlink special" href="#admission">Apply</a>
+    </div>
   </header>
 
   <div class="ticker" role="region" aria-label="Latest notices"><div class="wrap"><div id="tickerTrack" class="ticker-track"><a href="#" class="tick">একাদশ শ্রেণিতে ভর্তি (২০২৫–২৬) — Apply now</a><a href="#" class="tick">HSC Model Test Routine — Download PDF</a><a href="#" class="tick">Science Fair — Registration open (Robotics, IoT, AI)</a><a href="#" class="tick">Holiday Notice — Campus closed on Friday</a></div></div></div>
@@ -135,7 +147,21 @@
     setOffsets();
     window.addEventListener('load',setOffsets);
     window.addEventListener('resize',setOffsets);
-    const mobileToggle=document.getElementById('mobileToggle'),mobileNav=document.getElementById('mobileNav');if(mobileToggle)mobileToggle.addEventListener('click',()=>mobileNav.classList.toggle('hidden'));
+    const mobileToggle=document.getElementById('mobileToggle'),mobileNav=document.getElementById('mobileNav');
+    if(mobileToggle){
+      mobileToggle.addEventListener('click',()=>mobileNav.classList.toggle('hidden'));
+      mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileNav.classList.add('hidden')));
+      mobileNav.querySelectorAll('.mhead').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const sub=btn.nextElementSibling;
+          mobileNav.querySelectorAll('.msub').forEach(s=>{
+            if(s!==sub){s.classList.remove('open');s.previousElementSibling.classList.remove('open');}
+          });
+          sub.classList.toggle('open');
+          btn.classList.toggle('open');
+        });
+      });
+    }
     const bgAudio=document.getElementById('bgAudio');
     if(bgAudio){
       bgAudio.volume=0.2;
@@ -173,28 +199,17 @@
       }).catch(()=>{});
     });
     (function(){const track=document.getElementById('tickerTrack');if(!track)return;track.innerHTML=track.innerHTML+track.innerHTML;})();
-    const fxHolder=document.getElementById('balloons');
-    const spawnBalloons=()=>{
-      const colors=['#ff6b6b','#ffa94d','#74c0fc'];
-      colors.forEach((c,i)=>{
-        const b=document.createElement('div');
-        b.className='balloon';
-        b.style.setProperty('--x',(20+i*30)+'%');
-        b.style.setProperty('--color',c);
-        b.style.setProperty('--dur',(14+i*2)+'s');
-        b.style.animationDelay=(-i*4)+'s';
-        const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
-        s.setAttribute('class','string');
-        s.setAttribute('viewBox','0 0 20 40');
-        const p=document.createElementNS('http://www.w3.org/2000/svg','path');
-        p.setAttribute('d','M10 0 Q15 20 10 40');
-        s.appendChild(p);
-        b.appendChild(s);
-        fxHolder.appendChild(b);
-      });
-    };
-    if(fxHolder){
-      spawnBalloons();
+    const decor=document.getElementById('decor');
+    if(decor){
+      const types=['circle','square','triangle'];
+      for(let i=0;i<12;i++){
+        const d=document.createElement('div');
+        d.className='shape '+types[i%3];
+        d.style.left=Math.random()*100+'%';
+        d.style.setProperty('--dur',(20+Math.random()*10)+'s');
+        d.style.animationDelay=(-Math.random()*20)+'s';
+        decor.appendChild(d);
+      }
     }
     const counters=document.querySelectorAll('.counter span[data-count]');const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=parseInt(el.dataset.count,10);let cur=0;const step=Math.ceil(end/80);const T=setInterval(()=>{cur+=step;if(cur>=end){cur=end;clearInterval(T)}el.textContent=cur.toLocaleString();},16);io.unobserve(el);}})},{threshold:.4});counters.forEach(c=>io.observe(c));
     document.querySelectorAll('.strip.loop').forEach(strip=>{const kids=[...strip.children];kids.forEach(el=>strip.appendChild(el.cloneNode(true)));let pos=0;const speed=parseInt(strip.dataset.speed||'40',10);let last=null,paused=false;const step=t=>{if(last===null)last=t;const dt=(t-last)/1000;last=t;if(!paused){pos+=speed*dt;if(pos>=strip.scrollWidth/2)pos=0;strip.scrollLeft=pos}requestAnimationFrame(step)};strip.addEventListener('mouseenter',()=>paused=true);strip.addEventListener('mouseleave',()=>paused=false);requestAnimationFrame(step)});
