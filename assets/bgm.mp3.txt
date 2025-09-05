@@ -1,0 +1,2 @@
+Add your bgm.mp3 here.
+Rename this file to bgm.mp3 to enable background music.
