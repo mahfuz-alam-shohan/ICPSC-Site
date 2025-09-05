@@ -1,12 +1,14 @@
 async function loadComponents(){
+  const script=document.currentScript;
+  const base=script?script.dataset.base||'.':'.';
   const headerEl=document.getElementById('header');
   const footerEl=document.getElementById('footer');
   const [h,f]=await Promise.all([
-    fetch('/components/header.html').then(r=>r.text()).catch(()=>''),
-    fetch('/components/footer.html').then(r=>r.text()).catch(()=>''),
+    fetch(`${base}/components/header.html`).then(r=>r.text()).catch(()=>''),
+    fetch(`${base}/components/footer.html`).then(r=>r.text()).catch(()=>''),
   ]);
-  if(headerEl) headerEl.innerHTML=h;
-  if(footerEl) footerEl.innerHTML=f;
+  if(headerEl) headerEl.innerHTML=h.replace(/{{base}}/g,base);
+  if(footerEl) footerEl.innerHTML=f.replace(/{{base}}/g,base);
   initCommon();
 }
 
