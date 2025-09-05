@@ -31,12 +31,19 @@
     .quiz .qtext{font-weight:900;font-size:1.1rem;margin-bottom:.6rem}.qopts{display:grid;gap:.5rem}.qopts button{text-align:left;border:1px solid #e2e8f0;background:#fff;padding:.6rem .75rem;border-radius:.7rem;font-weight:700}.qopts button.correct{border-color:#22c55e}.qopts button.wrong{border-color:#ef4444}.qactions{display:flex;gap:.5rem;margin-top:.6rem}.qmeta{margin-top:.5rem;color:#64748b;font-size:.9rem}
     .divider.wave{height:56px;background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%23e2e8f0\"/></svg>') center/cover no-repeat}.divider.wave.flip{transform:scaleY(-1)}
     .footer{border-top:1px solid #e2e8f0;background:#fff}.footer .wrap{padding:1.2rem 1rem;display:flex;justify-content:center;font-size:.9rem;color:#64748b}
-    .dark body{background:linear-gradient(to bottom,#0b1220,#0f172a);color:#e2e8f0}.dark .header{background:rgba(15,23,42,.93);border-color:#1f2937}.dark .brand{color:#f1f5f9}.dark .btext span{color:#94a3b8}.dark .ticker{background:#0b1325;color:#cbd5e1;border-color:#1f2937}.dark .tick{color:#93c5fd}.dark .card,.dark .lottie{background:#0f172a;border-color:#1f2937}.dark .pill{background:#0b1220;border-color:#1f2937;color:#d1d5db}.dark .timeline{border-color:#1f2937}.dark .link{color:#7dd3fc}.dark .divider.wave{background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%231f2937\"/></svg>') center/cover no-repeat}.dark .section-tag{background:#083344;border-color:#164e63;color:#7dd3fc}.dark .muted{color:#94a3b8}.dark .lede,.dark .counter label,.dark .gtitle{color:#cbd5e1}.dark h2,.dark h3,.dark p,.dark label,.dark .nav-btn,.dark .mlink,.dark .tlink{color:#f1f5f9}
+    .dark body{background:linear-gradient(to bottom,#0b1220,#0f172a);color:#e2e8f0}.dark .header{background:rgba(15,23,42,.93);border-color:#1f2937}.dark .brand{color:#f1f5f9}.dark .btext span{color:#94a3b8}.dark .ticker{background:#0b1325;color:#cbd5e1;border-color:#1f2937}.dark .tick{color:#93c5fd}.dark .card,.dark .lottie{background:#0f172a;border-color:#1f2937}.dark .pill{background:#0b1220;border-color:#1f2937;color:#d1d5db}.dark .timeline{border-color:#1f2937}.dark .link{color:#7dd3fc}.dark .divider.wave{background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%231f2937\"/></svg>') center/cover no-repeat}.dark .section-tag{background:#083344;border-color:#164e63;color:#7dd3fc}.dark .muted{color:#94a3b8}.dark .lede,.dark .counter label,.dark .gtitle{color:#cbd5e1}.dark h1,.dark h2,.dark h3,.dark h4,.dark h5,.dark h6,.dark p,.dark span,.dark label,.dark strong,.dark .nav-btn,.dark .mlink,.dark .tlink{color:#f1f5f9}
     .editing [contenteditable]{outline:1px dashed #0ea5e9}.editing img{outline:1px dashed #0ea5e9;cursor:pointer}
+    #balloons{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
+    .balloon{position:absolute;left:var(--x);bottom:-80px;width:40px;height:55px;border-radius:50% 50% 45% 45%;background:var(--color);animation:rise var(--dur) linear infinite,sway 3s ease-in-out infinite}
+    .balloon::after{content:"";position:absolute;left:50%;bottom:-40px;width:2px;height:40px;background:#aaa;transform-origin:top;animation:string 3s ease-in-out infinite}
+    @keyframes rise{from{bottom:-80px}to{bottom:110%}}
+    @keyframes sway{0%,100%{transform:translateX(-10px) rotate(-6deg)}50%{transform:translateX(10px) rotate(6deg)}}
+    @keyframes string{0%,100%{transform:translateX(-50%) rotate(8deg)}50%{transform:translateX(-50%) rotate(-8deg)}}
     @media(max-width:640px){.display{font-size:1.6rem}.strip img{width:260px;height:160px}.header .wrap{padding:.5rem .75rem}.brand img{width:48px;height:48px}.ticker{top:64px}.counters{grid-template-columns:1fr}}
   </style>
 </head>
 <body class="bg-gradient-to-b from-[#f8fbff] to-[#eef6ff] text-slate-800 selection:bg-[#ffd166]/60">
+  <div id="balloons"></div>
   <div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="saveBtn" class="tbtn hidden" aria-label="Save edits">💾</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button></div></div></div>
   <div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
     <div class="bg-white dark:bg-[#0f172a] p-6 rounded-xl w-80 shadow">
@@ -128,6 +135,19 @@
     });
     try{lottie.loadAnimation({container:document.getElementById('lottie-hero'),renderer:'svg',loop:true,autoplay:true,path:'https://assets2.lottiefiles.com/packages/lf20_ydo1amjm.json'});}catch(e){}
     (function(){const track=document.getElementById('tickerTrack');if(!track)return;track.innerHTML=track.innerHTML+track.innerHTML;})();
+    const balloonHolder=document.getElementById('balloons');
+    if(balloonHolder){
+      const colors=['#ff6b6b','#ffa94d','#74c0fc'];
+      colors.forEach((c,i)=>{
+        const b=document.createElement('div');
+        b.className='balloon';
+        b.style.setProperty('--x',(20+i*30)+'%');
+        b.style.setProperty('--color',c);
+        b.style.setProperty('--dur',(14+i*2)+'s');
+        b.style.animationDelay=(-i*4)+'s';
+        balloonHolder.appendChild(b);
+      });
+    }
     const counters=document.querySelectorAll('.counter span[data-count]');const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=parseInt(el.dataset.count,10);let cur=0;const step=Math.ceil(end/80);const T=setInterval(()=>{cur+=step;if(cur>=end){cur=end;clearInterval(T)}el.textContent=cur.toLocaleString();},16);io.unobserve(el);}})},{threshold:.4});counters.forEach(c=>io.observe(c));
     document.querySelectorAll('.strip.loop').forEach(strip=>{const kids=[...strip.children];kids.forEach(el=>strip.appendChild(el.cloneNode(true)));let pos=0;const speed=parseInt(strip.dataset.speed||'40',10);let last=null,paused=false;const step=t=>{if(last===null)last=t;const dt=(t-last)/1000;last=t;if(!paused){pos+=speed*dt;if(pos>=strip.scrollWidth/2)pos=0;strip.scrollLeft=pos}requestAnimationFrame(step)};strip.addEventListener('mouseenter',()=>paused=true);strip.addEventListener('mouseleave',()=>paused=false);requestAnimationFrame(step)});
     gsap.from('.header',{y:-60,opacity:0,duration:.6});
