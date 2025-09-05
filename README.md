@@ -23,21 +23,8 @@ This repository contains the school website and a small server for saving edits 
 
 When you edit content on the page and click save, the server commits `index.html` to your repository using the token stored on the server.
 
-## Security
-- The GitHub token lives only in the server's environment and never in the HTML.
-- `.env` is ignored by Git so the token isn't committed.
 
-## Front-end edit flow
 - Click the ✎ icon to log in with the default credentials (`admin123` / `admin456`).
 - Edit text and images directly on the page.
 - Click the 💾 button to save; the server handles the GitHub commit.
 
-## Images
-Place your site images in the `assets/` folder using these filenames so the HTML can load them:
-
-- `logo.png` – site logo
-- `leader-1.png`, `leader-2.png`, `leader-3.png` – leadership cards
-- `achievement.png` – achievements banner
-- `gallery-1.png` … `gallery-12.png` – gallery tiles
-
-Leadership names and messages are loaded from `leader-1.txt`, `leader-2.txt`, and `leader-3.txt` inside `assets/`. Replace the placeholder text in these files with real content.
