@@ -60,16 +60,14 @@
     .dark .mlink.special{background:var(--brand-green);color:#fff}
     .editing [contenteditable]{outline:1px dashed #0ea5e9}.editing img{outline:1px dashed #0ea5e9;cursor:pointer}
     #decor{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
-    .shape{position:absolute;bottom:-80px;width:60px;height:60px;opacity:.15;animation:float var(--dur) linear infinite}
+    .shape{position:absolute;width:60px;height:60px;opacity:.15}
     .shape.circle{border-radius:50%;background:radial-gradient(circle,var(--brand-green),var(--brand-red))}
     .shape.square{background:linear-gradient(135deg,var(--brand-red),#fff)}
     .shape.triangle{background:linear-gradient(135deg,#fff,var(--brand-green));clip-path:polygon(50% 0,0 100%,100% 100%)}
-    @keyframes float{to{transform:translateY(-120vh) rotate(360deg)}}
     @media(max-width:640px){.strip img{width:260px;height:160px}.header .wrap{padding:.5rem .75rem}.brand img{width:48px;height:48px}.ticker{top:calc(var(--topbar-h,0) + var(--header-h,64px))}.counters{grid-template-columns:1fr}}@media(max-width:480px){.btext{display:none}}
   </style>
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
-  <audio id="bgAudio" src="assets/bgm.mp3" autoplay muted loop playsinline></audio>
   <div id="decor"></div>
 <div class="topbar"><div class="wrap"><div class="left"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div><div class="right"><button id="editToggle" class="tbtn" aria-label="Toggle edit">✎</button><button id="saveBtn" class="tbtn hidden" aria-label="Save edits">💾</button><button id="modeToggle" class="tbtn" aria-label="Toggle theme">☾</button></div></div></div>
   <div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
@@ -83,6 +81,12 @@
         <button id="loginCancel" class="ghost">Cancel</button>
         <button id="loginOk" class="cta green">Login</button>
       </div>
+    </div>
+  </div>
+  <div id="msgModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
+    <div class="bg-white dark:bg-[#0f172a] p-6 rounded-xl shadow relative w-11/12 max-w-md">
+      <button id="msgClose" class="absolute top-2 right-2 text-2xl leading-none" aria-label="Close">×</button>
+      <div id="msgText" class="mt-2 whitespace-pre-line"></div>
     </div>
   </div>
   <header class="header">
@@ -100,7 +104,6 @@
           <a class="nav-btn" href="#notices">Notices</a>
           <a class="cta green" href="#admission">Apply</a>
         </nav>
-        <button type="button" class="nav-btn icon mute-music" aria-label="Mute music">🔊</button>
         <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -162,40 +165,23 @@
         });
       });
     }
-    const bgAudio=document.getElementById('bgAudio');
-    if(bgAudio){
-      bgAudio.volume=0.2;
-      const updateMuteUI=()=>{
-        document.querySelectorAll('.mute-music').forEach(el=>{
-          if(el.classList.contains('icon')){
-            el.textContent=bgAudio.muted?'🔇':'🔊';
-          }else{
-            el.textContent=bgAudio.muted?'Play Music':'Stop Music';
-          }
-        });
-      };
-      updateMuteUI();
-      document.querySelectorAll('.mute-music').forEach(btn=>{
-        btn.addEventListener('click',e=>{
-          e.preventDefault&&e.preventDefault();
-          if(bgAudio.paused){bgAudio.play().catch(()=>{});}
-          bgAudio.muted=!bgAudio.muted;
-          updateMuteUI();
-        });
-      });
-      const start=()=>{
-        bgAudio.muted=true;
-        bgAudio.play().then(()=>{setTimeout(()=>{bgAudio.muted=false;updateMuteUI();},100);}).catch(()=>{});
-      };
-      start();
-      document.addEventListener('pointerdown',start,{once:true});
+    const msgModal=document.getElementById('msgModal'),msgText=document.getElementById('msgText'),msgClose=document.getElementById('msgClose');
+    if(msgModal&&msgClose){
+      msgClose.addEventListener('click',()=>msgModal.classList.add('hidden'));
+      msgModal.addEventListener('click',e=>{if(e.target===msgModal)msgModal.classList.add('hidden');});
     }
     document.querySelectorAll('.leader[data-info]').forEach(card=>{
       fetch(card.dataset.info).then(r=>r.text()).then(t=>{
         const [name,...msg]=t.split('\n');
         card.querySelector('.name').textContent=name.trim();
         const message=msg.join('\n').trim();
-        card.querySelector('.chip').addEventListener('click',e=>{e.preventDefault();alert(message||'No message');});
+        card.querySelector('.chip').addEventListener('click',e=>{
+          e.preventDefault();
+          if(msgModal&&msgText){
+            msgText.textContent=message||'No message';
+            msgModal.classList.remove('hidden');
+          }
+        });
       }).catch(()=>{});
     });
     (function(){const track=document.getElementById('tickerTrack');if(!track)return;track.innerHTML=track.innerHTML+track.innerHTML;})();
@@ -206,8 +192,7 @@
         const d=document.createElement('div');
         d.className='shape '+types[i%3];
         d.style.left=Math.random()*100+'%';
-        d.style.setProperty('--dur',(20+Math.random()*10)+'s');
-        d.style.animationDelay=(-Math.random()*20)+'s';
+        d.style.top=Math.random()*100+'%';
         decor.appendChild(d);
       }
     }
