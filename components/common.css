@@ -1,4 +1,4 @@
-    :root{--ink:#0f172a;--muted:#475569;--brand-red:#7f1d1d;--brand-green:#14532d;--link:var(--brand-green);--topbar-h:32px;--header-h:60px;--ticker-h:40px}
+    :root{--ink:#0f172a;--muted:#475569;--brand-red:#7f1d1d;--brand-green:#14532d;--link:var(--brand-green);--topbar-h:0;--header-h:0;--ticker-h:0}
     html{scroll-behavior:smooth}
     html,body{overflow-x:hidden}
     [id]{scroll-margin-top:calc(var(--topbar-h,0) + var(--header-h,0) + var(--ticker-h,0) + 1rem)}

@@ -12,7 +12,11 @@ async function loadComponents(){
   initCommon();
 }
 
-document.addEventListener('DOMContentLoaded',loadComponents);
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',loadComponents);
+}else{
+  loadComponents();
+}
 
 function initCommon(){
   const year=document.getElementById('year');
