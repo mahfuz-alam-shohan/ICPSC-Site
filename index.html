@@ -147,21 +147,25 @@
   <script>
     document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
     const setOffsets=()=>{const tb=document.querySelector('.topbar'),hd=document.querySelector('.header'),tk=document.querySelector('.ticker'),r=document.documentElement;if(tb)r.style.setProperty('--topbar-h',tb.offsetHeight+'px');if(hd)r.style.setProperty('--header-h',hd.offsetHeight+'px');if(tk)r.style.setProperty('--ticker-h',tk.offsetHeight+'px');};
+    const mobileNav=document.getElementById('mobileNav');
+    const handleResize=()=>{
+      if(window.innerWidth>=768 && mobileNav && !mobileNav.classList.contains('hidden')) mobileNav.classList.add('hidden');
+      setOffsets();
+    };
     setOffsets();
     window.addEventListener('load',setOffsets);
-    window.addEventListener('resize',setOffsets);
-    const mobileToggle=document.getElementById('mobileToggle'),mobileNav=document.getElementById('mobileNav');
-    if(mobileToggle){
-      mobileToggle.addEventListener('click',()=>mobileNav.classList.toggle('hidden'));
-      mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileNav.classList.add('hidden')));
+    window.addEventListener('resize',handleResize);
+    const mobileToggle=document.getElementById('mobileToggle');
+    if(mobileToggle&&mobileNav){
+      mobileToggle.addEventListener('click',()=>{mobileNav.classList.toggle('hidden');setOffsets();});
+      mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.add('hidden');setOffsets();}));
       mobileNav.querySelectorAll('.mhead').forEach(btn=>{
         btn.addEventListener('click',()=>{
           const sub=btn.nextElementSibling;
-          mobileNav.querySelectorAll('.msub').forEach(s=>{
-            if(s!==sub){s.classList.remove('open');s.previousElementSibling.classList.remove('open');}
-          });
+          mobileNav.querySelectorAll('.msub').forEach(s=>{if(s!==sub){s.classList.remove('open');s.previousElementSibling.classList.remove('open');}});
           sub.classList.toggle('open');
           btn.classList.toggle('open');
+          setOffsets();
         });
       });
     }
