@@ -62,8 +62,20 @@ function initCommon(){
     }
   });
   const msgModal=document.getElementById('msgModal'),msgText=document.getElementById('msgText'),msgClose=document.getElementById('msgClose'),msgTitle=document.getElementById('msgTitle');
-  const closeMsg=()=>{if(msgModal){msgModal.classList.remove('open');document.body.style.overflow='';}};
-  const openMsg=()=>{if(msgModal){msgModal.classList.add('open');document.body.style.overflow='hidden';}};
+  const closeMsg=()=>{
+    if(msgModal){
+      msgModal.classList.remove('open');
+      document.body.style.overflow='';
+      document.documentElement.style.overflow='';
+    }
+  };
+  const openMsg=()=>{
+    if(msgModal){
+      msgModal.classList.add('open');
+      document.body.style.overflow='hidden';
+      document.documentElement.style.overflow='hidden';
+    }
+  };
   if(msgModal && msgClose){
     msgClose.addEventListener('click',closeMsg);
     msgModal.addEventListener('click',e=>{if(e.target===msgModal) closeMsg();});
