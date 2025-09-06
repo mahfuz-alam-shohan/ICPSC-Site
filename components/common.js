@@ -21,8 +21,7 @@ if(document.readyState==='loading'){
 }
 
 function initCommon(){
-  const year=document.getElementById('year');
-  if(year) year.textContent=new Date().getFullYear();
+  document.querySelectorAll('[data-year]').forEach(el=>{el.textContent=new Date().getFullYear();});
   const mast=document.getElementById('masthead'),r=document.documentElement;
   const updateMast=()=>{if(mast) r.style.setProperty('--mast-h',mast.offsetHeight+'px');};
   updateMast();

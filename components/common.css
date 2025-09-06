@@ -68,7 +68,10 @@
     .gallery-block{margin-top:1rem}.gtitle{font-weight:800;margin-bottom:.4rem}.strip{display:flex;gap:.6rem;overflow:hidden}.strip img{width:320px;height:200px;object-fit:cover;border-radius:.75rem;box-shadow:0 6px 16px rgba(2,6,23,.08)}#gallery{position:relative;overflow:hidden}
     .quiz .qtext{font-weight:900;font-size:1.1rem;margin-bottom:.6rem}.qopts{display:grid;gap:.5rem}.qopts button{text-align:left;border:1px solid #e2e8f0;background:#fff;padding:.6rem .75rem;border-radius:.7rem;font-weight:700}.qopts button.correct{border-color:#22c55e}.qopts button.wrong{border-color:#ef4444}.qactions{display:flex;gap:.5rem;margin-top:.6rem}.qmeta{margin-top:.5rem;color:#64748b;font-size:.9rem}
     .divider.wave{height:56px;background:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 120\"><path d=\"M0 0h1200v60c-200 40-400 40-600 0s-400-40-600 0V0z\" fill=\"%23e2e8f0\"/></svg>') center/cover no-repeat}.divider.wave.flip{transform:scaleY(-1)}
-    .footer{border-top:1px solid #e2e8f0;background:#fff}.footer .wrap{padding:1.2rem 1rem;display:flex;justify-content:center;font-size:.9rem;color:#64748b}
+    .footer{border-top:1px solid #e2e8f0;background:#fff}
+    .footer .wrap{padding:1.2rem 1rem;font-size:.9rem;color:#64748b}
+    .footer a.link{color:var(--link);text-decoration:none}
+    .footer a.link:hover{text-decoration:underline}
     #decor{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:1200px;height:100%;pointer-events:none;overflow:hidden;z-index:0}
     .shape{position:absolute;width:80px;height:80px;opacity:.12;animation:drift 30s linear infinite}
     .shape.circle{border-radius:50%;background:radial-gradient(circle,var(--brand-green),var(--brand-red))}
