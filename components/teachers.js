@@ -27,21 +27,24 @@ function createCard(t,root,full){
   const card=document.createElement('article');
   card.className='teacher-card relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-white/80 backdrop-blur-sm';
   const deco1=document.createElement('span');
-  deco1.className='absolute -top-10 -left-10 w-24 h-24 rounded-full bg-green-200 opacity-40 pointer-events-none';
+  deco1.className='absolute -top-10 -left-10 w-24 h-24 rounded-full bg-green-300 opacity-50 pointer-events-none';
   deco1.style.zIndex='-1';
   card.appendChild(deco1);
 
   const deco2=document.createElement('span');
-  deco2.className='absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-red-200 opacity-40 pointer-events-none';
+  deco2.className='absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-red-300 opacity-50 pointer-events-none';
   deco2.style.zIndex='-1';
   card.appendChild(deco2);
 
-  const ring=document.createElement('span');
-  ring.className='absolute top-1/2 left-1/2 w-40 h-40 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none';
-  ring.style.border='4px solid rgba(20,83,45,0.25)';
-  ring.style.boxShadow='0 0 0 8px rgba(127,29,29,0.15)';
-  ring.style.zIndex='-1';
-  card.appendChild(ring);
+  const deco3=document.createElement('span');
+  deco3.className='absolute -top-6 -right-8 w-16 h-16 rounded-full bg-blue-200 opacity-50 pointer-events-none';
+  deco3.style.zIndex='-1';
+  card.appendChild(deco3);
+
+  const deco4=document.createElement('span');
+  deco4.className='absolute -bottom-8 -left-6 w-20 h-20 rounded-full bg-yellow-200 opacity-50 pointer-events-none';
+  deco4.style.zIndex='-1';
+  card.appendChild(deco4);
   const img=document.createElement('img');
   img.loading='lazy';
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
