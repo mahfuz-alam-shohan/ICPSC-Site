@@ -27,26 +27,33 @@ function createCard(t,root,full){
   const card=document.createElement('article');
   card.className='teacher-card relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-white/80 backdrop-blur-sm';
   const deco1=document.createElement('span');
-  deco1.className='absolute -top-10 -left-10 w-24 h-24 rounded-full bg-green-300 opacity-50 pointer-events-none';
+  deco1.className='absolute -top-10 -left-10 w-24 h-24 rounded-full pointer-events-none';
   deco1.style.zIndex='-1';
+  deco1.style.background='var(--brand-green)';
+  deco1.style.opacity='0.15';
   card.appendChild(deco1);
 
   const deco2=document.createElement('span');
-  deco2.className='absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-red-300 opacity-50 pointer-events-none';
+  deco2.className='absolute -bottom-12 -right-12 w-32 h-32 rounded-full pointer-events-none';
   deco2.style.zIndex='-1';
+  deco2.style.background='var(--brand-red)';
+  deco2.style.opacity='0.15';
   card.appendChild(deco2);
 
   const deco3=document.createElement('span');
-  deco3.className='absolute -top-6 -right-8 w-16 h-16 rounded-full bg-blue-200 opacity-50 pointer-events-none';
+  deco3.className='absolute -top-6 -right-8 w-16 h-16 rounded-full pointer-events-none';
   deco3.style.zIndex='-1';
+  deco3.style.background='#ffd166';
+  deco3.style.opacity='0.2';
   card.appendChild(deco3);
 
   const deco4=document.createElement('span');
-  deco4.className='absolute -bottom-8 -left-6 w-20 h-20 rounded-full bg-yellow-200 opacity-50 pointer-events-none';
+  deco4.className='absolute -bottom-8 -left-6 w-20 h-20 rounded-full pointer-events-none';
   deco4.style.zIndex='-1';
+  deco4.style.background='var(--brand-green)';
+  deco4.style.opacity='0.1';
   card.appendChild(deco4);
   const img=document.createElement('img');
-  img.loading='lazy';
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
   img.alt=t.name;
   img.className='w-32 h-32 object-cover rounded-full mb-3 cursor-pointer ring-4 ring-white';
