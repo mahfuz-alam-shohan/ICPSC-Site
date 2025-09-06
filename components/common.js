@@ -52,9 +52,13 @@ function initCommon(){
   document.querySelectorAll('.mega').forEach(m=>{
     const panel=m.querySelector('.panel');
     let t;
+    const open=()=>{clearTimeout(t);m.classList.add('open');};
+    const close=()=>{t=setTimeout(()=>m.classList.remove('open'),150);};
     if(panel){
-      m.addEventListener('mouseenter',()=>{clearTimeout(t);m.classList.add('open');});
-      m.addEventListener('mouseleave',()=>{t=setTimeout(()=>m.classList.remove('open'),150);});
+      m.addEventListener('mouseenter',open);
+      m.addEventListener('mouseleave',close);
+      panel.addEventListener('mouseenter',open);
+      panel.addEventListener('mouseleave',close);
     }
   });
   const msgModal=document.getElementById('msgModal'),msgText=document.getElementById('msgText'),msgClose=document.getElementById('msgClose');
