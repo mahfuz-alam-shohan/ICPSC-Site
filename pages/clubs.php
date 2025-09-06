@@ -1,3 +1,4 @@
+<?php $base = '..'; ?>
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -12,7 +13,7 @@
   </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
   <div id="decor"></div>
-<div id="header"></div>
+<?php include '../components/header.php'; ?>
 
   <section class="club-hero"><div class="wrap"><h1 class="grad">Clubs &amp; Societies</h1></div></section>
 
@@ -37,7 +38,7 @@
   <section id="taekwondo" class="section club"><div class="wrap"><div class="club-card"><img src="../assets/clubs/taekwondo/cover.png" alt="Taekwondo Club"><div class="club-info"><h2 class="flex items-center gap-2"><i class="fa-solid fa-user-ninja"></i>Taekwondo Club</h2><p class="muted desc" data-src="../assets/clubs/taekwondo/desc.txt"></p><div class="btns"><a href="#" class="ghost">Learn More</a><a href="#" class="cta green">Join Club</a></div></div></div></div></section>
 
 
-  <div id="footer"></div>
+  <?php include '../components/footer.php'; ?>
   <script src="../components/common.js"></script>
   <script>document.querySelectorAll('.desc[data-src]').forEach(p=>fetch(p.dataset.src).then(r=>r.text()).then(t=>p.textContent=t.trim()).catch(()=>{}));</script>
 </body>

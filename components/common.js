@@ -1,24 +1,4 @@
-async function loadComponents(){
-  const parts=location.pathname.split('/').filter(Boolean);
-  const repo=parts[0]||'';
-  const root=location.origin+(repo?`/${repo}/`:'/');
-  const base=repo?`/${repo}`:'';
-  const headerEl=document.getElementById('header');
-  const footerEl=document.getElementById('footer');
-  const [h,f]=await Promise.all([
-    fetch(root+'components/header.html').then(r=>r.ok?r.text():'' ).catch(()=>''),
-    fetch(root+'components/footer.html').then(r=>r.ok?r.text():'' ).catch(()=>''),
-  ]);
-  if(headerEl) headerEl.innerHTML=h.replace(/{{base}}/g,base);
-  if(footerEl) footerEl.innerHTML=f.replace(/{{base}}/g,base);
-  initCommon();
-}
-
-if(document.readyState==='loading'){
-  document.addEventListener('DOMContentLoaded',loadComponents);
-}else{
-  loadComponents();
-}
+document.addEventListener('DOMContentLoaded',initCommon);
 
 function initCommon(){
   document.querySelectorAll('[data-year]').forEach(el=>{el.textContent=new Date().getFullYear();});

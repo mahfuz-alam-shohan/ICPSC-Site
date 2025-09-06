@@ -1,3 +1,4 @@
+<?php $base = '..'; ?>
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -12,11 +13,11 @@
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
   <div id="decor"></div>
-  <div id="header"></div>
+  <?php include '../components/header.php'; ?>
 
   <section class="section"><div class="wrap"><h1 class="grad">All Notices</h1><p class="muted">Coming soon.</p></div></section>
 
-  <div id="footer"></div>
+  <?php include '../components/footer.php'; ?>
   <script src="../components/common.js"></script>
 </body>
 </html>

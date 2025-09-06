@@ -1,44 +1,45 @@
+<?php $base = $base ?? ''; ?>
 <div id="masthead">
   <div class="topbar"><div class="wrap"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div></div>
   <header class="header">
   <div class="wrap">
-    <a href="{{base}}/" class="brand">
-      <img id="logoImg" src="{{base}}/assets/ipsc-logo.png" alt="Logo">
+    <a href="<?= $base ?>/" class="brand">
+      <img id="logoImg" src="<?= $base ?>/assets/ipsc-logo.png" alt="Logo">
       <div class="btext"><strong>Ispahani Cantonment Public School & College</strong><span>Comilla Cantonment</span></div>
     </a>
     <div class="controls">
       <nav class="nav" aria-label="Primary">
-        <a class="nav-btn" href="{{base}}/">Home</a>
-        <div class="mega"><button class="nav-btn" aria-haspopup="true">Academics</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="{{base}}/#houses">Houses</a><a href="{{base}}/#classes">Classes</a></div><div class="col"><h4>Resources</h4><a href="{{base}}/#resources">Syllabus (PDF)</a><a href="{{base}}/#resources">Question Bank</a><a href="{{base}}/#resources">e-Library</a></div></div></div>
-        <div class="mega"><button class="nav-btn" aria-haspopup="true">Campus</button><div class="panel two"><div class="col"><h4>Facilities</h4><a href="{{base}}/#facilities">Labs & Library</a><a href="{{base}}/#facilities">Playgrounds</a></div><div class="col"><h4>Activities</h4><a href="{{base}}/pages/clubs.html">Clubs & Societies</a><a href="{{base}}/#gallery">Gallery</a></div></div></div>
-        <a class="nav-btn" href="{{base}}/pages/apply.html">Apply</a>
+        <a class="nav-btn" href="<?= $base ?>/">Home</a>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true">Academics</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="<?= $base ?>/#houses">Houses</a><a href="<?= $base ?>/#classes">Classes</a></div><div class="col"><h4>Resources</h4><a href="<?= $base ?>/#resources">Syllabus (PDF)</a><a href="<?= $base ?>/#resources">Question Bank</a><a href="<?= $base ?>/#resources">e-Library</a></div></div></div>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true">Campus</button><div class="panel two"><div class="col"><h4>Facilities</h4><a href="<?= $base ?>/#facilities">Labs & Library</a><a href="<?= $base ?>/#facilities">Playgrounds</a></div><div class="col"><h4>Activities</h4><a href="<?= $base ?>/pages/clubs.php">Clubs & Societies</a><a href="<?= $base ?>/#gallery">Gallery</a></div></div></div>
+        <a class="nav-btn" href="<?= $base ?>/pages/apply.php">Apply</a>
         <a id="loginNav" class="cta red" href="#login">Login</a>
       </nav>
       <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
     </div>
   </div>
   <div id="mobileNav" class="mob hidden">
-    <a class="mlink" href="{{base}}/">Home</a>
+    <a class="mlink" href="<?= $base ?>/">Home</a>
     <div class="mitem">
       <button class="mhead">Academics</button>
       <div class="msub">
-        <a class="mlink" href="{{base}}/#houses">Houses</a>
-        <a class="mlink" href="{{base}}/#classes">Classes</a>
-        <a class="mlink" href="{{base}}/#resources">Syllabus (PDF)</a>
-        <a class="mlink" href="{{base}}/#resources">Question Bank</a>
-        <a class="mlink" href="{{base}}/#resources">e-Library</a>
+        <a class="mlink" href="<?= $base ?>/#houses">Houses</a>
+        <a class="mlink" href="<?= $base ?>/#classes">Classes</a>
+        <a class="mlink" href="<?= $base ?>/#resources">Syllabus (PDF)</a>
+        <a class="mlink" href="<?= $base ?>/#resources">Question Bank</a>
+        <a class="mlink" href="<?= $base ?>/#resources">e-Library</a>
       </div>
     </div>
     <div class="mitem">
       <button class="mhead">Campus</button>
       <div class="msub">
-        <a class="mlink" href="{{base}}/#facilities">Labs &amp; Library</a>
-        <a class="mlink" href="{{base}}/#facilities">Playgrounds</a>
-        <a class="mlink" href="{{base}}/pages/clubs.html">Clubs &amp; Societies</a>
-        <a class="mlink" href="{{base}}/#gallery">Gallery</a>
+        <a class="mlink" href="<?= $base ?>/#facilities">Labs &amp; Library</a>
+        <a class="mlink" href="<?= $base ?>/#facilities">Playgrounds</a>
+        <a class="mlink" href="<?= $base ?>/pages/clubs.php">Clubs &amp; Societies</a>
+        <a class="mlink" href="<?= $base ?>/#gallery">Gallery</a>
       </div>
     </div>
-    <a class="mlink" href="{{base}}/pages/apply.html">Apply</a>
+    <a class="mlink" href="<?= $base ?>/pages/apply.php">Apply</a>
     <a id="loginNavM" class="mlink special" href="#login">Login</a>
   </div>
   </header>
