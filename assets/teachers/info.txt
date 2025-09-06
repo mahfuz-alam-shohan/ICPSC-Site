@@ -165,3 +165,87 @@ Designation : Assistant Professor
 Subject : Finance & Banking
 Blood Group : O+
 Mobile : 8801735406070
+
+MRS SHAMSUN NAHAR
+ID : 2018020134
+Designation : Lecturer
+Subject : PMM
+Blood Group : B+
+Mobile : 8801724793182
+
+ANTU SAHA
+ID : 2018020135
+Designation : Assistant Professor
+Subject : English
+Blood Group : A+
+Mobile : 8801726750973
+
+MOHD. HABIB ULLAH
+ID : 2018020136
+Designation : Assistant Professor
+Subject : ICT
+Blood Group : A+
+Mobile : 8801671804500
+
+MD. ZIA UDDIN
+ID : 2018020138
+Designation : Lecturer
+Subject : ICT
+Blood Group : B+
+Mobile : 8801919101989
+
+SHOHEL AHMED
+ID : 201902231
+Designation : Lecturer
+Subject : Biology
+Blood Group : A+
+Mobile : 8801819522763
+
+MD. KHALEDUN
+ID : 201903241
+Designation : Lecturer
+Subject : CGG
+Blood Group : A-
+Mobile : 8801745501533
+
+MISS FATEMA AKHTER
+ID : 201804161
+Designation : Lecturer
+Subject : Bangla
+Blood Group : O+
+Mobile : 8801750909393
+
+MD. NUR-E-ALAM
+ID : 202111013
+Designation : Lecturer
+Subject : Chemistry
+Blood Group : O+
+Mobile : 8801720256478
+
+MISS SHAWATA TALUKDER
+ID : 202207031
+Designation : Lecturer
+Subject : Bangla
+Blood Group : O+
+Mobile : 8801947970743
+
+MD. ISTIAC AHMED
+ID : 202207033
+Designation : Lecturer
+Subject : Geography
+Blood Group : B+
+Mobile : 8801760780818
+
+MD. FURKAN UDDIN
+ID : 202305021
+Designation : Lecturer
+Subject : Bangla
+Blood Group : O+
+Mobile : 8801855262235
+
+KHABIR UDDIN AHMED
+ID : 202407011
+Designation : Lecturer
+Subject : English
+Blood Group : B+
+Mobile : 8801718014249
