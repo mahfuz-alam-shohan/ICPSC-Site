@@ -25,13 +25,8 @@ function parseTeachers(text){
 
 function createCard(t,root,full){
   const card=document.createElement('article');
-  card.className='relative bg-gradient-to-br from-white via-yellow-50 to-green-50 border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden';
-  const art=document.createElement('div');
-  art.className='absolute -top-8 -right-8 w-24 h-24 rounded-full bg-[#ffd166] opacity-20 -z-10 pointer-events-none';
-  const art2=document.createElement('div');
-  art2.className='absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-[#06d6a0] opacity-20 -z-10 pointer-events-none';
-  card.appendChild(art);
-  card.appendChild(art2);
+  card.className='relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-cover bg-center';
+  card.style.backgroundImage='url('+root+'assets/teachers/card-bg.jpg)';
   const img=document.createElement('img');
   img.loading='lazy';
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
