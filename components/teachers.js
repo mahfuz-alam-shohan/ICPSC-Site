@@ -25,24 +25,23 @@ function parseTeachers(text){
 
 function createCard(t,root,full){
   const card=document.createElement('article');
-  card.className='teacher-card relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-white/70 backdrop-blur-sm';
-  const paint1=document.createElement('span');
-  paint1.className='absolute -top-14 -left-14 w-40 h-40 rounded-full blur-3xl';
-  paint1.style.background='radial-gradient(circle,var(--brand-green) 0%,rgba(20,83,45,0) 70%)';
-  paint1.style.zIndex='-1';
-  card.appendChild(paint1);
+  card.className='teacher-card relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-white/80 backdrop-blur-sm';
+  const deco1=document.createElement('span');
+  deco1.className='absolute -top-10 -left-10 w-24 h-24 rounded-full bg-green-200 opacity-40 pointer-events-none';
+  deco1.style.zIndex='-1';
+  card.appendChild(deco1);
 
-  const paint2=document.createElement('span');
-  paint2.className='absolute -bottom-12 -right-12 w-40 h-40 rounded-full blur-3xl';
-  paint2.style.background='radial-gradient(circle,var(--brand-red) 0%,rgba(127,29,29,0) 70%)';
-  paint2.style.zIndex='-1';
-  card.appendChild(paint2);
+  const deco2=document.createElement('span');
+  deco2.className='absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-red-200 opacity-40 pointer-events-none';
+  deco2.style.zIndex='-1';
+  card.appendChild(deco2);
 
-  const paint3=document.createElement('span');
-  paint3.className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 rounded-full blur-[60px]';
-  paint3.style.background='radial-gradient(circle at center,rgba(20,83,45,.35) 0%,rgba(127,29,29,.25) 40%,rgba(255,255,255,0) 70%)';
-  paint3.style.zIndex='-1';
-  card.appendChild(paint3);
+  const ring=document.createElement('span');
+  ring.className='absolute top-1/2 left-1/2 w-40 h-40 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none';
+  ring.style.border='4px solid rgba(20,83,45,0.25)';
+  ring.style.boxShadow='0 0 0 8px rgba(127,29,29,0.15)';
+  ring.style.zIndex='-1';
+  card.appendChild(ring);
   const img=document.createElement('img');
   img.loading='lazy';
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
