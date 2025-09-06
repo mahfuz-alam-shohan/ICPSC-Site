@@ -25,7 +25,7 @@ function parseTeachers(text){
 
 function createCard(t,root,full){
   const card=document.createElement('article');
-  card.className='relative bg-white border border-gray-200 rounded-xl shadow-md p-4 flex flex-col items-center text-center overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-lg';
+  card.className='relative bg-gradient-to-br from-white via-yellow-50 to-green-50 border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden';
   const art=document.createElement('div');
   art.className='absolute -top-8 -right-8 w-24 h-24 rounded-full bg-[#ffd166] opacity-20 -z-10 pointer-events-none';
   const art2=document.createElement('div');
@@ -36,7 +36,7 @@ function createCard(t,root,full){
   img.loading='lazy';
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
   img.alt=t.name;
-  img.className='w-32 h-32 object-cover rounded-full mb-3';
+  img.className='w-32 h-32 object-cover rounded-full mb-3 cursor-pointer';
   img.onerror=()=>{img.remove();};
   card.appendChild(img);
   const name=document.createElement('h4');
@@ -64,6 +64,8 @@ function createCard(t,root,full){
     mob.className='text-sm';
     mob.textContent='Mobile: '+(t['mobile']||'');
     card.appendChild(mob);
+  }else{
+    img.addEventListener('click',()=>{window.location.href=root+'pages/teachers.html';});
   }
   return card;
 }
@@ -71,19 +73,20 @@ function createCard(t,root,full){
 function renderHome(teachers,root){
   const wrap=document.getElementById('teachersHome');
   if(!wrap) return;
-  teachers.slice(0,8).forEach(t=>wrap.appendChild(createCard(t,root,false)));
+  const max=window.matchMedia('(min-width:1024px)').matches?8:6;
+  teachers.slice(0,max).forEach(t=>wrap.appendChild(createCard(t,root,false)));
 }
 
 function renderTeachersPage(teachers,root){
   const wrap=document.getElementById('teachersAll');
   if(!wrap) return;
-  const perPage=8;
+  const perPage=24;
   const params=new URLSearchParams(window.location.search);
   let page=parseInt(params.get('page')||'1',10);if(isNaN(page)||page<1) page=1;
   const totalPages=Math.max(1,Math.ceil(teachers.length/perPage));
   if(page>totalPages) page=totalPages;
   const start=(page-1)*perPage;
-  teachers.slice(start,start+perPage).forEach(t=>wrap.appendChild(createCard(t,root,false)));
+  teachers.slice(start,start+perPage).forEach(t=>wrap.appendChild(createCard(t,root,true)));
   const pag=document.getElementById('teacherPagination');
   if(pag){
     for(let i=1;i<=totalPages;i++){
