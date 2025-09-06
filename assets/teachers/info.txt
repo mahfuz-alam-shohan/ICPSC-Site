@@ -249,3 +249,87 @@ Designation : Lecturer
 Subject : English
 Blood Group : B+
 Mobile : 8801718014249
+
+AWLAD HOSSAIN
+ID : 202501016
+Designation : Lecturer
+Subject : Physics
+Blood Group : O+
+Mobile : 8801792858324
+
+SAMIM HOSSAIN
+ID : 202501015
+Designation : Lecturer
+Subject : Biology
+Blood Group : O+
+Mobile : 8801851225450
+
+MD. KABIR HOSSAIN
+ID : 202504061
+Designation : Lecturer
+Subject : Economics
+Blood Group : B+
+Mobile : 8801722539567
+
+MD. OMAR SHARIF SIFAT
+ID : 202311012
+Designation : Lecturer (Part Time)
+Subject : Islamic History
+Blood Group : O+
+Mobile : 8801676134349
+
+MD. FARHAD HOSSAIN
+ID : 2025010110
+Designation : Lecturer (Part Time)
+Subject : Logic
+Blood Group : B+
+Mobile : 8801854308376
+
+TARIQUL ISLAM
+ID : 202306041
+Designation : Instructor
+Subject : ENGR DRAWING
+Blood Group : B+
+Mobile : 8801945046606
+
+SHAHIDA KHATUN
+ID : 2018020144
+Designation : Demonstrator
+Subject : Biology
+Blood Group : A+
+Mobile : 8801733063063
+
+MST.ZANNATUL FERDOUS
+ID : 2018020146
+Designation : Senior Teacher
+Subject : Physical Education
+Blood Group : AB+
+Mobile : 8801724030039
+
+MD. MAMUNOR RASHID
+ID : 2018020147
+Designation : Demonstrator
+Subject : Chemistry
+Blood Group : B+
+Mobile : 8801733160225
+
+MOHAMMAD FOYEZ AHAMMED
+ID : 2018020148
+Designation : Assistant Head Teacher
+Subject : Mathematics
+Blood Group : O+
+Mobile : 8801818230388
+
+SAWKAT SULTANA HOQUE
+ID : 2018020149
+Designation : Senior Teacher
+Subject : Bangla
+Blood Group : A+
+Mobile : 8801711341830
+
+KAZI MD. KAMRUZZAMAN
+ID : 2018020150
+Designation : Senior Teacher
+Subject : Physical Excercise
+Blood Group : B+
+Mobile : 8801818093694
