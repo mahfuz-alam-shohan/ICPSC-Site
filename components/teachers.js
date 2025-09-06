@@ -25,13 +25,24 @@ function parseTeachers(text){
 
 function createCard(t,root,full){
   const card=document.createElement('article');
-  card.className='relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-cover bg-center';
-  card.style.backgroundImage='url('+root+'assets/teachers/card-bg.jpg)';
+  card.className='teacher-card relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-white';
+  const big=document.createElement('span');
+  big.className='absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#fecaca]/70';
+  big.style.zIndex='-1';
+  card.appendChild(big);
+  const small=document.createElement('span');
+  small.className='absolute -bottom-10 -left-10 w-28 h-28 rounded-full bg-[#bbf7d0]/70';
+  small.style.zIndex='-1';
+  card.appendChild(small);
+  const dot=document.createElement('span');
+  dot.className='absolute top-4 left-4 w-3 h-3 rounded-full bg-[#fecaca]/70';
+  dot.style.zIndex='-1';
+  card.appendChild(dot);
   const img=document.createElement('img');
   img.loading='lazy';
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
   img.alt=t.name;
-  img.className='w-32 h-32 object-cover rounded-full mb-3 cursor-pointer';
+  img.className='w-32 h-32 object-cover rounded-full mb-3 cursor-pointer ring-4 ring-white';
   img.onerror=()=>{img.remove();};
   card.appendChild(img);
   const name=document.createElement('h4');
