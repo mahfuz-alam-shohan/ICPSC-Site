@@ -49,6 +49,18 @@ function initCommon(){
       });
     });
   }
+  document.querySelectorAll('.mega').forEach(m=>{
+    const panel=m.querySelector('.panel');
+    let t;
+    const open=()=>{clearTimeout(t);m.classList.add('open');};
+    const close=()=>{t=setTimeout(()=>m.classList.remove('open'),150);};
+    if(panel){
+      m.addEventListener('mouseenter',open);
+      m.addEventListener('mouseleave',close);
+      panel.addEventListener('mouseenter',open);
+      panel.addEventListener('mouseleave',close);
+    }
+  });
   const msgModal=document.getElementById('msgModal'),msgText=document.getElementById('msgText'),msgClose=document.getElementById('msgClose');
   if(msgModal && msgClose){
     msgClose.addEventListener('click',()=>msgModal.classList.add('hidden'));
