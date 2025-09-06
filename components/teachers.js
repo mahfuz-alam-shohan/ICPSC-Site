@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       const teachers=parseTeachers(t);
       renderHome(teachers,root);
       renderTeachersPage(teachers,root);
+      setupTeacherSearch(teachers,root);
     }).catch(()=>{});
 });
 
@@ -101,6 +102,7 @@ function renderHome(teachers,root){
 function renderTeachersPage(teachers,root){
   const wrap=document.getElementById('teachersAll');
   if(!wrap) return;
+  wrap.innerHTML='';
   const perPage=24;
   const params=new URLSearchParams(window.location.search);
   let page=parseInt(params.get('page')||'1',10);if(isNaN(page)||page<1) page=1;
@@ -110,6 +112,7 @@ function renderTeachersPage(teachers,root){
   teachers.slice(start,start+perPage).forEach(t=>wrap.appendChild(createCard(t,root,true)));
   const pag=document.getElementById('teacherPagination');
   if(pag){
+    pag.innerHTML='';
     for(let i=1;i<=totalPages;i++){
       const a=document.createElement('a');
       a.textContent=i;
@@ -117,5 +120,37 @@ function renderTeachersPage(teachers,root){
       a.className='px-3 py-1 border rounded '+(i===page?'bg-gray-200 pointer-events-none':'bg-white');
       pag.appendChild(a);
     }
+    pag.classList.remove('hidden');
   }
+}
+
+function setupTeacherSearch(teachers,root){
+  const input=document.getElementById('teacherSearchInput');
+  const wrap=document.getElementById('teachersAll');
+  const pag=document.getElementById('teacherPagination');
+  if(!input||!wrap) return;
+  input.addEventListener('input',()=>{
+    const q=input.value.trim().toLowerCase();
+    wrap.innerHTML='';
+    if(pag){pag.innerHTML='';}
+    if(!q){
+      if(pag) pag.classList.remove('hidden');
+      renderTeachersPage(teachers,root);
+      return;
+    }
+    const res=teachers.filter(t=>
+      (t.name&&t.name.toLowerCase().includes(q))||
+      (t.subject&&t.subject.toLowerCase().includes(q))||
+      (t.id&&t.id.toLowerCase().includes(q))
+    );
+    if(res.length===0){
+      const p=document.createElement('p');
+      p.textContent='No teachers found';
+      p.className='col-span-full text-center';
+      wrap.appendChild(p);
+    }else{
+      res.forEach(t=>wrap.appendChild(createCard(t,root,true)));
+    }
+    if(pag) pag.classList.add('hidden');
+  });
 }
