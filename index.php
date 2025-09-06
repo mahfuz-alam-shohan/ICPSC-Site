@@ -1,3 +1,4 @@
+<?php $base = ''; ?>
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -12,12 +13,12 @@
   </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
   <div id="decor"></div>
-<div id="header"></div>
+<?php include 'components/header.php'; ?>
 
-<section class="hero" id="overview"><div class="wrap text-center flex flex-col items-center"><span class="section-tag welcome-tag">Welcome</span><h1 class="display whitespace-nowrap">Enter To Learn, <span class="grad">Leave To Serve</span></h1><p class="lede">Descipline • Lead • Character — Ispahani Cantonment Public School & College ক্যাম্পাসে প্রযুক্তিতে সমৃদ্ধ শিক্ষানুভূতি।</p><div class="btns"><a class="cta green" href="pages/apply.html">Apply Now</a><a class="cta red" href="pages/notice.html">Learn More</a></div></div></section>
+<section class="hero" id="overview"><div class="wrap text-center flex flex-col items-center"><span class="section-tag welcome-tag">Welcome</span><h1 class="display whitespace-nowrap">Enter To Learn, <span class="grad">Leave To Serve</span></h1><p class="lede">Descipline • Lead • Character — Ispahani Cantonment Public School & College ক্যাম্পাসে প্রযুক্তিতে সমৃদ্ধ শিক্ষানুভূতি।</p><div class="btns"><a class="cta green" href="pages/apply.php">Apply Now</a><a class="cta red" href="pages/notice.php">Learn More</a></div></div></section>
   <div class="divider wave" aria-hidden="true"></div>
 
-<section id="notices" class="section"><div class="wrap"><div class="head"><h2>Notices</h2><a class="link" href="pages/notice.html">সব নোটিশ →</a></div><ol class="timeline"><li><div class="dot"></div><div class="card"><h3>একাদশ শ্রেণিতে ভর্তি বিজ্ঞপ্তি (২০২৫–২০২৬)</h3><p>নির্ধারিত সময়ের মধ্যে অনলাইনে আবেদন করুন। প্রয়োজনীয় কাগজপত্রের তালিকা PDF এ দেখুন।</p><a class="link" href="#">PDF</a></div></li><li><div class="dot"></div><div class="card"><h3>Model Test Routine — HSC</h3><p>আসন্ন মডেল টেস্টের রুটিন ডাউনলোড করুন।</p><a class="link" href="#">Download</a></div></li><li><div class="dot"></div><div class="card"><h3>Science Fair Registration</h3><p>ক্লাস ৬–১২: Robotics, IoT, AI, Green Energy.</p><a class="link" href="#">Register</a></div></li></ol></div></section>
+<section id="notices" class="section"><div class="wrap"><div class="head"><h2>Notices</h2><a class="link" href="pages/notice.php">সব নোটিশ →</a></div><ol class="timeline"><li><div class="dot"></div><div class="card"><h3>একাদশ শ্রেণিতে ভর্তি বিজ্ঞপ্তি (২০২৫–২০২৬)</h3><p>নির্ধারিত সময়ের মধ্যে অনলাইনে আবেদন করুন। প্রয়োজনীয় কাগজপত্রের তালিকা PDF এ দেখুন।</p><a class="link" href="#">PDF</a></div></li><li><div class="dot"></div><div class="card"><h3>Model Test Routine — HSC</h3><p>আসন্ন মডেল টেস্টের রুটিন ডাউনলোড করুন।</p><a class="link" href="#">Download</a></div></li><li><div class="dot"></div><div class="card"><h3>Science Fair Registration</h3><p>ক্লাস ৬–১২: Robotics, IoT, AI, Green Energy.</p><a class="link" href="#">Register</a></div></li></ol></div></section>
   <div class="divider wave flip" aria-hidden="true"></div>
 
 <section id="leadership" class="section"><div class="wrap"><div class="head"><h2>Leadership</h2><span class="muted">Student messages from leadership</span></div><div class="leaders"><article class="leader" data-info="assets/leaders/leader-1.txt"><img src="assets/leaders/leader-1.png" alt="Chief Patron"><div class="info"><h4>Chief Patron</h4><p class="name">Loading...</p><a class="chip" href="#">Click to See Message</a></div></article><article class="leader" data-info="assets/leaders/leader-2.txt"><img src="assets/leaders/leader-2.png" alt="Chairman"><div class="info"><h4>Chairman</h4><p class="name">Loading...</p><a class="chip" href="#">Click to See Message</a></div></article><article class="leader" data-info="assets/leaders/leader-3.txt"><img src="assets/leaders/leader-3.png" alt="Principal"><div class="info"><h4>Principal</h4><p class="name">Loading...</p><a class="chip" href="#">Click to See Message</a></div></article></div></div></section>
@@ -66,43 +67,43 @@
     <div class="wrap">
       <div class="head"><h2>Clubs & Societies</h2></div>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-        <a href="pages/clubs.html#debating" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#debating" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-comments text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Debating Club</span>
         </a>
-        <a href="pages/clubs.html#science" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#science" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-flask text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Science Club</span>
         </a>
-        <a href="pages/clubs.html#ict" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#ict" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-computer text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">ICT Club</span>
         </a>
-        <a href="pages/clubs.html#art" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#art" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-palette text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Art Club</span>
         </a>
-        <a href="pages/clubs.html#gk" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#gk" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-lightbulb text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">General Knowledge Club</span>
         </a>
-        <a href="pages/clubs.html#math" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#math" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-square-root-variable text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Math Olympiad Club</span>
         </a>
-        <a href="pages/clubs.html#language" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#language" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-book-open text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Language &amp; Literature Club</span>
         </a>
-        <a href="pages/clubs.html#music" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#music" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-music text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Music &amp; Dance Club</span>
         </a>
-        <a href="pages/clubs.html#sports" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#sports" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-football text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Sports Club</span>
         </a>
-        <a href="pages/clubs.html#taekwondo" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
+        <a href="pages/clubs.php#taekwondo" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 md:p-4 h-40 md:h-32 hover:shadow-lg hover:bg-gray-50 transition">
           <i class="fa-solid fa-user-ninja text-4xl md:text-2xl mb-2"></i>
           <span class="font-semibold">Taekwondo Club</span>
         </a>
@@ -113,10 +114,10 @@
 
 <section id="gallery" class="section"><div class="wrap"><div class="head"><h2>Gallery</h2></div><div class="gallery-block"><h3 class="gtitle">Events</h3><div class="strip loop" data-speed="40"><img src="assets/galleries/gallery-1.png" alt="Annual Day"><img src="assets/galleries/gallery-2.png" alt="Science Fair"><img src="assets/galleries/gallery-3.png" alt="Cultural Fest"><img src="assets/galleries/gallery-4.png" alt="Parade"></div></div><div class="gallery-block"><h3 class="gtitle">Campus Life</h3><div class="strip loop" data-speed="45"><img src="assets/galleries/gallery-5.png" alt="Library"><img src="assets/galleries/gallery-6.png" alt="Classrooms"><img src="assets/galleries/gallery-7.png" alt="Assembly"><img src="assets/galleries/gallery-8.png" alt="ICT Lab"></div></div><div class="gallery-block"><h3 class="gtitle">Sports</h3><div class="strip loop" data-speed="35"><img src="assets/galleries/gallery-9.png" alt="Football"><img src="assets/galleries/gallery-10.png" alt="Cricket"><img src="assets/galleries/gallery-11.png" alt="Table Tennis"><img src="assets/galleries/gallery-12.png" alt="Chess"></div></div></div></section>
 
-  <section id="admission" class="section"><div class="wrap"><div class="head"><h2>Admission</h2><span class="muted">Clear steps • Online apply</span></div><div class="cta-row"><a class="cta green" href="pages/apply.html">Apply Online</a><a class="ghost" href="#">Instructions (PDF)</a></div></div></section>
+  <section id="admission" class="section"><div class="wrap"><div class="head"><h2>Admission</h2><span class="muted">Clear steps • Online apply</span></div><div class="cta-row"><a class="cta green" href="pages/apply.php">Apply Online</a><a class="ghost" href="#">Instructions (PDF)</a></div></div></section>
   
   
-<div id="footer"></div>
+<?php include 'components/footer.php'; ?>
   <script src="components/common.js"></script>
 </body>
 </html>
