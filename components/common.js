@@ -62,7 +62,7 @@ function initCommon(){
       panel.addEventListener('mouseleave',close);
     }
   });
-  const msgModal=document.getElementById('msgModal'),msgText=document.getElementById('msgText'),msgClose=document.getElementById('msgClose');
+  const msgModal=document.getElementById('msgModal'),msgText=document.getElementById('msgText'),msgClose=document.getElementById('msgClose'),msgTitle=document.getElementById('msgTitle');
   if(msgModal && msgClose){
     msgClose.addEventListener('click',()=>msgModal.classList.add('hidden'));
     msgModal.addEventListener('click',e=>{if(e.target===msgModal) msgModal.classList.add('hidden');});
@@ -74,7 +74,8 @@ function initCommon(){
       const message=msg.join('\n').trim();
       card.querySelector('.chip').addEventListener('click',e=>{
         e.preventDefault();
-        if(msgModal && msgText){
+        if(msgModal && msgText && msgTitle){
+          msgTitle.textContent='Message from '+name.trim();
           msgText.textContent=message||'No message';
           msgModal.classList.remove('hidden');
         }
