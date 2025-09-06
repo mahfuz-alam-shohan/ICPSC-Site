@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { promises as fs } from 'fs';
+import { dbPromise } from './db.js';
 
 dotenv.config();
 
@@ -57,6 +58,20 @@ app.post('/api/save', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+app.get('/api/users', async (_req, res) => {
+  const db = await dbPromise;
+  const users = await db.all('SELECT id, username, role FROM users');
+  res.json(users);
+});
+
+app.post('/api/users', async (req, res) => {
+  const { username, role } = req.body || {};
+  if (!username || !role) return res.status(400).json({ error: 'username and role required' });
+  const db = await dbPromise;
+  const result = await db.run('INSERT INTO users (username, role) VALUES (?, ?)', [username, role]);
+  res.json({ id: result.lastID });
 });
 
 app.listen(3000, () => {
