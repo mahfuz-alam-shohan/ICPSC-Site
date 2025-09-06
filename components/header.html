@@ -8,7 +8,7 @@
     </a>
     <div class="controls">
       <nav class="nav" aria-label="Primary">
-        <div class="mega"><button class="nav-btn" aria-haspopup="true">About</button><div class="panel"><div class="col"><h4>About</h4><a href="{{base}}/#overview">Overview</a><a href="{{base}}/#contact">Contact Us</a></div></div></div>
+        <a class="nav-btn" href="{{base}}/">Home</a>
         <div class="mega"><button class="nav-btn" aria-haspopup="true">Academics</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="{{base}}/#houses">Houses</a><a href="{{base}}/#classes">Classes</a></div><div class="col"><h4>Resources</h4><a href="{{base}}/#resources">Syllabus (PDF)</a><a href="{{base}}/#resources">Question Bank</a><a href="{{base}}/#resources">e-Library</a></div></div></div>
         <div class="mega"><button class="nav-btn" aria-haspopup="true">Campus</button><div class="panel two"><div class="col"><h4>Facilities</h4><a href="{{base}}/#facilities">Labs & Library</a><a href="{{base}}/#facilities">Playgrounds</a></div><div class="col"><h4>Activities</h4><a href="{{base}}/pages/clubs.html">Clubs & Societies</a><a href="{{base}}/#gallery">Gallery</a></div></div></div>
         <a class="nav-btn" href="{{base}}/#admission">Apply</a>
@@ -18,13 +18,7 @@
     </div>
   </div>
   <div id="mobileNav" class="mob hidden">
-    <div class="mitem">
-      <button class="mhead">About</button>
-      <div class="msub">
-        <a class="mlink" href="{{base}}/#overview">Overview</a>
-        <a class="mlink" href="{{base}}/#contact">Contact Us</a>
-      </div>
-    </div>
+    <a class="mlink" href="{{base}}/">Home</a>
     <div class="mitem">
       <button class="mhead">Academics</button>
       <div class="msub">
@@ -63,9 +57,10 @@
     </div>
   </div>
 </div>
-<div id="msgModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[100] p-4">
-  <div class="msg-box text-[#0f172a] p-6 rounded-xl shadow relative w-full max-w-xl max-h-[80vh] overflow-y-auto">
-    <button id="msgClose" class="absolute top-2 right-2 text-2xl leading-none" aria-label="Close">×</button>
-    <div id="msgText" class="mt-2 whitespace-pre-line"></div>
+  <div id="msgModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[100] p-4">
+    <div class="msg-box text-[#0f172a] p-6 rounded-xl shadow relative w-full max-w-lg h-96 overflow-y-auto">
+      <button id="msgClose" class="absolute top-2 right-2 text-2xl leading-none" aria-label="Close">×</button>
+      <h3 id="msgTitle" class="font-bold text-center mb-4"></h3>
+      <div id="msgText" class="whitespace-pre-line"></div>
+    </div>
   </div>
-</div>
