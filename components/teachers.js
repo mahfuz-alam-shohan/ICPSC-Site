@@ -25,19 +25,22 @@ function parseTeachers(text){
 
 function createCard(t,root,full){
   const card=document.createElement('article');
-  card.className='teacher-card relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-white';
-  const big=document.createElement('span');
-  big.className='absolute -top-12 -right-12 w-40 h-40 rounded-full bg-[#fecaca]/70';
-  big.style.zIndex='-1';
-  card.appendChild(big);
-  const small=document.createElement('span');
-  small.className='absolute -bottom-10 -left-10 w-28 h-28 rounded-full bg-[#bbf7d0]/70';
-  small.style.zIndex='-1';
-  card.appendChild(small);
-  const dot=document.createElement('span');
-  dot.className='absolute top-4 left-4 w-3 h-3 rounded-full bg-[#fecaca]/70';
-  dot.style.zIndex='-1';
-  card.appendChild(dot);
+  card.className='teacher-card relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-white/70 backdrop-blur-sm';
+
+  const paint1=document.createElement('span');
+  paint1.className='absolute -top-10 -left-10 w-32 h-32 rounded-full bg-rose-300/40 blur-2xl';
+  paint1.style.zIndex='-1';
+  card.appendChild(paint1);
+
+  const paint2=document.createElement('span');
+  paint2.className='absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-emerald-300/40 blur-2xl';
+  paint2.style.zIndex='-1';
+  card.appendChild(paint2);
+
+  const paint3=document.createElement('span');
+  paint3.className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-sky-200/40 blur-3xl';
+  paint3.style.zIndex='-1';
+  card.appendChild(paint3);
   const img=document.createElement('img');
   img.loading='lazy';
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
