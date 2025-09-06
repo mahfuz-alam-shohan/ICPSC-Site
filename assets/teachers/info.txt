@@ -1,3 +1,10 @@
+MD. SOFIULLAH
+ID : 201802017
+Designation : Vice-Principal
+Subject : Islamic History
+Blood Group : B+
+Mobile : 8801818997016
+
 MUHAMMAD TOHA
 ID : 201802018
 Designation : Associate Professor
@@ -5,16 +12,72 @@ Subject : Islamic Studies
 Blood Group : B+
 Mobile : 8801748977352
 
-FATEMA AKTER
+MD. ALAMGIR HOSSAIN
 ID : 201802019
-Designation : Lecturer
-Subject : Mathematics
-Blood Group : O-
-Mobile : 8801700000000
-
-MD ABDUR RAHMAN
-ID : 201802020
-Designation : Assistant Professor
+Designation : Associate Professor
 Subject : Physics
+Blood Group : AB+
+Mobile : 8801733063021
+
+MD. FERDOUS-UL-ISLAM KHAN
+ID : 2018020110
+Designation : Associate Professor
+Subject : ICT
 Blood Group : A+
-Mobile : 8801711111111
+Mobile : 8801733063023
+
+SACHINATH CHANDRA ROY
+ID : 2018020111
+Designation : Associate Professor
+Subject : Accounting
+Blood Group : O+
+Mobile : 8801711140180
+
+SHAHRIYAR HUDA
+ID : 2018020112
+Designation : Assistant Professor
+Subject : Logic
+Blood Group : A+
+Mobile : 8801714916212
+
+MOHD. MAMINUL ISLAM
+ID : 2018020113
+Designation : Assistant Professor
+Subject : Chemistry
+Blood Group : A+
+Mobile : 8801711106045
+
+MOHAMMED JAKIR HOSSAIN
+ID : 2018020114
+Designation : Assistant Professor
+Subject : Management
+Blood Group : O+
+Mobile : 01733063031
+
+SALMA AKTHER
+ID : 2018020115
+Designation : Assistant Professor
+Subject : Zoology
+Blood Group : A+
+Mobile : 8801715450504
+
+MOHAMMAD LOKMAN HOSSAIN SARKER
+ID : 2018020116
+Designation : Assistant Professor
+Subject : Statistics
+Blood Group : A+
+Mobile : 8801712828539
+
+NAZIA ISLAM
+ID : 2018020117
+Designation : Assistant Professor
+Subject : English
+Blood Group : B+
+Mobile : 8801733063037
+
+MD. HOMAYOUN MORSHED CHOWDHURY
+ID : 2018020118
+Designation : Assistant Professor
+Subject : Bangla
+Blood Group : B+
+Mobile : 8801815162848
