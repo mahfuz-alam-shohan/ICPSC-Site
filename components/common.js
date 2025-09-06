@@ -63,9 +63,11 @@ function initCommon(){
     }
   });
   const msgModal=document.getElementById('msgModal'),msgText=document.getElementById('msgText'),msgClose=document.getElementById('msgClose'),msgTitle=document.getElementById('msgTitle');
+  const closeMsg=()=>{if(msgModal){msgModal.classList.remove('open');document.body.style.overflow='';}};
+  const openMsg=()=>{if(msgModal){msgModal.classList.add('open');document.body.style.overflow='hidden';}};
   if(msgModal && msgClose){
-    msgClose.addEventListener('click',()=>msgModal.classList.add('hidden'));
-    msgModal.addEventListener('click',e=>{if(e.target===msgModal) msgModal.classList.add('hidden');});
+    msgClose.addEventListener('click',closeMsg);
+    msgModal.addEventListener('click',e=>{if(e.target===msgModal) closeMsg();});
   }
   document.querySelectorAll('.leader[data-info]').forEach(card=>{
     fetch(card.dataset.info).then(r=>r.text()).then(t=>{
@@ -77,7 +79,7 @@ function initCommon(){
         if(msgModal && msgText && msgTitle){
           msgTitle.textContent='Message from '+name.trim();
           msgText.textContent=message||'No message';
-          msgModal.classList.remove('hidden');
+          openMsg();
         }
       });
     }).catch(()=>{});
