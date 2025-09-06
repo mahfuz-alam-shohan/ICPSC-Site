@@ -26,19 +26,21 @@ function parseTeachers(text){
 function createCard(t,root,full){
   const card=document.createElement('article');
   card.className='teacher-card relative border border-gray-200 rounded-xl shadow-lg p-4 flex flex-col items-center text-center overflow-hidden bg-white/70 backdrop-blur-sm';
-
   const paint1=document.createElement('span');
-  paint1.className='absolute -top-10 -left-10 w-32 h-32 rounded-full bg-rose-300/40 blur-2xl';
+  paint1.className='absolute -top-14 -left-14 w-40 h-40 rounded-full blur-3xl';
+  paint1.style.background='radial-gradient(circle,var(--brand-green) 0%,rgba(20,83,45,0) 70%)';
   paint1.style.zIndex='-1';
   card.appendChild(paint1);
 
   const paint2=document.createElement('span');
-  paint2.className='absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-emerald-300/40 blur-2xl';
+  paint2.className='absolute -bottom-12 -right-12 w-40 h-40 rounded-full blur-3xl';
+  paint2.style.background='radial-gradient(circle,var(--brand-red) 0%,rgba(127,29,29,0) 70%)';
   paint2.style.zIndex='-1';
   card.appendChild(paint2);
 
   const paint3=document.createElement('span');
-  paint3.className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-sky-200/40 blur-3xl';
+  paint3.className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 rounded-full blur-[60px]';
+  paint3.style.background='radial-gradient(circle at center,rgba(20,83,45,.35) 0%,rgba(127,29,29,.25) 40%,rgba(255,255,255,0) 70%)';
   paint3.style.zIndex='-1';
   card.appendChild(paint3);
   const img=document.createElement('img');
@@ -46,6 +48,7 @@ function createCard(t,root,full){
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
   img.alt=t.name;
   img.className='w-32 h-32 object-cover rounded-full mb-3 cursor-pointer ring-4 ring-white';
+  img.style.boxShadow='0 0 0 4px #fff,0 0 20px rgba(20,83,45,0.45)';
   img.onerror=()=>{img.remove();};
   card.appendChild(img);
   const name=document.createElement('h4');
