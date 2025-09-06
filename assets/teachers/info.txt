@@ -1,0 +1,20 @@
+MUHAMMAD TOHA
+ID : 201802018
+Designation : Associate Professor
+Subject : Islamic Studies
+Blood Group : B+
+Mobile : 8801748977352
+
+FATEMA AKTER
+ID : 201802019
+Designation : Lecturer
+Subject : Mathematics
+Blood Group : O-
+Mobile : 8801700000000
+
+MD ABDUR RAHMAN
+ID : 201802020
+Designation : Assistant Professor
+Subject : Physics
+Blood Group : A+
+Mobile : 8801711111111
