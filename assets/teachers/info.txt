@@ -81,3 +81,87 @@ Designation : Assistant Professor
 Subject : Bangla
 Blood Group : B+
 Mobile : 8801815162848
+
+MAHFUJA KHANAM
+ID : 2018020119
+Designation : Assistant Professor
+Subject : Bangla
+Blood Group : O+
+Mobile : 8801719886446
+
+MOHAMMAD MIZANUR RAHMAN
+ID : 2018020120
+Designation : Assistant Professor
+Subject : Physics
+Blood Group : B+
+Mobile : 8801711152466
+
+MD. SHALAH UDDIN KHAN
+ID : 2018020121
+Designation : Assistant Professor
+Subject : Mathematics
+Blood Group : B+
+Mobile : 8801922912361
+
+ABUL KALAM MAZUMDER
+ID : 2018020122
+Designation : Assistant Professor
+Subject : English
+Blood Group : B+
+Mobile : 8801733063053
+
+FAZLUL KARIM
+ID : 2018020123
+Designation : Assistant Professor
+Subject : Mathematics
+Blood Group : A+
+Mobile : 8801717739571
+
+SHEKHAR GOSWAMI
+ID : 2018020124
+Designation : Assistant Professor
+Subject : Mathematics
+Blood Group : O+
+Mobile : 8801753960569
+
+MD. DIDARUL ISLAM
+ID : 2018020125
+Designation : Assistant Professor
+Subject : Biology
+Blood Group : A+
+Mobile : 8801818266909
+
+MOHAMMAD DELOWER HOSSAIN
+ID : 2018020126
+Designation : Assistant Professor
+Subject : Chemistry
+Blood Group : B+
+Mobile : 8801733063057
+
+MD. SHAHINUR RAHMAN
+ID : 2018020127
+Designation : Assistant Professor
+Subject : Mathematics
+Blood Group : B+
+Mobile : 8801733063059
+
+MD. ANISUR RAHMAN AZAD
+ID : 2018020128
+Designation : Assistant Professor
+Subject : Physics
+Blood Group : A+
+Mobile : 8801710289949
+
+MEHEDI MASUD SIDDIQUEE
+ID : 2018020132
+Designation : Assistant Professor
+Subject : English
+Blood Group : B+
+Mobile : 8801911279561
+
+SULTAN AHAMMAD KHAN
+ID : 2018020133
+Designation : Assistant Professor
+Subject : Finance & Banking
+Blood Group : O+
+Mobile : 8801735406070
