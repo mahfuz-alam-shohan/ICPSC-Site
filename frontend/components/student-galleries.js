@@ -51,30 +51,30 @@ document.addEventListener('DOMContentLoaded', async () => {
       entries.forEach(e => {
         if (autoPlay) {
           if (e.isIntersecting) {
-            e.target.muted = false;
             e.target.play().catch(() => {});
             pauseOthers(e.target);
           } else {
             e.target.pause();
-            e.target.muted = true;
           }
         } else if (!e.isIntersecting) {
           e.target.pause();
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.25 });
 
     files.forEach(f => {
       const card = document.createElement('div');
-      card.className = 'relative mb-4 break-inside-avoid overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg aspect-video bg-black';
+      card.className = 'video-card overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg aspect-video bg-black';
 
       const video = document.createElement('video');
       video.src = root + 'assets/student-galleries/' + f;
       video.preload = 'metadata';
       video.playsInline = true;
       video.muted = autoPlay;
+      video.autoplay = autoPlay;
+      video.loop = true;
       video.controls = true;
-      video.className = 'w-full h-full object-contain';
+      video.className = 'w-full h-full object-cover';
 
       video.addEventListener('play', () => pauseOthers(video));
 
