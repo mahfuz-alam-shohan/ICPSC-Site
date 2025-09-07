@@ -1,4 +1,4 @@
-import { Role } from "../../constants/roles";
+import { Role, Roles } from "../../constants/roles";
 
 export interface User {
   id: number;
@@ -7,7 +7,15 @@ export interface User {
   role: Role;
 }
 
-const users: User[] = [];
+const users: User[] = [
+  {
+    id: 1,
+    username: "admin",
+    // password: "admin"
+    password: "$2b$10$0TnDNFY.41ItaoE0yCji5u3Gdi2CsDSBG2hIUT6ztGUVSXmtRbNd.",
+    role: Roles.ADMIN,
+  },
+];
 
 export function addUser(data: Omit<User, "id">): User {
   const user: User = { id: users.length + 1, ...data };

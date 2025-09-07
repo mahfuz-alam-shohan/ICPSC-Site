@@ -225,9 +225,10 @@ function initCommon(){
   const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
   revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
   const loginModal=document.getElementById('loginModal'),loginNav=document.getElementById('loginNav'),loginNavM=document.getElementById('loginNavM'),loginOk=document.getElementById('loginOk'),loginCancel=document.getElementById('loginCancel');
-  function openLogin(e){e.preventDefault();loginModal.classList.remove('hidden');}
+  const loginUrl=window.location.pathname.includes('/pages/')?'login.html':'pages/login.html';
+  function openLogin(e){e.preventDefault();window.location.href=loginUrl;}
   if(loginNav) loginNav.addEventListener('click',openLogin);
-    if(loginNavM) loginNavM.addEventListener('click',e=>{openLogin(e);if(mobileNav) mobileNav.classList.add('hidden');updateMast();});
-  if(loginCancel) loginCancel.addEventListener('click',()=>loginModal.classList.add('hidden'));
-  if(loginOk) loginOk.addEventListener('click',()=>loginModal.classList.add('hidden'));
+  if(loginNavM) loginNavM.addEventListener('click',e=>{openLogin(e);if(mobileNav) mobileNav.classList.add('hidden');updateMast();});
+  if(loginCancel) loginCancel.addEventListener('click',()=>loginModal&&loginModal.classList.add('hidden'));
+  if(loginOk) loginOk.addEventListener('click',()=>loginModal&&loginModal.classList.add('hidden'));
 }

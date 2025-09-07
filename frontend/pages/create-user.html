@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create User</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-4">
+  <h1 class="text-2xl mb-4">Create User</h1>
+  <form id="createForm" class="space-y-4 max-w-sm">
+    <input id="username" type="text" placeholder="Username" class="w-full border p-2" />
+    <input id="password" type="password" placeholder="Password" class="w-full border p-2" />
+    <select id="role" class="w-full border p-2">
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+      <option value="librarian">Librarian</option>
+      <option value="staff">Staff</option>
+      <option value="driver">Driver</option>
+      <option value="officer">Officer</option>
+      <option value="admin">Admin</option>
+    </select>
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2">Create</button>
+  </form>
+  <script>
+    document.getElementById('createForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem('token');
+      if (!token) { window.location.href = 'login.html'; return; }
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const role = document.getElementById('role').value;
+      const res = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({ username, password, role })
+      });
+      if (res.ok) {
+        alert('User created');
+        window.location.href = 'admin-dashboard.html';
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.message || 'Failed to create user');
+      }
+    });
+  </script>
+</body>
+</html>
