@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import path from "path";
 import connect from "./config/db";
 
 import authRoutes from "./modules/auth/routes";
@@ -41,6 +42,10 @@ app.use("/api/officers", officerRoutes);
 app.use("/api/applications", applicationRoutes);
 app.use("/api/registrations", registrationRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+
+// Serve frontend static files
+const frontendDir = path.join(__dirname, "../../frontend");
+app.use(express.static(frontendDir));
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server running");
