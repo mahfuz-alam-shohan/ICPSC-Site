@@ -95,9 +95,9 @@ function initCommon(){
       const createCard=(s,full)=>{
         const card=document.createElement('div');
         if(full){
-          card.className='staff-card flex items-center gap-4 p-4 rounded-lg shadow bg-white/80 backdrop-blur-sm border-l-4 border-[#14532d]';
+          card.className='staff-card flex items-center gap-4 p-6 rounded-lg shadow bg-white/80 backdrop-blur-sm border-l-4 border-[#14532d]';
         }else{
-          card.className='staff-card flex flex-col items-center text-center p-4 rounded-lg shadow bg-white/80 backdrop-blur-sm cursor-pointer hover:shadow-md transition border-t-4 border-[#14532d]';
+          card.className='staff-card flex flex-col items-center text-center p-6 rounded-lg shadow bg-white/80 backdrop-blur-sm cursor-pointer hover:shadow-md transition border-t-4 border-[#14532d]';
         }
         const img=document.createElement('img');
         img.src=root+'assets/staffs/pictures/'+s.id+'.jpg';
@@ -108,6 +108,7 @@ function initCommon(){
         img.onerror=()=>{img.remove();};
         card.appendChild(img);
         const info=document.createElement('div');
+        info.className='space-y-1';
         if(full){
           const name=document.createElement('h4');
           name.className='font-bold';

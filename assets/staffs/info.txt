@@ -11,3 +11,10 @@ Designation : Cleaner
 Department : Maintenance
 Blood Group : A+
 Mobile : 8801720000000
+
+HASIN NAWAL
+ID : 202504063
+Designation : Doctor
+Department : --
+Blood Group : O+
+Mobile : 8801742496976
