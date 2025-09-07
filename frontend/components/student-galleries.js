@@ -8,9 +8,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   let limit = null;
   const limitAttr = wrap.dataset.limit;
   if (limitAttr === 'row') {
-    limit = getComputedStyle(wrap)
+    const cols = getComputedStyle(wrap)
       .gridTemplateColumns.split(' ')
       .filter(Boolean).length;
+    if (cols === 1 && window.innerWidth < 640) {
+      limit = 2;
+    } else {
+      limit = cols;
+    }
   } else if (limitAttr) {
     const parsed = parseInt(limitAttr, 10);
     if (!isNaN(parsed)) {
