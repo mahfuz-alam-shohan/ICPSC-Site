@@ -4,7 +4,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!wrap) return;
 
   const autoPlay = wrap.dataset.autoplay === 'true';
-  const limit = parseInt(wrap.dataset.limit, 10);
+
+  let limit = null;
+  const limitAttr = wrap.dataset.limit;
+  if (limitAttr === 'row') {
+    limit = getComputedStyle(wrap)
+      .gridTemplateColumns.split(' ')
+      .filter(Boolean).length;
+  } else if (limitAttr) {
+    const parsed = parseInt(limitAttr, 10);
+    if (!isNaN(parsed)) {
+      limit = parsed;
+    }
+  }
 
   try {
     let files = [];
@@ -43,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    if (!isNaN(limit)) {
+    if (limit !== null) {
       files = files.slice(0, limit);
     }
 
