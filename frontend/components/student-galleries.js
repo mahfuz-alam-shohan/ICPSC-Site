@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     files.forEach(f => {
       const card = document.createElement('div');
-      card.className = 'video-card overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg aspect-video bg-black';
+      card.className = 'video-card overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg bg-black';
 
       const video = document.createElement('video');
       video.src = root + 'assets/student-galleries/' + f;
@@ -74,7 +74,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       video.autoplay = autoPlay;
       video.loop = true;
       video.controls = true;
-      video.className = 'w-full h-full object-cover';
+      video.className = 'w-full h-full object-contain';
+
+      video.addEventListener('loadedmetadata', () => {
+        card.style.aspectRatio = `${video.videoWidth}/${video.videoHeight}`;
+      });
 
       video.addEventListener('play', () => pauseOthers(video));
 
