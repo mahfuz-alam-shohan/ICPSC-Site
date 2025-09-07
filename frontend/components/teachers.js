@@ -67,28 +67,32 @@ function createCard(t,root,full){
   name.className='font-bold';
   name.textContent=t.name;
   card.appendChild(name);
-  const des=document.createElement('p');
-  des.className='text-sm';
-  des.textContent=t['designation']||'';
-  card.appendChild(des);
   if(full){
+    const des=document.createElement('p');
+    des.className='text-sm flex items-center gap-1';
+    des.innerHTML='<i class="fa-solid fa-briefcase text-[#14532d]"></i><span>'+(t['designation']||'')+'</span>';
+    card.appendChild(des);
     const id=document.createElement('p');
-    id.className='text-sm';
-    id.textContent='ID: '+(t['id']||'');
+    id.className='text-sm flex items-center gap-1';
+    id.innerHTML='<i class="fa-solid fa-id-badge text-[#14532d]"></i><span>ID: '+(t['id']||'')+'</span>';
     card.appendChild(id);
     const subj=document.createElement('p');
-    subj.className='text-sm';
-    subj.textContent='Subject: '+(t['subject']||'');
-    card.appendChild(subj);
+    subj.className='text-sm flex items-center gap-1';
+    subj.innerHTML=t['subject']?'<i class="fa-solid fa-book-open text-[#14532d]"></i><span>Subject: '+t['subject']+'</span>':'';
+    if(subj.innerHTML) card.appendChild(subj);
     const blood=document.createElement('p');
-    blood.className='text-sm';
-    blood.textContent='Blood Group: '+(t['blood group']||'');
-    card.appendChild(blood);
+    blood.className='text-sm flex items-center gap-1';
+    blood.innerHTML=t['blood group']?'<i class="fa-solid fa-droplet text-[#14532d]"></i><span>Blood Group: '+t['blood group']+'</span>':'';
+    if(blood.innerHTML) card.appendChild(blood);
     const mob=document.createElement('p');
-    mob.className='text-sm';
-    mob.textContent='Mobile: '+(t['mobile']||'');
-    card.appendChild(mob);
+    mob.className='text-sm flex items-center gap-1';
+    mob.innerHTML=t['mobile']?'<i class="fa-solid fa-phone text-[#14532d]"></i><span>'+t['mobile']+'</span>':'';
+    if(mob.innerHTML) card.appendChild(mob);
   }else{
+    const des=document.createElement('p');
+    des.className='text-sm';
+    des.textContent=t['designation']||'';
+    card.appendChild(des);
     img.addEventListener('click',()=>{window.location.href=root+'pages/teachers.html';});
   }
   return card;
@@ -105,38 +109,17 @@ function renderTeachersPage(teachers,root){
   const wrap=document.getElementById('teachersAll');
   if(!wrap) return;
   wrap.innerHTML='';
-  const perPage=24;
-  const params=new URLSearchParams(window.location.search);
-  let page=parseInt(params.get('page')||'1',10);if(isNaN(page)||page<1) page=1;
-  const totalPages=Math.max(1,Math.ceil(teachers.length/perPage));
-  if(page>totalPages) page=totalPages;
-  const start=(page-1)*perPage;
-  teachers.slice(start,start+perPage).forEach(t=>wrap.appendChild(createCard(t,root,true)));
-  const pag=document.getElementById('teacherPagination');
-  if(pag){
-    pag.innerHTML='';
-    for(let i=1;i<=totalPages;i++){
-      const a=document.createElement('a');
-      a.textContent=i;
-      a.href='teachers.html?page='+i;
-      a.className='px-3 py-1 border rounded '+(i===page?'bg-gray-200 pointer-events-none':'bg-white');
-      pag.appendChild(a);
-    }
-    pag.classList.remove('hidden');
-  }
+  teachers.forEach(t=>wrap.appendChild(createCard(t,root,true)));
 }
 
 function setupTeacherSearch(teachers,root){
   const input=document.getElementById('teacherSearchInput');
   const wrap=document.getElementById('teachersAll');
-  const pag=document.getElementById('teacherPagination');
   if(!input||!wrap) return;
   input.addEventListener('input',()=>{
     const q=input.value.trim().toLowerCase();
     wrap.innerHTML='';
-    if(pag){pag.innerHTML='';}
     if(!q){
-      if(pag) pag.classList.remove('hidden');
       renderTeachersPage(teachers,root);
       return;
     }
@@ -153,6 +136,5 @@ function setupTeacherSearch(teachers,root){
     }else{
       res.forEach(t=>wrap.appendChild(createCard(t,root,true)));
     }
-    if(pag) pag.classList.add('hidden');
   });
 }
