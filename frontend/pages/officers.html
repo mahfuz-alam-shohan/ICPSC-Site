@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Officers - Ispahani Public School & College</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <link rel="stylesheet" href="../components/common.css"/>
+</head>
+<body class="text-slate-800 selection:bg-[#ffd166]/60">
+  <div id="decor"></div>
+<div id="masthead">
+  <div class="topbar"><div class="wrap"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div></div>
+  <header class="header">
+  <div class="wrap">
+    <a href="../index.html" class="brand">
+      <img id="logoImg" loading="eager" src="../assets/ipsc-logo.png" alt="Logo">
+      <div class="btext"><strong>Ispahani Public School & College</strong><span>Comilla Cantonment</span></div>
+    </a>
+    <div class="controls">
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-btn" href="../index.html"><i class="fa-solid fa-house mr-1"></i>Home</a>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-graduation-cap mr-1"></i>Academics</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="../index.html#houses"><i class="fa-solid fa-house-chimney mr-1"></i>Houses</a><a href="../index.html#classes"><i class="fa-solid fa-chalkboard mr-1"></i>Classes</a></div><div class="col"><h4>Resources</h4><a href="../index.html#resources"><i class="fa-solid fa-file-lines mr-1"></i>Syllabus (PDF)</a><a href="../index.html#resources"><i class="fa-solid fa-circle-question mr-1"></i>Question Bank</a><a href="../index.html#resources"><i class="fa-solid fa-book mr-1"></i>e-Library</a></div></div></div>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-school mr-1"></i>Campus</button><div class="panel two"><div class="col"><h4>Facilities</h4><a href="../index.html#facilities"><i class="fa-solid fa-flask mr-1"></i>Labs & Library</a><a href="../index.html#facilities"><i class="fa-solid fa-futbol mr-1"></i>Playgrounds</a></div><div class="col"><h4>Activities</h4><a href="clubs.html"><i class="fa-solid fa-people-group mr-1"></i>Clubs & Societies</a><a href="../index.html#gallery"><i class="fa-solid fa-images mr-1"></i>Gallery</a></div></div></div>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-users-gear mr-1"></i>Administration</button><div class="panel"><div class="col"><a href="governing.html"><i class="fa-solid fa-landmark mr-1"></i>Governing Body</a><a href="students.html"><i class="fa-solid fa-user-graduate mr-1"></i>Students</a><a href="teachers.html"><i class="fa-solid fa-chalkboard-user mr-1"></i>Teachers</a><a href="staffs.html"><i class="fa-solid fa-users mr-1"></i>Staffs</a><a href="librarians.html"><i class="fa-solid fa-book-open mr-1"></i>Librarians</a><a href="drivers.html"><i class="fa-solid fa-bus mr-1"></i>Drivers</a><a href="officers.html"><i class="fa-solid fa-user-tie mr-1"></i>Officers</a></div></div></div>
+        <a class="nav-btn" href="apply.html"><i class="fa-solid fa-file-pen mr-1"></i>Apply</a>
+        <a id="loginNav" class="cta red" href="#login"><i class="fa-solid fa-right-to-bracket mr-1"></i>Login</a>
+      </nav>
+      <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+  <div id="mobileNav" class="mob hidden">
+    <a class="mlink" href="../index.html"><i class="fa-solid fa-house mr-2"></i>Home</a>
+    <div class="mitem">
+      <button class="mhead"><i class="fa-solid fa-graduation-cap mr-2"></i>Academics</button>
+      <div class="msub">
+        <a class="mlink" href="../index.html#houses"><i class="fa-solid fa-house-chimney mr-2"></i>Houses</a>
+        <a class="mlink" href="../index.html#classes"><i class="fa-solid fa-chalkboard mr-2"></i>Classes</a>
+        <a class="mlink" href="../index.html#resources"><i class="fa-solid fa-file-lines mr-2"></i>Syllabus (PDF)</a>
+        <a class="mlink" href="../index.html#resources"><i class="fa-solid fa-circle-question mr-2"></i>Question Bank</a>
+        <a class="mlink" href="../index.html#resources"><i class="fa-solid fa-book mr-2"></i>e-Library</a>
+      </div>
+    </div>
+    <div class="mitem">
+      <button class="mhead"><i class="fa-solid fa-school mr-2"></i>Campus</button>
+      <div class="msub">
+        <a class="mlink" href="../index.html#facilities"><i class="fa-solid fa-flask mr-2"></i>Labs &amp; Library</a>
+        <a class="mlink" href="../index.html#facilities"><i class="fa-solid fa-futbol mr-2"></i>Playgrounds</a>
+        <a class="mlink" href="clubs.html"><i class="fa-solid fa-people-group mr-2"></i>Clubs &amp; Societies</a>
+        <a class="mlink" href="../index.html#gallery"><i class="fa-solid fa-images mr-2"></i>Gallery</a>
+      </div>
+    </div>
+    <div class="mitem">
+      <button class="mhead"><i class="fa-solid fa-users-gear mr-2"></i>Administration</button>
+      <div class="msub">
+        <a class="mlink" href="governing.html"><i class="fa-solid fa-landmark mr-2"></i>Governing Body</a>
+        <a class="mlink" href="students.html"><i class="fa-solid fa-user-graduate mr-2"></i>Students</a>
+        <a class="mlink" href="teachers.html"><i class="fa-solid fa-chalkboard-user mr-2"></i>Teachers</a>
+        <a class="mlink" href="staffs.html"><i class="fa-solid fa-users mr-2"></i>Staffs</a>
+        <a class="mlink" href="librarians.html"><i class="fa-solid fa-book-open mr-2"></i>Librarians</a>
+        <a class="mlink" href="drivers.html"><i class="fa-solid fa-bus mr-2"></i>Drivers</a>
+        <a class="mlink" href="officers.html"><i class="fa-solid fa-user-tie mr-2"></i>Officers</a>
+      </div>
+    </div>
+    <a class="mlink" href="apply.html"><i class="fa-solid fa-file-pen mr-2"></i>Apply</a>
+    <a id="loginNavM" class="mlink special" href="#login"><i class="fa-solid fa-right-to-bracket mr-2"></i>Login</a>
+  </div>
+  </header>
+  <div class="ticker" role="region" aria-label="Latest notices"><div class="wrap"><div id="tickerTrack" class="ticker-track"><a href="#" class="tick">একাদশ শ্রেণিতে ভর্তি (২০২৫–২৬) — Apply now</a><a href="#" class="tick">HSC Model Test Routine — Download PDF</a><a href="#" class="tick">Science Fair — Registration open (Robotics, IoT, AI)</a><a href="#" class="tick">Holiday Notice — Campus closed on Friday</a></div></div></div>
+</div>
+<div id="loginModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-xl w-80 shadow">
+    <h3 class="font-bold mb-4 text-center">Admin Login</h3>
+    <label class="block mb-2 text-sm">User ID</label>
+    <input id="loginUser" type="text" class="w-full border border-gray-300 bg-white p-2 rounded">
+    <label class="block mt-4 mb-2 text-sm">Password</label>
+    <input id="loginPass" type="password" class="w-full border border-gray-300 bg-white p-2 rounded">
+    <div class="mt-4 flex justify-end gap-2">
+      <button id="loginCancel" class="ghost">Cancel</button>
+      <button id="loginOk" class="cta green">Login</button>
+    </div>
+  </div>
+</div>
+<div id="msgModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] p-4">
+  <div class="msg-box text-[#0f172a] p-6 rounded-xl shadow relative w-full max-w-lg h-96 overflow-y-auto">
+    <button id="msgClose" class="absolute top-2 right-2 text-2xl leading-none" aria-label="Close">×</button>
+    <h3 id="msgTitle" class="font-bold text-center mb-4"></h3>
+    <div id="msgText" class="whitespace-pre-line"></div>
+  </div>
+</div>
+
+  <section class="section"><div class="wrap"><h1 class="grad">Our Officers</h1><p class="muted">Content coming soon.</p></div></section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="grid gap-6 md:grid-cols-2 text-center md:text-left">
+      <div class="contact">
+        <h4 class="font-bold mb-2">Contact</h4>
+        <p>Cumilla Cantonment 3501, Cumilla</p>
+        <p>Phone: 03239933170</p>
+        <p>Mobile: 01733063001</p>
+        <p>Email: ipscm1@gmail.com</p>
+      </div>
+      <div class="links">
+        <h4 class="font-bold mb-2">গুরুত্বপূর্ণ লিঙ্ক</h4>
+        <ul class="space-y-1">
+          <li><a class="link" href="https://comillaboard.portal.gov.bd/" target="_blank" rel="noopener">Comilla Education Board</a></li>
+          <li><a class="link" href="https://shed.gov.bd/" target="_blank" rel="noopener">মাধ্যমিক ও উচ্চ শিক্ষা বিভাগ</a></li>
+          <li><a class="link" href="https://bangladesh.gov.bd/index.php" target="_blank" rel="noopener">বাংলাদেশ জাতীয় শিক্ষা বাতায়ন</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-6 pt-4 border-t flex flex-col md:flex-row justify-between items-center text-sm">
+      <span>© <span data-year></span> Mahfuz Alam Shohan</span>
+      <span>© <span data-year></span> Ispahani Public School & College</span>
+    </div>
+  </div>
+</footer>
+  <script src="../components/common.js" defer></script>
+</body>
+</html>
