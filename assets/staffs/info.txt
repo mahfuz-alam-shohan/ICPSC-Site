@@ -1,10 +1,3 @@
-HASIN NAWAL
-ID : 202504063
-Designation : Doctor
-Department : --
-Blood Group : O+
-Mobile : 8801742496976
-
 MD. FORHAD HOSSAIN
 ID : 20180201128
 Designation : Accounts Officer
@@ -53,3 +46,31 @@ Designation : Library Assistant
 Department : --
 Blood Group : B+
 Mobile : 8801931020464
+
+ABU JAFAR MD. SALEH
+ID : 20180201135
+Designation : Office Assistant
+Department : --
+Blood Group : O+
+Mobile : 8801717271184
+
+MOHAMMAD IQBAL HOSSEN
+ID : 20180201136
+Designation : Office Assistant
+Department : --
+Blood Group : B+
+Mobile : 8801916869262
+
+MD. DIDERUL ALAM
+ID : 20180201137
+Designation : Office Assistant
+Department : --
+Blood Group : B+
+Mobile : 8801912372726
+
+MD. JAMAL HOSSAIN
+ID : 20180201138
+Designation : Office Assistant
+Department : --
+Blood Group : O+
+Mobile : 8801824038474
