@@ -1,0 +1,13 @@
+MD. RAHAT ALI
+ID : S2024001
+Designation : Office Assistant
+Department : Administration
+Blood Group : B+
+Mobile : 8801710000000
+
+FARIDA BEGUM
+ID : S2024002
+Designation : Cleaner
+Department : Maintenance
+Blood Group : A+
+Mobile : 8801720000000

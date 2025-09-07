@@ -1,0 +1,17 @@
+ABDUL KARIM
+ID : G2024001
+Designation : Chairman
+Blood Group : O+
+Mobile : 8801712345678
+
+JULIA BEGUM
+ID : G2024002
+Designation : Member
+Blood Group : A+
+Mobile : 8801723456789
+
+MD. KHALED HOSSAIN
+ID : G2024003
+Designation : Member Secretary
+Blood Group : B+
+Mobile : 8801734567890
