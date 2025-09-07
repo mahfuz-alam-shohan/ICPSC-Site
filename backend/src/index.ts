@@ -17,6 +17,7 @@ import driverRoutes from "./modules/drivers/routes";
 import officerRoutes from "./modules/officers/routes";
 import applicationRoutes from "./modules/applications/routes";
 import registrationRoutes from "./modules/registrations/routes";
+import dashboardRoutes from "./modules/dashboard/routes";
 
 connect();
 
@@ -39,6 +40,7 @@ app.use("/api/drivers", driverRoutes);
 app.use("/api/officers", officerRoutes);
 app.use("/api/applications", applicationRoutes);
 app.use("/api/registrations", registrationRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server running");
