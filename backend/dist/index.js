@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
+const path_1 = __importDefault(require("path"));
 const db_1 = __importDefault(require("./config/db"));
 const routes_1 = __importDefault(require("./modules/auth/routes"));
 const routes_2 = __importDefault(require("./modules/students/routes"));
@@ -42,6 +43,9 @@ app.use("/api/officers", routes_12.default);
 app.use("/api/applications", routes_13.default);
 app.use("/api/registrations", routes_14.default);
 app.use("/api/dashboard", routes_15.default);
+// Serve frontend static files
+const frontendDir = path_1.default.join(__dirname, "../../frontend");
+app.use(express_1.default.static(frontendDir));
 app.listen(process.env.PORT || 3000, () => {
     console.log("Server running");
 });
