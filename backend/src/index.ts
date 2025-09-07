@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import connect from "./config/db";
 
 import authRoutes from "./modules/auth/routes";
 import studentRoutes from "./modules/students/routes";
@@ -16,6 +17,8 @@ import driverRoutes from "./modules/drivers/routes";
 import officerRoutes from "./modules/officers/routes";
 import applicationRoutes from "./modules/applications/routes";
 import registrationRoutes from "./modules/registrations/routes";
+
+connect();
 
 const app = express();
 app.use(cors());
