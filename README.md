@@ -1,46 +1,15 @@
-# School Management System
+# IPSC Frontend
 
-This project contains a frontend and backend for a modular school management system with role-based access control.
+This repository provides only the static frontend pages for Ispahani Public School & College. All server code, databases, and dependencies have been removed.
 
-## Repository Structure
+## Structure
 ```
 .
-├── backend/
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── src/
-│   │   ├── config/
-│   │   ├── constants/
-│   │   ├── middleware/
-│   │   ├── modules/
-│   │   │   ├── applications/
-│   │   │   ├── attendance/
-│   │   │   ├── auth/
-│   │   │   ├── drivers/
-│   │   │   ├── fees/
-│   │   │   ├── librarians/
-│   │   │   ├── officers/
-│   │   │   ├── registrations/
-│   │   │   ├── results/
-│   │   │   ├── roles/
-│   │   │   ├── staff/
-│   │   │   ├── students/
-│   │   │   ├── teachers/
-│   │   │   └── users/
-│   │   └── utils/
-└── frontend/
+├── assets/         # Images and other static assets
+├── components/     # Shared CSS/JS used across pages
+├── pages/          # Additional HTML pages
+├── index.html      # Landing page
+└── .nojekyll       # Disable Jekyll for static hosting
 ```
 
-Each module exposes its own controller and route definition and is protected by JWT authentication and role-based authorization.
-
-## Database
-
-The backend uses a simple SQLite database stored at `database.sqlite` in the project root. Connection logic lives in `backend/src/config/db.ts` and is initialized automatically when the server starts.
-
-To inspect or modify the database during development you can use any SQLite client, for example:
-
-```
-sqlite3 database.sqlite
-```
-
-Schemas are not yet defined—add tables as needed while expanding modules.
+Pages use plain HTML, Tailwind via CDN, and vanilla JavaScript. Images are loaded from the `assets` directory.
