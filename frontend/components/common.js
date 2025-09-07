@@ -156,6 +156,30 @@ function initCommon(){
       if(staffWrap){
         staffWrap.innerHTML='';
         staffs.forEach(s=>staffWrap.appendChild(createCard(s,true)));
+        const staffSearch=document.getElementById('staffSearchInput');
+        if(staffSearch){
+          staffSearch.addEventListener('input',()=>{
+            const q=staffSearch.value.trim().toLowerCase();
+            staffWrap.innerHTML='';
+            if(!q){
+              staffs.forEach(s=>staffWrap.appendChild(createCard(s,true)));
+              return;
+            }
+            const res=staffs.filter(s=>
+              (s.name&&s.name.toLowerCase().includes(q))||
+              (s.id&&s.id.toLowerCase().includes(q))||
+              (s['designation']&&s['designation'].toLowerCase().includes(q))
+            );
+            if(res.length===0){
+              const p=document.createElement('p');
+              p.textContent='No staff found';
+              p.className='col-span-full text-center';
+              staffWrap.appendChild(p);
+            }else{
+              res.forEach(s=>staffWrap.appendChild(createCard(s,true)));
+            }
+          });
+        }
       }
     }).catch(()=>{});
   }
