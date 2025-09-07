@@ -26,9 +26,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         .filter(h => h && h.match(/\.(mp4|webm)$/i));
     }
 
+    const tester = document.createElement('video');
+    const playable = f => {
+      const ext = f.split('.').pop().toLowerCase();
+      const type = ext === 'mp4' ? 'video/mp4' : ext === 'webm' ? 'video/webm' : '';
+      return type && tester.canPlayType(type) !== '';
+    };
+
+    files = files.filter(playable);
+
     if (!files.length) {
       const p = document.createElement('p');
-      p.textContent = 'No videos found';
+      p.textContent = 'No compatible videos found';
       p.className = 'text-center';
       wrap.appendChild(p);
       return;
@@ -64,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     files.forEach(f => {
       const card = document.createElement('div');
-      card.className = 'video-card overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg bg-black';
+      card.className = 'video-card aspect-video overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg bg-black';
 
       const video = document.createElement('video');
       video.src = root + 'assets/student-galleries/' + f;
@@ -74,11 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       video.autoplay = autoPlay;
       video.loop = true;
       video.controls = true;
-      video.className = 'w-full h-full object-contain';
-
-      video.addEventListener('loadedmetadata', () => {
-        card.style.aspectRatio = `${video.videoWidth}/${video.videoHeight}`;
-      });
+      video.className = 'w-full h-full object-cover';
 
       video.addEventListener('play', () => pauseOthers(video));
 
