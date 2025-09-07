@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded',initCommon);
 
 function initCommon(){
+  const root=window.location.pathname.includes('/pages/')?'../':'';
   document.querySelectorAll('[data-year]').forEach(el=>{el.textContent=new Date().getFullYear();});
   const mast=document.getElementById('masthead'),r=document.documentElement;
   const updateMast=()=>{if(mast) r.style.setProperty('--mast-h',mast.offsetHeight+'px');};
@@ -76,6 +77,125 @@ function initCommon(){
     }).catch(()=>{});
   });
   (function(){const track=document.getElementById('tickerTrack');if(!track)return;track.innerHTML=track.innerHTML+track.innerHTML;})();
+  const staffHome=document.getElementById('staffsHome');
+  const staffWrap=document.getElementById('staffsAll');
+  if(staffHome||staffWrap){
+    fetch(root+'assets/staffs/info.txt').then(r=>r.text()).then(t=>{
+      const staffs=t.split(/\n\s*\n/).map(block=>{
+        const lines=block.trim().split(/\n/);
+        if(!lines[0]) return null;
+        const s={name:lines[0].trim()};
+        for(let i=1;i<lines.length;i++){
+          const [key,...rest]=lines[i].split(':');
+          if(!key||rest.length===0) continue;
+          s[key.trim().toLowerCase()]=rest.join(':').trim();
+        }
+        return s.id?s:null;
+      }).filter(Boolean);
+      const createCard=(s,full)=>{
+        const card=document.createElement('div');
+        if(full){
+          card.className='staff-card flex items-center gap-4 p-4 rounded-lg shadow bg-white/80 backdrop-blur-sm border-l-4 border-[#14532d]';
+        }else{
+          card.className='staff-card flex flex-col items-center text-center p-4 rounded-lg shadow bg-white/80 backdrop-blur-sm cursor-pointer hover:shadow-md transition border-t-4 border-[#14532d]';
+        }
+        const img=document.createElement('img');
+        img.src=root+'assets/staffs/pictures/'+s.id+'.jpg';
+        img.alt=s.name;
+        img.loading='lazy';
+        img.decoding='async';
+        img.className=full?'w-24 h-24 object-cover rounded-lg ring-2 ring-white':'w-24 h-24 object-cover rounded-lg mb-3 ring-2 ring-white';
+        img.onerror=()=>{img.remove();};
+        card.appendChild(img);
+        const info=document.createElement('div');
+        if(full){
+          const name=document.createElement('h4');
+          name.className='font-bold';
+          name.textContent=s.name;
+          info.appendChild(name);
+          const des=document.createElement('p');
+          des.className='text-sm';
+          des.textContent=s['designation']||'';
+          info.appendChild(des);
+          const dept=document.createElement('p');
+          dept.className='text-sm';
+          dept.textContent=s['department']?'Department: '+s['department']:'';
+          if(dept.textContent) info.appendChild(dept);
+          const mob=document.createElement('p');
+          mob.className='text-sm';
+          mob.textContent=s['mobile']?'Mobile: '+s['mobile']:'';
+          if(mob.textContent) info.appendChild(mob);
+        }else{
+          const name=document.createElement('h4');
+          name.className='font-semibold';
+          name.textContent=s.name;
+          info.appendChild(name);
+          const des=document.createElement('p');
+          des.className='text-sm';
+          des.textContent=s['designation']||'';
+          info.appendChild(des);
+          card.addEventListener('click',()=>{window.location.href=root+'pages/staffs.html';});
+        }
+        card.appendChild(info);
+        return card;
+      };
+      if(staffHome){
+        staffHome.innerHTML='';
+        const max=window.matchMedia('(min-width:1024px)').matches?3:2;
+        staffs.slice(0,max).forEach(s=>staffHome.appendChild(createCard(s,false)));
+      }
+      if(staffWrap){
+        staffWrap.innerHTML='';
+        staffs.forEach(s=>staffWrap.appendChild(createCard(s,true)));
+      }
+    }).catch(()=>{});
+  }
+
+  const govWrap=document.getElementById('governingAll');
+  if(govWrap){
+    fetch(root+'assets/governing/info.txt').then(r=>r.text()).then(t=>{
+      const members=t.split(/\n\s*\n/).map(block=>{
+        const lines=block.trim().split(/\n/);
+        if(!lines[0]) return null;
+        const m={name:lines[0].trim()};
+        for(let i=1;i<lines.length;i++){
+          const [key,...rest]=lines[i].split(':');
+          if(!key||rest.length===0) continue;
+          m[key.trim().toLowerCase()]=rest.join(':').trim();
+        }
+        return m.id?m:null;
+      }).filter(Boolean);
+      govWrap.innerHTML='';
+      members.forEach(m=>{
+        const card=document.createElement('div');
+        card.className='gov-card flex items-center gap-4 bg-white p-4 rounded-lg border-l-4 border-[#7f1d1d] shadow';
+        const img=document.createElement('img');
+        img.src=root+'assets/governing/pictures/'+m.id+'.jpg';
+        img.alt=m.name;
+        img.loading='lazy';
+        img.decoding='async';
+        img.className='w-24 h-24 object-cover rounded-full';
+        img.onerror=()=>{img.remove();};
+        card.appendChild(img);
+        const info=document.createElement('div');
+        const name=document.createElement('h4');
+        name.className='font-bold';
+        name.textContent=m.name;
+        info.appendChild(name);
+        const des=document.createElement('p');
+        des.className='text-sm';
+        des.textContent=m['designation']||'';
+        info.appendChild(des);
+        const mob=document.createElement('p');
+        mob.className='text-sm';
+        mob.textContent=m['mobile']?'Mobile: '+m['mobile']:'';
+        if(mob.textContent) info.appendChild(mob);
+        card.appendChild(info);
+        govWrap.appendChild(card);
+      });
+    }).catch(()=>{});
+  }
+
   const decor=document.getElementById('decor');
   if(decor){
     const types=['circle','square','triangle'];
