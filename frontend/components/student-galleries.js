@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const autoPlay = wrap.dataset.autoplay === 'true';
   const limit = parseInt(wrap.dataset.limit, 10);
-  const linkTarget = wrap.dataset.link ? root + wrap.dataset.link : null;
 
   try {
     let files = [];
@@ -66,22 +65,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, { threshold: 0.5 });
 
     files.forEach(f => {
-      const card = document.createElement(linkTarget ? 'a' : 'div');
-      if (linkTarget) card.href = linkTarget;
-      card.className = 'mb-4 break-inside-avoid overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg';
+      const card = document.createElement('div');
+      card.className = 'relative mb-4 break-inside-avoid overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg aspect-video bg-black';
 
       const video = document.createElement('video');
       video.src = root + 'assets/student-galleries/' + f;
       video.preload = 'metadata';
       video.playsInline = true;
       video.muted = autoPlay;
-      video.controls = !autoPlay;
+      video.controls = true;
       video.className = 'w-full h-full object-contain';
 
       video.addEventListener('play', () => pauseOthers(video));
-      video.addEventListener('loadedmetadata', () => {
-        card.style.aspectRatio = `${video.videoWidth}/${video.videoHeight}`;
-      });
 
       io.observe(video);
       card.appendChild(video);
