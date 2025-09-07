@@ -8,13 +8,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   const linkTarget = wrap.dataset.link ? root + wrap.dataset.link : null;
 
   try {
-    const res = await fetch(root + 'assets/student-galleries/');
-    const html = await res.text();
-    const temp = document.createElement('div');
-    temp.innerHTML = html;
-    let files = Array.from(temp.querySelectorAll('a'))
-      .map(a => a.getAttribute('href'))
-      .filter(h => h && h.match(/\.(mp4|webm)$/i));
+    let files = [];
+
+    try {
+      const res = await fetch(root + 'assets/student-galleries/videos.json');
+      if (res.ok) {
+        files = await res.json();
+      }
+    } catch (e) {}
+
+    if (!files.length) {
+      const res = await fetch(root + 'assets/student-galleries/');
+      const html = await res.text();
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+      files = Array.from(temp.querySelectorAll('a'))
+        .map(a => a.getAttribute('href'))
+        .filter(h => h && h.match(/\.(mp4|webm)$/i));
+    }
 
     if (!files.length) {
       const p = document.createElement('p');
@@ -75,4 +86,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     // swallow errors silently
   }
 });
-
