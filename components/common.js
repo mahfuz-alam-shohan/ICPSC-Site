@@ -95,9 +95,9 @@ function initCommon(){
       const createCard=(s,full)=>{
         const card=document.createElement('div');
         if(full){
-          card.className='staff-card flex items-center gap-4 p-6 rounded-lg shadow bg-white/80 backdrop-blur-sm border-l-4 border-[#14532d]';
+          card.className='staff-card flex items-center gap-4 p-6 rounded-xl shadow-md bg-white/80 backdrop-blur-sm border-l-8 border-[#14532d] hover:shadow-lg transition-transform hover:-translate-y-1';
         }else{
-          card.className='staff-card flex flex-col items-center text-center p-6 rounded-lg shadow bg-white/80 backdrop-blur-sm cursor-pointer hover:shadow-md transition border-t-4 border-[#14532d]';
+          card.className='staff-card flex flex-col items-center text-center p-6 rounded-xl shadow-md bg-white/80 backdrop-blur-sm cursor-pointer hover:shadow-lg transition-transform hover:-translate-y-1 border-t-8 border-[#14532d]';
         }
         const img=document.createElement('img');
         img.src=root+'assets/staffs/pictures/'+s.id+'.jpg';
@@ -114,18 +114,26 @@ function initCommon(){
           name.className='font-bold';
           name.textContent=s.name;
           info.appendChild(name);
+          const id=document.createElement('p');
+          id.className='text-sm flex items-center gap-1';
+          id.innerHTML='<i class="fa-solid fa-id-badge text-[#14532d]"></i><span>ID: '+(s['id']||'')+'</span>';
+          info.appendChild(id);
           const des=document.createElement('p');
-          des.className='text-sm';
-          des.textContent=s['designation']||'';
+          des.className='text-sm flex items-center gap-1';
+          des.innerHTML='<i class="fa-solid fa-briefcase text-[#14532d]"></i><span>'+(s['designation']||'')+'</span>';
           info.appendChild(des);
           const dept=document.createElement('p');
-          dept.className='text-sm';
-          dept.textContent=s['department']?'Department: '+s['department']:'';
-          if(dept.textContent) info.appendChild(dept);
+          dept.className='text-sm flex items-center gap-1';
+          dept.innerHTML=s['department']?'<i class="fa-solid fa-building text-[#14532d]"></i><span>Department: '+s['department']+'</span>':'';
+          if(dept.innerHTML) info.appendChild(dept);
+          const blood=document.createElement('p');
+          blood.className='text-sm flex items-center gap-1';
+          blood.innerHTML=s['blood group']?'<i class="fa-solid fa-droplet text-[#14532d]"></i><span>Blood Group: '+s['blood group']+'</span>':'';
+          if(blood.innerHTML) info.appendChild(blood);
           const mob=document.createElement('p');
-          mob.className='text-sm';
-          mob.textContent=s['mobile']?'Mobile: '+s['mobile']:'';
-          if(mob.textContent) info.appendChild(mob);
+          mob.className='text-sm flex items-center gap-1';
+          mob.innerHTML=s['mobile']?'<i class="fa-solid fa-phone text-[#14532d]"></i><span>'+s['mobile']+'</span>':'';
+          if(mob.innerHTML) info.appendChild(mob);
         }else{
           const name=document.createElement('h4');
           name.className='font-semibold';
@@ -142,7 +150,7 @@ function initCommon(){
       };
       if(staffHome){
         staffHome.innerHTML='';
-        const max=window.matchMedia('(min-width:1024px)').matches?3:2;
+        const max=window.matchMedia('(min-width:1024px)').matches?4:(window.matchMedia('(min-width:640px)').matches?3:2);
         staffs.slice(0,max).forEach(s=>staffHome.appendChild(createCard(s,false)));
       }
       if(staffWrap){
