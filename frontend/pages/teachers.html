@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Teachers - Ispahani Public School & College</title>
+  <title>Staffs - Ispahani Public School & College</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -84,26 +84,21 @@
     </div>
   </div>
 </div>
-  <div id="msgModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] p-4">
-    <div class="msg-box text-[#0f172a] p-6 rounded-xl shadow relative w-full max-w-lg h-96 overflow-y-auto">
-      <button id="msgClose" class="absolute top-2 right-2 text-2xl leading-none" aria-label="Close">×</button>
-      <h3 id="msgTitle" class="font-bold text-center mb-4"></h3>
-      <div id="msgText" class="whitespace-pre-line"></div>
-    </div>
+<div id="msgModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] p-4">
+  <div class="msg-box text-[#0f172a] p-6 rounded-xl shadow relative w-full max-w-lg h-96 overflow-y-auto">
+    <button id="msgClose" class="absolute top-2 right-2 text-2xl leading-none" aria-label="Close">×</button>
+    <h3 id="msgTitle" class="font-bold text-center mb-4"></h3>
+    <div id="msgText" class="whitespace-pre-line"></div>
   </div>
+</div>
 
 <section class="section">
   <div class="wrap">
     <div class="text-center mb-8">
-      <h1 class="grad text-4xl font-extrabold">শ্রদ্ধেয় শিক্ষকবৃন্দের প্রতি অশেষ কৃতজ্ঞতা</h1>
-      <p class="mt-2 text-lg text-gray-700">আপনাদের স্নেহ ও দিকনির্দেশনায় গড়ে উঠছে আমাদের স্বপ্নের ভবিষ্যৎ।</p>
-      <div class="relative w-full max-w-md mx-auto mt-6">
-        <input id="teacherSearchInput" type="text" placeholder="Search by name, subject, or ID..." class="w-full rounded-full border border-gray-300 py-2 pl-10 pr-4 shadow focus:outline-none focus:ring-2 focus:ring-[#7f1d1d]" />
-        <i class="fa fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"></i>
-      </div>
+      <h1 class="grad text-4xl font-extrabold leading-tight">নীরব সহযোদ্ধাদের প্রতি কৃতজ্ঞতা</h1>
+      <p class="mt-2 text-lg text-gray-700">যাদের নিরব পরিশ্রমে আমরা আজকের এই অবস্থানে, তাদের প্রতি আমাদের আন্তরিক শ্রদ্ধা ও ভালোবাসা।</p>
     </div>
-    <div id="teachersAll" class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></div>
-    <div id="teacherPagination" class="mt-6 flex justify-center gap-2"></div>
+    <div id="staffsAll" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
   </div>
 </section>
 
@@ -132,7 +127,6 @@
     </div>
   </div>
 </footer>
-  <script src="../components/teachers.js" defer></script>
   <script src="../components/common.js" defer></script>
 </body>
 </html>
