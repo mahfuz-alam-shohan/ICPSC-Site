@@ -41,7 +41,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const pauseOthers = cur => {
       wrap.querySelectorAll('video').forEach(v => {
-        if (v !== cur) v.pause();
+        if (v !== cur) {
+          v.pause();
+          v.muted = true;
+        }
       });
     };
 
@@ -49,10 +52,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       entries.forEach(e => {
         if (autoPlay) {
           if (e.isIntersecting) {
+            e.target.muted = false;
             e.target.play().catch(() => {});
             pauseOthers(e.target);
           } else {
             e.target.pause();
+            e.target.muted = true;
           }
         } else if (!e.isIntersecting) {
           e.target.pause();
@@ -63,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     files.forEach(f => {
       const card = document.createElement(linkTarget ? 'a' : 'div');
       if (linkTarget) card.href = linkTarget;
-      card.className = 'mb-4 break-inside-avoid overflow-hidden rounded-lg shadow transition-shadow hover:shadow-lg';
+      card.className = 'mb-4 break-inside-avoid overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg';
 
       const video = document.createElement('video');
       video.src = root + 'assets/student-galleries/' + f;
@@ -71,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       video.playsInline = true;
       video.muted = autoPlay;
       video.controls = !autoPlay;
-      video.className = 'w-full h-full';
+      video.className = 'w-full h-full object-contain';
 
       video.addEventListener('play', () => pauseOthers(video));
       video.addEventListener('loadedmetadata', () => {
