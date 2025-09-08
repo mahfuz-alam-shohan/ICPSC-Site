@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             pauseOthers(e.target);
           } else {
             e.target.pause();
+            e.target.muted = true;
           }
         } else if (!e.isIntersecting) {
           e.target.pause();
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     files.forEach(f => {
       const card = document.createElement('div');
-      card.className = 'video-card aspect-video overflow-hidden rounded-lg shadow border border-gray-300 transition-shadow hover:shadow-lg bg-black';
+      card.className = 'video-card aspect-video overflow-hidden rounded-xl shadow-lg border border-gray-200 transition-transform hover:-translate-y-1 hover:shadow-2xl bg-black';
 
       const video = document.createElement('video');
       video.src = root + 'assets/student-galleries/' + f;
@@ -102,7 +103,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       video.controls = true;
       video.className = 'w-full h-full object-contain object-center';
 
-      video.addEventListener('play', () => pauseOthers(video));
+      video.addEventListener('play', () => {
+        video.muted = false;
+        pauseOthers(video);
+      });
 
       io.observe(video);
       card.appendChild(video);
