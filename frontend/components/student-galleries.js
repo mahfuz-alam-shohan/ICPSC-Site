@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       video.autoplay = autoPlay;
       video.loop = true;
       video.controls = true;
-      video.className = 'w-full h-full object-cover';
+      video.className = 'w-full h-full object-contain object-center';
 
       video.addEventListener('play', () => pauseOthers(video));
 
