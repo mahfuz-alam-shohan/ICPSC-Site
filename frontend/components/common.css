@@ -92,3 +92,7 @@
     @media(min-width:768px){.club-card{grid-template-columns:1fr 1fr}}
     .club-card img{width:100%;max-height:320px;object-fit:cover;border-radius:1rem}
     .club-info .btns{justify-content:flex-start;margin-top:1rem}
+
+    .nav-btn.login{background:linear-gradient(135deg,var(--brand-green),var(--brand-red));color:#fff;font-weight:700}
+    .nav-btn.login:hover,.nav-btn.login:focus{opacity:.9}
+    .mlink.login{background:linear-gradient(135deg,var(--brand-green),var(--brand-red));color:#fff;border-radius:.6rem;margin:.5rem 1rem;text-align:center}
