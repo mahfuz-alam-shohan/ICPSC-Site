@@ -243,7 +243,40 @@ function initCommon(){
   const counters=document.querySelectorAll('.counter span[data-count]');
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=parseInt(el.dataset.count,10);let cur=0;const step=Math.ceil(end/80);const T=setInterval(()=>{cur+=step;if(cur>=end){cur=end;clearInterval(T)}el.textContent=cur.toLocaleString();},16);io.unobserve(el);}})},{threshold:.4});
   counters.forEach(c=>io.observe(c));
-  document.querySelectorAll('.strip.loop').forEach(strip=>{const kids=[...strip.children];kids.forEach(el=>strip.appendChild(el.cloneNode(true)));let pos=0;const speed=parseInt(strip.dataset.speed||'40',10);let last=null,paused=false;const step=t=>{if(last===null) last=t;const dt=(t-last)/1000;last=t;if(!paused){pos+=speed*dt;if(pos>=strip.scrollWidth/2) pos=0;strip.scrollLeft=pos;}requestAnimationFrame(step)};strip.addEventListener('mouseenter',()=>paused=true);strip.addEventListener('mouseleave',()=>paused=false);requestAnimationFrame(step)});
+  document.querySelectorAll('.strip.loop').forEach(strip=>{
+    const kids=[...strip.children];
+    kids.forEach(el=>strip.appendChild(el.cloneNode(true)));
+    let pos=0;
+    const speed=parseInt(strip.dataset.speed||'40',10);
+    let last=null,paused=false,startX=0,startScroll=0,resumeT;
+
+    const step=t=>{
+      if(last===null) last=t;
+      const dt=(t-last)/1000;
+      last=t;
+      if(!paused){
+        pos+=speed*dt;
+        if(pos>=strip.scrollWidth/2) pos=0;
+        strip.scrollLeft=pos;
+      } else {
+        pos=strip.scrollLeft;
+      }
+      requestAnimationFrame(step);
+    };
+
+    const pause=()=>{paused=true;clearTimeout(resumeT);};
+    const resume=()=>{clearTimeout(resumeT);resumeT=setTimeout(()=>{paused=false;},3000);};
+
+    strip.addEventListener('mouseenter',pause);
+    strip.addEventListener('mouseleave',()=>{paused=false;});
+
+    strip.addEventListener('touchstart',e=>{pause();startX=e.touches[0].clientX;startScroll=strip.scrollLeft;},{passive:true});
+    strip.addEventListener('touchmove',e=>{e.preventDefault();const dx=e.touches[0].clientX-startX;strip.scrollLeft=startScroll-dx;pos=strip.scrollLeft;},{passive:false});
+    strip.addEventListener('touchend',resume);
+    strip.addEventListener('touchcancel',resume);
+
+    requestAnimationFrame(step);
+  });
   gsap.from('#masthead',{y:-60,opacity:0,duration:.6});
   const revealItems=document.querySelectorAll('.section,.card');
   const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
