@@ -77,6 +77,20 @@ function initCommon(){
     }).catch(()=>{});
   });
   (function(){const track=document.getElementById('tickerTrack');if(!track)return;track.innerHTML=track.innerHTML+track.innerHTML;})();
+  const applyFade=(wrap,rows)=>{
+    if(!wrap) return;
+    const calc=()=>{
+      const card=wrap.querySelector(':scope > *');
+      if(!card) return;
+      const gap=parseFloat(getComputedStyle(wrap).gap)||0;
+      const ch=card.getBoundingClientRect().height;
+      wrap.style.maxHeight=(ch*rows+gap*(rows-1)+ch*0.2)+'px';
+    };
+    calc();
+    window.addEventListener('resize',calc);
+    window.addEventListener('load',calc);
+  };
+
   const staffHome=document.getElementById('staffsHome');
   const staffWrap=document.getElementById('staffsAll');
   if(staffHome||staffWrap){
@@ -150,8 +164,11 @@ function initCommon(){
       };
       if(staffHome){
         staffHome.innerHTML='';
-        const max=window.matchMedia('(min-width:1024px)').matches?4:(window.matchMedia('(min-width:640px)').matches?3:2);
-        staffs.slice(0,max).forEach(s=>staffHome.appendChild(createCard(s,false)));
+        const cols=window.matchMedia('(min-width:1024px)').matches?4:(window.matchMedia('(min-width:640px)').matches?3:2);
+        const visibleRows=window.matchMedia('(min-width:640px)').matches?1:2;
+        const total=cols*(visibleRows+1);
+        staffs.slice(0,total).forEach(s=>staffHome.appendChild(createCard(s,false)));
+        applyFade(staffHome,visibleRows);
       }
       if(staffWrap){
         staffWrap.innerHTML='';

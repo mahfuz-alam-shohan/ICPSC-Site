@@ -98,11 +98,28 @@ function createCard(t,root,full){
   return card;
 }
 
+function applyFade(wrap,rows){
+  if(!wrap) return;
+  const calc=()=>{
+    const card=wrap.querySelector(':scope > *');
+    if(!card) return;
+    const gap=parseFloat(getComputedStyle(wrap).gap)||0;
+    const ch=card.getBoundingClientRect().height;
+    wrap.style.maxHeight=(ch*rows+gap*(rows-1)+ch*0.2)+'px';
+  };
+  calc();
+  window.addEventListener('resize',calc);
+  window.addEventListener('load',calc);
+}
+
 function renderHome(teachers,root){
   const wrap=document.getElementById('teachersHome');
   if(!wrap) return;
-  const max=window.matchMedia('(min-width:1024px)').matches?8:6;
-  teachers.slice(0,max).forEach(t=>wrap.appendChild(createCard(t,root,false)));
+  const cols=window.matchMedia('(min-width:1024px)').matches?4:(window.matchMedia('(min-width:640px)').matches?3:2);
+  const visibleRows=2;
+  const total=cols*(visibleRows+1);
+  teachers.slice(0,total).forEach(t=>wrap.appendChild(createCard(t,root,false)));
+  applyFade(wrap,visibleRows);
 }
 
 function renderTeachersPage(teachers,root){
