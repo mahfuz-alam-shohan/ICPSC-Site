@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     files.forEach(f => {
       const card = document.createElement('div');
-      card.className = 'video-card aspect-video overflow-hidden rounded-xl shadow-lg border border-gray-200 transition-transform hover:-translate-y-1 hover:shadow-2xl bg-black';
+      card.className = 'video-card aspect-video overflow-hidden rounded-3xl shadow-lg border border-gray-200 transition-transform hover:-translate-y-1 hover:shadow-2xl bg-black';
 
       const video = document.createElement('video');
       video.src = root + 'assets/student-galleries/' + f;
