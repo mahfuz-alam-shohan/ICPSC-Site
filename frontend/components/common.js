@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded',initCommon);
 
 function initCommon(){
   const root=window.location.pathname.includes('/pages/')?'../':'';
+  document.addEventListener('contextmenu',e=>e.preventDefault());
+  document.addEventListener('selectstart',e=>e.preventDefault());
+  document.addEventListener('dragstart',e=>e.preventDefault());
+  document.addEventListener('copy',e=>e.preventDefault());
+  document.addEventListener('cut',e=>e.preventDefault());
   document.querySelectorAll('[data-year]').forEach(el=>{el.textContent=new Date().getFullYear();});
   const mast=document.getElementById('masthead'),r=document.documentElement;
   const updateMast=()=>{if(mast) r.style.setProperty('--mast-h',mast.offsetHeight+'px');};
