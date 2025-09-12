@@ -411,14 +411,39 @@ function initCommon(){
       img.src=src;
       gr.appendChild(img);
     });
-    const autoScroll=()=>{
-      const max=gr.scrollWidth-gr.clientWidth;
-      if(gr.scrollLeft>=max){
-        gr.scrollTo({left:0,behavior:'smooth'});
-      }else{
-        gr.scrollBy({left:gr.clientWidth,behavior:'smooth'});
+    const kids=[...gr.children];
+    kids.forEach(el=>gr.appendChild(el.cloneNode(true)));
+    let pos=0;
+    const speed=parseInt(gr.dataset.speed||'40',10);
+    let last=null,paused=false,startX=0,startScroll=0,resumeT;
+
+    const step=t=>{
+      if(last===null) last=t;
+      const dt=(t-last)/1000;
+      last=t;
+      if(!paused){
+        pos+=speed*dt;
+        if(pos>=gr.scrollWidth/2) pos=0;
+        gr.scrollLeft=pos;
+      } else {
+        pos=gr.scrollLeft;
       }
+      requestAnimationFrame(step);
     };
-    setInterval(autoScroll,4000);
+
+    const pause=()=>{paused=true;clearTimeout(resumeT);};
+    const resume=()=>{clearTimeout(resumeT);resumeT=setTimeout(()=>{paused=false;},3000);};
+
+    gr.addEventListener('mouseenter',pause);
+    gr.addEventListener('mouseleave',()=>{paused=false;});
+
+    gr.addEventListener('touchstart',e=>{pause();startX=e.touches[0].clientX;startScroll=gr.scrollLeft;},{passive:true});
+    gr.addEventListener('touchmove',e=>{e.preventDefault();const dx=e.touches[0].clientX-startX;gr.scrollLeft=startScroll-dx;pos=gr.scrollLeft;},{passive:false});
+    gr.addEventListener('touchend',resume);
+    gr.addEventListener('touchcancel',resume);
+
+    gr.addEventListener('wheel',e=>{pause();e.preventDefault();gr.scrollLeft+=e.deltaY;pos=gr.scrollLeft;resume();},{passive:false});
+
+    requestAnimationFrame(step);
   }
 }
