@@ -258,7 +258,23 @@ function initCommon(){
     }
   }
   const counters=document.querySelectorAll('.counter span[data-count]');
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target,end=parseInt(el.dataset.count,10);let cur=0;const step=Math.ceil(end/80);const T=setInterval(()=>{cur+=step;if(cur>=end){cur=end;clearInterval(T)}el.textContent=cur.toLocaleString();},16);io.unobserve(el);}})},{threshold:.4});
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target,end=parseInt(el.dataset.count,10);
+        let start=null;
+        const duration=1200;
+        const step=t=>{
+          if(start===null) start=t;
+          const progress=Math.min((t-start)/duration,1);
+          el.textContent=Math.floor(progress*end).toLocaleString();
+          if(progress<1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        io.unobserve(el);
+      }
+    });
+  },{threshold:.4});
   counters.forEach(c=>io.observe(c));
   document.querySelectorAll('.strip.loop').forEach(strip=>{
     const kids=[...strip.children];
