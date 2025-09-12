@@ -385,4 +385,51 @@ function initCommon(){
   gsap.from('#masthead',{y:-60,opacity:0,duration:.6});
   const revealItems=document.querySelectorAll('.section,.card');
   const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
-  revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});}
+  revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
+
+  const gc=document.getElementById('galleryCarousel');
+  if(gc){
+    const imgs=Array.from(gc.querySelectorAll('img'));
+    let idx=0;
+    const update=()=>{
+      imgs.forEach((img,i)=>{
+        const diff=(i-idx+imgs.length)%imgs.length;
+        img.style.transition='transform .4s,opacity .4s,filter .4s';
+        if(diff===0){
+          img.style.transform='translate(-50%,-50%) scale(1)';
+          img.style.opacity='1';
+          img.style.filter='none';
+          img.style.zIndex='3';
+        }else if(diff===1){
+          img.style.transform='translate(-50%,-50%) translateX(300px) scale(.8)';
+          img.style.opacity='.8';
+          img.style.filter='none';
+          img.style.zIndex='2';
+        }else if(diff===2){
+          img.style.transform='translate(-50%,-50%) translateX(560px) scale(.6)';
+          img.style.opacity='.3';
+          img.style.filter='grayscale(1)';
+          img.style.zIndex='1';
+        }else if(diff===imgs.length-1){
+          img.style.transform='translate(-50%,-50%) translateX(-300px) scale(.8)';
+          img.style.opacity='.8';
+          img.style.filter='none';
+          img.style.zIndex='2';
+        }else if(diff===imgs.length-2){
+          img.style.transform='translate(-50%,-50%) translateX(-560px) scale(.6)';
+          img.style.opacity='.3';
+          img.style.filter='grayscale(1)';
+          img.style.zIndex='1';
+        }else{
+          img.style.transform='translate(-50%,-50%) scale(.4)';
+          img.style.opacity='0';
+          img.style.filter='none';
+          img.style.zIndex='0';
+        }
+      });
+    };
+    gc.querySelector('.gprev').addEventListener('click',()=>{idx=(idx-1+imgs.length)%imgs.length;update();});
+    gc.querySelector('.gnext').addEventListener('click',()=>{idx=(idx+1)%imgs.length;update();});
+    update();
+  }
+}
