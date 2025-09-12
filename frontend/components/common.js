@@ -392,7 +392,7 @@ function initCommon(){
     const imgs=Array.from(gc.querySelectorAll('img'));
     let idx=0;
     const getOffset=()=>{
-      const w=imgs[0].clientWidth;
+      const w=gc.clientWidth;
       return (window.innerWidth<640?w*0.55:w*0.5+20);
     };
     const update=()=>{
@@ -422,7 +422,7 @@ function initCommon(){
           img.style.zIndex='0';
         }
       });
-    };
+    }; 
     const next=()=>{idx=(idx+1)%imgs.length;update();};
     const prev=()=>{idx=(idx-1+imgs.length)%imgs.length;update();};
     let timer=setInterval(next,4000);
@@ -430,6 +430,7 @@ function initCommon(){
     gc.querySelector('.gprev').addEventListener('click',()=>{prev();reset();});
     gc.querySelector('.gnext').addEventListener('click',()=>{next();reset();});
     window.addEventListener('resize',update);
+    imgs.forEach(img=>img.addEventListener('load',update));
     gc.addEventListener('pointerdown',e=>{
       const sx=e.clientX;
       const onUp=ev=>{
