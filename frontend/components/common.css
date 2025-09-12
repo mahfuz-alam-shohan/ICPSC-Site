@@ -1,6 +1,5 @@
     :root{--ink:#0f172a;--muted:#475569;--brand-red:#7f1d1d;--brand-green:#14532d;--link:var(--brand-green);--mast-h:0}
-    html{scroll-behavior:smooth}
-    html,body{overflow-x:hidden}
+      html,body{overflow-x:hidden}
     .hidden{display:none}
     [id]{scroll-margin-top:calc(var(--mast-h,0) + 1rem)}
     *{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
