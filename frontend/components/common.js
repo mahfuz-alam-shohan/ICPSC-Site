@@ -320,36 +320,43 @@ function initCommon(){
   },{threshold:.2});
   rates.forEach(r=>rateIO.observe(r));
 
-  function launchConfetti(el){
-    const card=el.closest('.result-card');
-    if(!card) return;
-    const rect=card.getBoundingClientRect();
-    const originX=rect.left+rect.width/2;
-    const originY=rect.top+rect.height/2;
-    for(let i=0;i<120;i++){
-      const s=document.createElement('span');
-      s.className='particle';
-      const size=4+Math.random()*4;
-      s.style.width=s.style.height=size+'px';
-      s.style.left=originX+'px';
-      s.style.top=originY+'px';
-      s.style.setProperty('--color',randomColor());
-      document.body.appendChild(s);
-      const angle=Math.random()*Math.PI*2; // spread in all directions
-      const dist=120+Math.random()*180;
-      const dx=Math.cos(angle)*dist;
-      const dy=Math.sin(angle)*dist;
-      const bend=Math.random()*60-30;
-      const path=[
-        {x:0,y:0},
-        {x:dx/2+bend,y:dy/2-(40+Math.random()*40)},
-        {x:dx,y:dy},
-        {x:dx+bend*0.5,y:dy+600}
-      ];
-      gsap.to(s,{motionPath:{path,curviness:1.25},duration:3,ease:'power1.inOut',onComplete:()=>s.remove()});
-      gsap.to(s,{rotation:()=>Math.random()*360,repeat:-1,duration:1,ease:'linear'});
+    function launchConfetti(el){
+      const card=el.closest('.result-card');
+      if(!card) return;
+      const rect=card.getBoundingClientRect();
+      const originX=rect.left+rect.width/2;
+      const originY=rect.top+rect.height/2;
+      const frag=document.createDocumentFragment();
+      const particles=[];
+      const count=40;
+      for(let i=0;i<count;i++){
+        const s=document.createElement('span');
+        s.className='particle';
+        const size=4+Math.random()*4;
+        s.style.width=s.style.height=size+'px';
+        s.style.left=originX+'px';
+        s.style.top=originY+'px';
+        s.style.setProperty('--color',randomColor());
+        particles.push(s);
+        frag.appendChild(s);
+      }
+      document.body.appendChild(frag);
+      particles.forEach(s=>{
+        const angle=Math.random()*Math.PI*2;
+        const dist=120+Math.random()*180;
+        const dx=Math.cos(angle)*dist;
+        const dy=Math.sin(angle)*dist;
+        const bend=Math.random()*60-30;
+        const path=[
+          {x:0,y:0},
+          {x:dx/2+bend,y:dy/2-(40+Math.random()*40)},
+          {x:dx,y:dy},
+          {x:dx+bend*0.5,y:dy+600}
+        ];
+        gsap.to(s,{motionPath:{path,curviness:1.25},duration:3,ease:'power1.inOut',onComplete:()=>s.remove()});
+        gsap.to(s,{rotation:()=>Math.random()*360,repeat:-1,duration:1,ease:'linear'});
+      });
     }
-  }
 
   function randomColor(){
     const h=Math.floor(Math.random()*360);
