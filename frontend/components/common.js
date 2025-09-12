@@ -456,8 +456,8 @@ function initCommon(){
       if(imgClose) imgClose.addEventListener('click',closeImg);
     }
     let pos=0;
-    const speed=parseInt(gr.dataset.speed||'40',10);
-    let last=null,paused=false,startX=0,startScroll=0,resumeT,velocity=0,lastTouchX=0;
+    const speed=parseInt(gr.dataset.speed||'20',10);
+    let last=null,paused=false,startX=0,startScroll=0,resumeT,velocity=0,lastX=0,isDragging=false;
 
     const step=t=>{
       if(last===null) last=t;
@@ -470,7 +470,7 @@ function initCommon(){
         pos+=velocity;
         if(pos<0) pos+=gr.scrollWidth/2;
         else if(pos>=gr.scrollWidth/2) pos-=gr.scrollWidth/2;
-        velocity*=0.95;
+        velocity*=0.92;
       } else {
         velocity=0;
         pos=gr.scrollLeft;
@@ -486,12 +486,16 @@ function initCommon(){
     gr.addEventListener('mouseenter',pause);
     gr.addEventListener('mouseleave',()=>{paused=false;});
 
-    gr.addEventListener('touchstart',e=>{pause();startX=e.touches[0].clientX;lastTouchX=startX;startScroll=gr.scrollLeft;velocity=0;},{passive:true});
-    gr.addEventListener('touchmove',e=>{e.preventDefault();const x=e.touches[0].clientX;const dx=x-lastTouchX;gr.scrollLeft-=dx;pos=gr.scrollLeft;velocity=-dx;lastTouchX=x;},{passive:false});
+    gr.addEventListener('touchstart',e=>{pause();startX=e.touches[0].clientX;lastX=startX;startScroll=gr.scrollLeft;velocity=0;},{passive:true});
+    gr.addEventListener('touchmove',e=>{e.preventDefault();const x=e.touches[0].clientX;const dx=x-lastX;gr.scrollLeft-=dx;pos=gr.scrollLeft;velocity=-dx;lastX=x;},{passive:false});
     gr.addEventListener('touchend',resume);
     gr.addEventListener('touchcancel',resume);
 
-    gr.addEventListener('wheel',e=>{pause();e.preventDefault();velocity+=e.deltaY;resume();},{passive:false});
+    gr.addEventListener('mousedown',e=>{pause();isDragging=true;startX=e.clientX;lastX=startX;startScroll=gr.scrollLeft;velocity=0;});
+    gr.addEventListener('mousemove',e=>{if(!isDragging) return;e.preventDefault();const x=e.clientX;const dx=x-lastX;gr.scrollLeft-=dx;pos=gr.scrollLeft;velocity=-dx;lastX=x;});
+    ['mouseup','mouseleave'].forEach(ev=>gr.addEventListener(ev,()=>{if(isDragging){isDragging=false;resume();}}));
+
+    gr.addEventListener('wheel',e=>{pause();e.preventDefault();velocity+=e.deltaY*.3;resume();},{passive:false});
 
     requestAnimationFrame(step);
   }
