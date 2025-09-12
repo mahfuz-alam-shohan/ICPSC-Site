@@ -320,19 +320,25 @@ function initCommon(){
     const rect=card.getBoundingClientRect();
     const originX=rect.left+rect.width/2;
     const originY=rect.top+rect.height/2;
-    for(let i=0;i<20;i++){
+    for(let i=0;i<25;i++){
       const s=document.createElement('span');
       s.className='streamer';
       s.style.left=originX+'px';
       s.style.top=originY+'px';
       s.style.setProperty('--color',randomColor());
       document.body.appendChild(s);
-      const dx=Math.random()*200-100;
-      const up=150+Math.random()*50;
-      gsap.to(s,{x:dx,y:-up,rotation:Math.random()*180-90,duration:.6,ease:'power2.out',onComplete:()=>{
-        gsap.to(s,{y:"+="+(up+600),x:"+="+(dx*.2),rotation:"+=720",duration:1.5,ease:'power2.in',onComplete:()=>s.remove()});
-      }});
-      gsap.to(s,{rotation:()=>Math.random()*30-15,repeat:-1,yoyo:true,duration:.2});
+      const angle=Math.random()*Math.PI; // spread left to right while going upward
+      const dist=120+Math.random()*180;
+      const dx=Math.cos(angle)*dist;
+      const dy=-Math.sin(angle)*dist;
+      const bend=(Math.random()*60-30);
+      const midX=dx/2+bend;
+      const midY=dy/2-(40+Math.random()*40);
+      const tl=gsap.timeline({onComplete:()=>s.remove()});
+      tl.to(s,{x:midX,y:midY,rotation:Math.random()*180-90,duration:.5,ease:'power2.out'})
+        .to(s,{x:dx,y:dy,duration:.4,ease:'sine.inOut'})
+        .to(s,{x:dx+bend*0.5,y:dy+600,rotation:"+=720",duration:1.2,ease:'power2.in'});
+      gsap.to(s,{rotation:()=>Math.random()*60-30,skewX:15,skewY:-15,repeat:-1,yoyo:true,duration:.25,ease:'sine.inOut'});
     }
   }
 
