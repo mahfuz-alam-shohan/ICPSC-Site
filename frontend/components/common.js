@@ -391,7 +391,7 @@ function initCommon(){
   if(gc){
     const imgs=Array.from(gc.querySelectorAll('img'));
     let idx=0;
-    const getOffset=()=>imgs[0].clientWidth-60;
+    const getOffset=()=>imgs[0].clientWidth*0.5+20;
     const update=()=>{
       const offset=getOffset();
       imgs.forEach((img,i)=>{
@@ -403,14 +403,14 @@ function initCommon(){
           img.style.filter='none';
           img.style.zIndex='3';
         }else if(diff===1){
-          img.style.transform=`translate(-50%,-50%) translateX(${offset}px) scale(.8)`;
-          img.style.opacity='.5';
-          img.style.filter='grayscale(1)';
+          img.style.transform=`translate(-50%,-50%) translateX(${offset}px) scale(.85)`;
+          img.style.opacity='.8';
+          img.style.filter='grayscale(.3)';
           img.style.zIndex='2';
         }else if(diff===imgs.length-1){
-          img.style.transform=`translate(-50%,-50%) translateX(-${offset}px) scale(.8)`;
-          img.style.opacity='.5';
-          img.style.filter='grayscale(1)';
+          img.style.transform=`translate(-50%,-50%) translateX(-${offset}px) scale(.85)`;
+          img.style.opacity='.8';
+          img.style.filter='grayscale(.3)';
           img.style.zIndex='2';
         }else{
           img.style.transform='translate(-50%,-50%) scale(.4)';
