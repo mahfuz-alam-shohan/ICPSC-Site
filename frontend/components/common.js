@@ -318,14 +318,21 @@ function initCommon(){
     const card=el.closest('.result-card');
     if(!card) return;
     const rect=card.getBoundingClientRect();
+    const originX=rect.left+rect.width/2;
+    const originY=rect.top+rect.height/2;
     for(let i=0;i<20;i++){
       const s=document.createElement('span');
       s.className='streamer';
-      s.style.left=rect.left+Math.random()*rect.width+'px';
-      s.style.top=rect.top+'px';
+      s.style.left=originX+'px';
+      s.style.top=originY+'px';
       s.style.setProperty('--color',randomColor());
       document.body.appendChild(s);
-      setTimeout(()=>s.remove(),2000);
+      const dx=Math.random()*200-100;
+      const up=150+Math.random()*50;
+      gsap.to(s,{x:dx,y:-up,rotation:Math.random()*180-90,duration:.6,ease:'power2.out',onComplete:()=>{
+        gsap.to(s,{y:"+="+(up+600),x:"+="+(dx*.2),rotation:"+=720",duration:1.5,ease:'power2.in',onComplete:()=>s.remove()});
+      }});
+      gsap.to(s,{rotation:()=>Math.random()*30-15,repeat:-1,yoyo:true,duration:.2});
     }
   }
 
