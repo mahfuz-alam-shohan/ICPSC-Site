@@ -452,7 +452,7 @@ function initCommon(){
     }
     let pos=0;
     const speed=parseInt(gr.dataset.speed||'40',10);
-    let last=null,paused=false,startX=0,startScroll=0,resumeT;
+    let last=null,paused=false,startX=0,startScroll=0,resumeT,velocity=0,lastTouchX=0;
 
     const step=t=>{
       if(last===null) last=t;
@@ -461,10 +461,16 @@ function initCommon(){
       if(!paused){
         pos+=speed*dt;
         if(pos>=gr.scrollWidth/2) pos=0;
-        gr.scrollLeft=pos;
+      } else if(Math.abs(velocity)>0.1){
+        pos+=velocity;
+        if(pos<0) pos+=gr.scrollWidth/2;
+        else if(pos>=gr.scrollWidth/2) pos-=gr.scrollWidth/2;
+        velocity*=0.95;
       } else {
+        velocity=0;
         pos=gr.scrollLeft;
       }
+      gr.scrollLeft=pos;
       update3d();
       requestAnimationFrame(step);
     };
@@ -475,12 +481,12 @@ function initCommon(){
     gr.addEventListener('mouseenter',pause);
     gr.addEventListener('mouseleave',()=>{paused=false;});
 
-    gr.addEventListener('touchstart',e=>{pause();startX=e.touches[0].clientX;startScroll=gr.scrollLeft;},{passive:true});
-    gr.addEventListener('touchmove',e=>{e.preventDefault();const dx=e.touches[0].clientX-startX;gr.scrollLeft=startScroll-dx;pos=gr.scrollLeft;},{passive:false});
+    gr.addEventListener('touchstart',e=>{pause();startX=e.touches[0].clientX;lastTouchX=startX;startScroll=gr.scrollLeft;velocity=0;},{passive:true});
+    gr.addEventListener('touchmove',e=>{e.preventDefault();const x=e.touches[0].clientX;const dx=x-lastTouchX;gr.scrollLeft-=dx;pos=gr.scrollLeft;velocity=-dx;lastTouchX=x;},{passive:false});
     gr.addEventListener('touchend',resume);
     gr.addEventListener('touchcancel',resume);
 
-    gr.addEventListener('wheel',e=>{pause();e.preventDefault();gr.scrollLeft+=e.deltaY;pos=gr.scrollLeft;resume();},{passive:false});
+    gr.addEventListener('wheel',e=>{pause();e.preventDefault();velocity+=e.deltaY;resume();},{passive:false});
 
     requestAnimationFrame(step);
   }
