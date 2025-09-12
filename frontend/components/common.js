@@ -402,24 +402,14 @@ function initCommon(){
           img.style.zIndex='3';
         }else if(diff===1){
           img.style.transform='translate(-50%,-50%) translateX(300px) scale(.8)';
-          img.style.opacity='.8';
-          img.style.filter='none';
-          img.style.zIndex='2';
-        }else if(diff===2){
-          img.style.transform='translate(-50%,-50%) translateX(560px) scale(.6)';
-          img.style.opacity='.3';
+          img.style.opacity='.5';
           img.style.filter='grayscale(1)';
-          img.style.zIndex='1';
+          img.style.zIndex='2';
         }else if(diff===imgs.length-1){
           img.style.transform='translate(-50%,-50%) translateX(-300px) scale(.8)';
-          img.style.opacity='.8';
-          img.style.filter='none';
-          img.style.zIndex='2';
-        }else if(diff===imgs.length-2){
-          img.style.transform='translate(-50%,-50%) translateX(-560px) scale(.6)';
-          img.style.opacity='.3';
+          img.style.opacity='.5';
           img.style.filter='grayscale(1)';
-          img.style.zIndex='1';
+          img.style.zIndex='2';
         }else{
           img.style.transform='translate(-50%,-50%) scale(.4)';
           img.style.opacity='0';
@@ -428,8 +418,21 @@ function initCommon(){
         }
       });
     };
-    gc.querySelector('.gprev').addEventListener('click',()=>{idx=(idx-1+imgs.length)%imgs.length;update();});
-    gc.querySelector('.gnext').addEventListener('click',()=>{idx=(idx+1)%imgs.length;update();});
+    const next=()=>{idx=(idx+1)%imgs.length;update();};
+    const prev=()=>{idx=(idx-1+imgs.length)%imgs.length;update();};
+    let timer=setInterval(next,4000);
+    const reset=()=>{clearInterval(timer);timer=setInterval(next,4000);};
+    gc.querySelector('.gprev').addEventListener('click',()=>{prev();reset();});
+    gc.querySelector('.gnext').addEventListener('click',()=>{next();reset();});
+    gc.addEventListener('pointerdown',e=>{
+      const sx=e.clientX;
+      const onUp=ev=>{
+        const dx=ev.clientX-sx;
+        if(dx>50){prev();reset();}
+        else if(dx<-50){next();reset();}
+      };
+      window.addEventListener('pointerup',onUp,{once:true});
+    });
     update();
   }
 }

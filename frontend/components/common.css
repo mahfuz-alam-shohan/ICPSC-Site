@@ -108,8 +108,8 @@
     .rate.celebrate{animation:yay .8s ease}
     @keyframes yay{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
     .streamer{position:fixed;width:4px;height:30px;background:var(--color);opacity:.8;pointer-events:none;transform-origin:top center;border-radius:2px;will-change:transform}
-      #gallery .carousel{position:relative;height:260px;margin:0 auto;overflow:hidden}
-      #gallery .carousel img{position:absolute;top:50%;left:50%;width:320px;height:200px;object-fit:cover;border-radius:.75rem;box-shadow:0 6px 16px rgba(2,6,23,.08);transform:translate(-50%,-50%);transition:transform .4s,opacity .4s,filter .4s}
+      #gallery .carousel{position:relative;height:280px;margin:0 auto;overflow:hidden}
+      #gallery .carousel img{position:absolute;top:50%;left:50%;width:360px;height:225px;object-fit:cover;border-radius:.75rem;box-shadow:0 6px 16px rgba(2,6,23,.08);transform:translate(-50%,-50%);transition:transform .4s,opacity .4s,filter .4s}
       #gallery .carousel button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.7);border:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
       #gallery .carousel button:hover{background:rgba(255,255,255,.9)}
       #gallery .carousel .gprev{left:0}
