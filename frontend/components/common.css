@@ -118,7 +118,7 @@
     .rate{transition:color .2s}
     .rate.celebrate{animation:yay .8s ease}
     @keyframes yay{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
-    .particle{position:fixed;width:6px;height:6px;background:var(--color);opacity:.9;pointer-events:none;border-radius:50%;will-change:transform}
+    .particle{position:fixed;width:6px;height:6px;background:var(--color);opacity:.9;pointer-events:none;border-radius:50%;will-change:transform;transform:translate3d(0,0,0)}
       #gallery .carousel{position:relative;width:100%;max-width:900px;aspect-ratio:16/9;margin:0 auto;overflow:hidden}
       #gallery .carousel::before,#gallery .carousel::after{content:"";position:absolute;top:0;bottom:0;width:10%;pointer-events:none;z-index:4}
       #gallery .carousel::before{left:0;background:linear-gradient(to right,#f8fafc,rgba(248,250,252,0))}
