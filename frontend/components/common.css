@@ -107,4 +107,4 @@
     .rate{transition:color .2s}
     .rate.celebrate{animation:yay .8s ease}
     @keyframes yay{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
-    .streamer{position:fixed;width:4px;height:30px;background:var(--color);opacity:.8;pointer-events:none;transform-origin:center;border-radius:2px;will-change:transform}
+    .streamer{position:fixed;width:4px;height:30px;background:var(--color);opacity:.8;pointer-events:none;transform-origin:top center;border-radius:2px;will-change:transform}

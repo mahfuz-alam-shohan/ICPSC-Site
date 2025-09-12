@@ -1,3 +1,4 @@
+gsap.registerPlugin(MotionPathPlugin);
 document.addEventListener('DOMContentLoaded',initCommon);
 
 function initCommon(){
@@ -327,17 +328,18 @@ function initCommon(){
       s.style.top=originY+'px';
       s.style.setProperty('--color',randomColor());
       document.body.appendChild(s);
-      const angle=Math.random()*Math.PI; // spread left to right while going upward
+      const angle=Math.random()*Math.PI*2; // spread in all directions
       const dist=120+Math.random()*180;
       const dx=Math.cos(angle)*dist;
-      const dy=-Math.sin(angle)*dist;
-      const bend=(Math.random()*60-30);
-      const midX=dx/2+bend;
-      const midY=dy/2-(40+Math.random()*40);
-      const tl=gsap.timeline({onComplete:()=>s.remove()});
-      tl.to(s,{x:midX,y:midY,rotation:Math.random()*180-90,duration:.5,ease:'power2.out'})
-        .to(s,{x:dx,y:dy,duration:.4,ease:'sine.inOut'})
-        .to(s,{x:dx+bend*0.5,y:dy+600,rotation:"+=720",duration:1.2,ease:'power2.in'});
+      const dy=Math.sin(angle)*dist;
+      const bend=Math.random()*60-30;
+      const path=[
+        {x:0,y:0},
+        {x:dx/2+bend,y:dy/2-(40+Math.random()*40)},
+        {x:dx,y:dy},
+        {x:dx+bend*0.5,y:dy+600}
+      ];
+      gsap.to(s,{motionPath:{path,curviness:1.25},duration:2,ease:'power1.inOut',onComplete:()=>s.remove()});
       gsap.to(s,{rotation:()=>Math.random()*60-30,skewX:15,skewY:-15,repeat:-1,yoyo:true,duration:.25,ease:'sine.inOut'});
     }
   }
