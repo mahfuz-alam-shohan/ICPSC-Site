@@ -413,6 +413,31 @@ function initCommon(){
     });
     const kids=[...gr.children];
     kids.forEach(el=>gr.appendChild(el.cloneNode(true)));
+    const imgModal=document.getElementById('imgModal');
+    const modalImg=document.getElementById('imgModalImg');
+    const imgClose=document.getElementById('imgClose');
+    const imgSave=document.getElementById('imgSave');
+    const closeImg=()=>{
+      if(imgModal){
+        imgModal.classList.remove('open');
+        document.body.style.overflow='';
+        document.documentElement.style.overflow='';
+      }
+    };
+    if(imgModal && modalImg && imgSave){
+      gr.addEventListener('click',e=>{
+        const target=e.target;
+        if(target.tagName==='IMG'){
+          modalImg.src=target.src;
+          imgSave.href=target.src;
+          imgModal.classList.add('open');
+          document.body.style.overflow='hidden';
+          document.documentElement.style.overflow='hidden';
+        }
+      });
+      imgModal.addEventListener('click',e=>{if(e.target===imgModal) closeImg();});
+      if(imgClose) imgClose.addEventListener('click',closeImg);
+    }
     let pos=0;
     const speed=parseInt(gr.dataset.speed||'40',10);
     let last=null,paused=false,startX=0,startScroll=0,resumeT;

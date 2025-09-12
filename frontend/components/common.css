@@ -61,6 +61,14 @@
     #msgModal.open{opacity:1;pointer-events:auto}
     .msg-box{background:linear-gradient(135deg,#fff,#f0fdf4);border:4px solid var(--ink);background-image:radial-gradient(rgba(127,29,29,.08) 1px,transparent 1px),radial-gradient(rgba(20,83,45,.08) 1px,transparent 1px),linear-gradient(135deg,#fff,#f0fdf4);background-size:20px 20px,20px 20px,100% 100%;background-position:0 0,10px 10px,0 0;transform:scale(.95);transition:transform .3s;overscroll-behavior:contain}
     #msgModal.open .msg-box{transform:scale(1)}
+
+    #imgModal{opacity:0;pointer-events:none;transition:opacity .3s}
+    #imgModal.open{opacity:1;pointer-events:auto}
+    #imgModal .img-box{position:relative;transform:scale(.95);transition:transform .3s}
+    #imgModal.open .img-box{transform:scale(1)}
+    #imgModal img{max-width:90vw;max-height:80vh;object-fit:contain;border-radius:.75rem;box-shadow:0 8px 16px rgba(2,6,23,.2)}
+    #imgModal .close{position:absolute;top:.25rem;right:.25rem;background:#fff;border:none;border-radius:9999px;width:36px;height:36px;font-size:1.5rem;line-height:36px;cursor:pointer;color:#0f172a}
+    #imgModal .save{position:absolute;bottom:.25rem;left:.25rem;background:#fff;color:#0f172a;padding:.4rem .8rem;border-radius:.5rem;font-weight:700;text-decoration:none}
     .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}@media(max-width:900px){.cards{grid-template-columns:1fr}}.card{background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1rem;box-shadow:0 8px 16px rgba(2,6,23,.06)}.card.pop{transition:.2s}.card.pop:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(2,6,23,.12)}.bul{margin:.3rem 0 0 1rem}
     .timeline{border-left:3px solid #e2e8f0;margin-left:1rem;display:grid;gap:1rem}.timeline li{position:relative;list-style:none}.timeline .dot{position:absolute;left:-9px;top:.6rem;width:14px;height:14px;background:var(--brand-red);border-radius:50%}.timeline .card{margin-left:.5rem}
     .leaders{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));justify-items:center;gap:5rem 2rem;margin-top:5rem}
