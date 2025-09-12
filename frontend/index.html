@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
@@ -273,7 +274,7 @@
 
   <section id="admission" class="section"><div class="wrap"><div class="head"><h2>Admission</h2><span class="muted">Clear steps • Online apply</span></div><div class="cta-row"><a class="cta green" href="https://vortibd.com/institute/39/96" target="_blank" rel="noopener">Apply Online</a></div></div></section>
 
-  <section id="gaming" class="section"><div class="wrap"><div class="head"><h2>Gaming Corner</h2><span class="muted">Chess Game Tricks</span></div><div class="grid gap-4 md:grid-cols-2"><article class="card p-4"><h3 class="font-bold mb-2">Scholar's Mate</h3><p>1.e4 e5 2.Qh5 Nc6 3.Bc4 Nf6?? 4.Qxf7#</p></article><article class="card p-4"><h3 class="font-bold mb-2">Fool's Mate</h3><p>Quickest checkmate: 1.f3 e5 2.g4 Qh4#</p></article></div></div></section>
+  <section id="gaming" class="section"><div class="wrap"><div class="head"><h2>Gaming Corner</h2><span class="muted">Play Chess</span></div><div id="chessBoard" class="max-w-xs mx-auto"></div><div class="mt-4 text-center"><p id="status" class="mb-2"></p><button id="resetBtn" class="cta green">Reset Game</button></div></div></section>
 
 <footer class="footer">
   <div class="wrap">
@@ -302,6 +303,9 @@
     </div>
   </div>
   </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.js" defer></script>
+    <script src="components/chess-game.js" defer></script>
     <script src="components/student-galleries.js" defer></script>
     <script src="components/teachers.js" defer></script>
     <script src="components/common.js" defer></script>
