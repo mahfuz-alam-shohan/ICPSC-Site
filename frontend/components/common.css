@@ -90,7 +90,7 @@
     .shape.square{background:linear-gradient(135deg,var(--brand-red),#fff)}
     .shape.triangle{background:linear-gradient(135deg,#fff,var(--brand-green));clip-path:polygon(50% 0,0 100%,100% 100%)}
     @keyframes drift{from{transform:translateY(0) rotate(0deg)}to{transform:translateY(-40px) rotate(360deg)}}
-    @media(max-width:640px){.strip img{width:260px;height:160px}.brand img{width:48px;height:48px}.btext strong{font-size:.9rem}.btext span{font-size:.65rem}.counters{grid-template-columns:1fr}#gallery .carousel{width:calc(100% - 120px)}}
+    @media(max-width:640px){.strip img{width:260px;height:160px}.brand img{width:48px;height:48px}.btext strong{font-size:.9rem}.btext span{font-size:.65rem}.counters{grid-template-columns:1fr}#gallery .carousel{width:100%}}
     .club-hero{padding:3rem 0 2rem;margin-top:0;text-align:center;background:rgba(255,255,255,.5);backdrop-filter:blur(4px)}
     .club-hero h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:900}
     .club-card{display:grid;gap:1rem;align-items:center}
@@ -108,9 +108,9 @@
     .rate.celebrate{animation:yay .8s ease}
     @keyframes yay{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
     .streamer{position:fixed;width:4px;height:30px;background:var(--color);opacity:.8;pointer-events:none;transform-origin:top center;border-radius:2px;will-change:transform}
-      #gallery .carousel{position:relative;width:calc(100% - 80px);aspect-ratio:16/10;margin:0 auto;overflow:hidden}
+      #gallery .carousel{position:relative;width:100%;max-width:900px;aspect-ratio:16/9;margin:0 auto;overflow:hidden}
       #gallery .carousel img{position:absolute;top:50%;left:50%;width:100%;height:100%;object-fit:cover;border-radius:.75rem;box-shadow:0 6px 16px rgba(2,6,23,.08);transform:translate(-50%,-50%);transition:transform .4s,opacity .4s,filter .4s}
-      #gallery .carousel button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.7);border:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
-      #gallery .carousel button:hover{background:rgba(255,255,255,.9)}
-      #gallery .carousel .gprev{left:0}
-      #gallery .carousel .gnext{right:0}
+      #gallery .carousel button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.8);border:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;color:#0f172a}
+      #gallery .carousel button:hover{background:rgba(255,255,255,.95)}
+      #gallery .carousel .gprev{left:10px}
+      #gallery .carousel .gnext{right:10px}
