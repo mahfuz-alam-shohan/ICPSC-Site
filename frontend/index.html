@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
@@ -287,7 +286,49 @@
 
   <section id="admission" class="section"><div class="wrap"><div class="head"><h2>Admission</h2><span class="muted">Clear steps • Online apply</span></div><div class="cta-row"><a class="cta green" href="https://vortibd.com/institute/39/96" target="_blank" rel="noopener">Apply Online</a></div></div></section>
 
-  <section id="gaming" class="section"><div class="wrap"><div class="head"><h2>Gaming Corner</h2><span class="muted">Play Chess</span></div><div id="chessBoard" class="max-w-xs mx-auto"></div><div class="mt-4 text-center"><p id="status" class="mb-2"></p><button id="resetBtn" class="cta green">Reset Game</button></div></div></section>
+  <section id="space" class="section">
+    <div class="wrap">
+      <div class="head"><h2>Let's Visit the Space</h2></div>
+      <div class="space-items space-y-12">
+        <div class="item flex flex-col md:flex-row items-center gap-6">
+          <div class="planet sun"></div>
+          <p class="max-w-md">The Sun is the star at the center of our solar system. It provides the light and heat that make life on Earth possible.</p>
+        </div>
+        <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
+          <div class="planet mercury"></div>
+          <p class="max-w-md">Mercury is the closest planet to the Sun and the smallest in the solar system.</p>
+        </div>
+        <div class="item flex flex-col md:flex-row items-center gap-6">
+          <div class="planet venus"></div>
+          <p class="max-w-md">Venus is the second planet from the Sun, shrouded in clouds and blazing hot.</p>
+        </div>
+        <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
+          <div class="planet earth"></div>
+          <p class="max-w-md">Earth is our home, the third planet from the Sun and the only world known to support life.</p>
+        </div>
+        <div class="item flex flex-col md:flex-row items-center gap-6">
+          <div class="planet mars"></div>
+          <p class="max-w-md">Mars, the red planet, is a cold desert world with the largest volcano in the solar system.</p>
+        </div>
+        <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
+          <div class="planet jupiter"></div>
+          <p class="max-w-md">Jupiter is the largest planet, a gas giant with a persistent Great Red Spot storm.</p>
+        </div>
+        <div class="item flex flex-col md:flex-row items-center gap-6">
+          <div class="planet saturn"></div>
+          <p class="max-w-md">Saturn is famous for its stunning rings made of ice and rock.</p>
+        </div>
+        <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
+          <div class="planet uranus"></div>
+          <p class="max-w-md">Uranus rotates on its side and has faint rings around it.</p>
+        </div>
+        <div class="item flex flex-col md:flex-row items-center gap-6">
+          <div class="planet neptune"></div>
+          <p class="max-w-md">Neptune, the farthest planet, is a windy world of deep blue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
 <footer class="footer">
   <div class="wrap">
@@ -316,9 +357,6 @@
     </div>
   </div>
   </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.js" defer></script>
-    <script src="components/chess-game.js" defer></script>
     <script src="components/student-galleries.js" defer></script>
     <script src="components/teachers.js" defer></script>
     <script src="components/common.js" defer></script>
