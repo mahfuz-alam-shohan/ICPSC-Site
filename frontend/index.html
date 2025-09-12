@@ -10,6 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <link rel="stylesheet" href="components/common.css"/>
   </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
@@ -291,39 +292,39 @@
       <div class="head"><h2>Let's Visit the Space</h2></div>
       <div class="space-items space-y-12">
         <div class="item flex flex-col md:flex-row items-center gap-6">
-          <div class="planet sun"></div>
+          <div class="planet sun"><model-viewer src="assets/planets/sun.usdz" alt="Sun" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">The Sun is the star at the center of our solar system. It provides the light and heat that make life on Earth possible.</p>
         </div>
         <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
-          <div class="planet mercury"></div>
+          <div class="planet mercury"><model-viewer src="assets/planets/mercury.usdz" alt="Mercury" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">Mercury is the closest planet to the Sun and the smallest in the solar system.</p>
         </div>
         <div class="item flex flex-col md:flex-row items-center gap-6">
-          <div class="planet venus"></div>
+          <div class="planet venus"><model-viewer src="assets/planets/venus.usdz" alt="Venus" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">Venus is the second planet from the Sun, shrouded in clouds and blazing hot.</p>
         </div>
         <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
-          <div class="planet earth"></div>
+          <div class="planet earth"><model-viewer src="assets/planets/earth.usdz" alt="Earth" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">Earth is our home, the third planet from the Sun and the only world known to support life.</p>
         </div>
         <div class="item flex flex-col md:flex-row items-center gap-6">
-          <div class="planet mars"></div>
+          <div class="planet mars"><model-viewer src="assets/planets/mars.usdz" alt="Mars" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">Mars, the red planet, is a cold desert world with the largest volcano in the solar system.</p>
         </div>
         <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
-          <div class="planet jupiter"></div>
+          <div class="planet jupiter"><model-viewer src="assets/planets/jupiter.usdz" alt="Jupiter" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">Jupiter is the largest planet, a gas giant with a persistent Great Red Spot storm.</p>
         </div>
         <div class="item flex flex-col md:flex-row items-center gap-6">
-          <div class="planet saturn"></div>
+          <div class="planet saturn"><model-viewer src="assets/planets/saturn.usdz" alt="Saturn" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">Saturn is famous for its stunning rings made of ice and rock.</p>
         </div>
         <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
-          <div class="planet uranus"></div>
+          <div class="planet uranus"><model-viewer src="assets/planets/uranus.usdz" alt="Uranus" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">Uranus rotates on its side and has faint rings around it.</p>
         </div>
         <div class="item flex flex-col md:flex-row items-center gap-6">
-          <div class="planet neptune"></div>
+          <div class="planet neptune"><model-viewer src="assets/planets/neptune.usdz" alt="Neptune" auto-rotate camera-controls disable-zoom></model-viewer></div>
           <p class="max-w-md">Neptune, the farthest planet, is a windy world of deep blue.</p>
         </div>
       </div>
