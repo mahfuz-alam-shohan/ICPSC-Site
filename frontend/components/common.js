@@ -12,7 +12,7 @@ function initCommon(){
   enableInertiaScroll();
   function enableInertiaScroll(){
     const scrollEl=document.scrollingElement||document.documentElement;
-    let velocity=0,raf=null,isTouch=false,drag=false,lastY=0;
+    let velocity=0,raf=null,drag=false,lastY=0;
     const isScrollable=el=>{
       while(el && el!==document.body){
         const st=getComputedStyle(el);
@@ -22,7 +22,7 @@ function initCommon(){
       return false;
     };
     const step=()=>{
-      if(Math.abs(velocity)>0.1&&!isTouch&&!drag){
+      if(Math.abs(velocity)>0.1&&!drag){
         scrollEl.scrollTop+=velocity;
         velocity*=0.95;
         raf=requestAnimationFrame(step);
@@ -52,24 +52,6 @@ function initCommon(){
     window.addEventListener('mouseup',()=>{
       if(drag&&!raf) step();
       drag=false;
-    });
-    window.addEventListener('touchstart',e=>{
-      if(isScrollable(e.target)) return;
-      isTouch=true;
-      lastY=e.touches[0].clientY;
-    },{passive:true});
-    window.addEventListener('touchmove',e=>{
-      if(!isTouch||isScrollable(e.target)) return;
-      e.preventDefault();
-      const y=e.touches[0].clientY;
-      const dy=lastY-y;
-      scrollEl.scrollTop+=dy;
-      velocity=dy;
-      lastY=y;
-    },{passive:false});
-    window.addEventListener('touchend',()=>{
-      isTouch=false;
-      if(!raf) step();
     });
   }
   const mast=document.getElementById('masthead'),r=document.documentElement;
