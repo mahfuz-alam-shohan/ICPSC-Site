@@ -404,20 +404,23 @@ function initCommon(){
       'assets/galleries/gallery-12.jpg'
     ];
     const slots=Array.from(gg.querySelectorAll('img'));
-    let idx=0;
-    const update=()=>{
-      slots[0].src=images[(idx+1)%images.length];
-      slots[1].src=images[idx];
-      slots[2].src=images[(idx+images.length-1)%images.length];
+    let idx=0; // index of the first (top) image in the array
+    const setImages=()=>{
+      for(let i=0;i<slots.length;i++){
+        slots[i].src=images[(idx+i)%images.length];
+      }
     };
-    update();
-    setInterval(()=>{
-      slots[1].classList.add('fade');
+    setImages();
+    const cycle=()=>{
+      gg.classList.add('slide');
       setTimeout(()=>{
+        gg.classList.remove('slide');
+        gg.appendChild(slots[0]);
+        slots.push(slots.shift());
         idx=(idx+1)%images.length;
-        slots[1].classList.remove('fade');
-        update();
+        slots[2].src=images[(idx+2)%images.length];
       },500);
-    },4000);
+    };
+    setInterval(cycle,4000);
   }
 }
