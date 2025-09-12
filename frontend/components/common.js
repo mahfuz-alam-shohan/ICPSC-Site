@@ -387,8 +387,8 @@ function initCommon(){
   const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
   revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
 
-  const gg=document.getElementById('galleryGrid');
-  if(gg){
+  const gr=document.getElementById('galleryRow');
+  if(gr){
     const images=[
       'assets/galleries/gallery-1.jpg',
       'assets/galleries/gallery-2.jpg',
@@ -403,24 +403,22 @@ function initCommon(){
       'assets/galleries/gallery-11.jpg',
       'assets/galleries/gallery-12.jpg'
     ];
-    const slots=Array.from(gg.querySelectorAll('img'));
-    let idx=0; // index of the first (top) image in the array
-    const setImages=()=>{
-      for(let i=0;i<slots.length;i++){
-        slots[i].src=images[(idx+i)%images.length];
+    images.forEach(src=>{
+      const img=document.createElement('img');
+      img.loading='lazy';
+      img.decoding='async';
+      img.alt='Gallery image';
+      img.src=src;
+      gr.appendChild(img);
+    });
+    const autoScroll=()=>{
+      const max=gr.scrollWidth-gr.clientWidth;
+      if(gr.scrollLeft>=max){
+        gr.scrollTo({left:0,behavior:'smooth'});
+      }else{
+        gr.scrollBy({left:gr.clientWidth,behavior:'smooth'});
       }
     };
-    setImages();
-    const cycle=()=>{
-      gg.classList.add('slide');
-      setTimeout(()=>{
-        gg.classList.remove('slide');
-        gg.appendChild(slots[0]);
-        slots.push(slots.shift());
-        idx=(idx+1)%images.length;
-        slots[2].src=images[(idx+2)%images.length];
-      },500);
-    };
-    setInterval(cycle,4000);
+    setInterval(autoScroll,4000);
   }
 }
