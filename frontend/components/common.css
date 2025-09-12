@@ -126,7 +126,7 @@
           #gallery .carousel .gprev{top:10px;left:50%}
           #gallery .carousel .gnext{bottom:10px;left:50%;right:auto}
         }
-#gallery .gallery-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:.75rem;max-width:900px;margin:0 auto;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+#gallery .gallery-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:.75rem;max-width:900px;margin:0 auto;overflow:hidden;scrollbar-width:none}
 #gallery .gallery-row::-webkit-scrollbar{display:none}
-#gallery .gallery-row img{width:100%;height:200px;object-fit:cover;border-radius:.75rem;box-shadow:0 6px 16px rgba(2,6,23,.08);scroll-snap-align:start}
+#gallery .gallery-row img{width:100%;height:200px;object-fit:cover;border-radius:.75rem;box-shadow:0 6px 16px rgba(2,6,23,.08)}
 @media(max-width:640px){#gallery .gallery-row{grid-auto-columns:70%}#gallery .gallery-row img{height:160px}}
