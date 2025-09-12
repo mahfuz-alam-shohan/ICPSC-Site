@@ -108,6 +108,6 @@
     .rate.celebrate{animation:yay .8s ease}
     @keyframes yay{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
     .streamer{position:fixed;width:4px;height:30px;background:var(--color);opacity:.8;pointer-events:none;transform-origin:top center;border-radius:2px;will-change:transform}
-    .circular-gallery{position:relative;width:100%;max-width:28rem;height:16rem;margin:0 auto;perspective:1000px;transform-style:preserve-3d}
-    .circular-gallery img{position:absolute;top:50%;left:50%;width:10rem;height:6rem;object-fit:cover;border-radius:.75rem;transform-style:preserve-3d;transition:transform .5s,opacity .5s,filter .5s}
-    @media(max-width:640px){.circular-gallery{height:14rem}.circular-gallery img{width:8rem;height:5rem}}
+    .circular-gallery{position:relative;width:100%;max-width:40rem;height:20rem;margin:0 auto;overflow:hidden}
+    .circular-gallery img{position:absolute;top:50%;left:50%;width:12rem;height:8rem;object-fit:cover;border:4px solid #fff;border-radius:.75rem;transition:transform .5s,opacity .5s,filter .5s}
+    @media(max-width:640px){.circular-gallery{height:16rem}.circular-gallery img{width:9rem;height:6rem}}
