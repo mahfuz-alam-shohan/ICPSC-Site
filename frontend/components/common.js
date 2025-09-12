@@ -391,7 +391,10 @@ function initCommon(){
   if(gc){
     const imgs=Array.from(gc.querySelectorAll('img'));
     let idx=0;
-    const getOffset=()=>imgs[0].clientWidth*0.5+20;
+    const getOffset=()=>{
+      const w=imgs[0].clientWidth;
+      return (window.innerWidth<640?w*0.9:w*0.5+20);
+    };
     const update=()=>{
       const offset=getOffset();
       imgs.forEach((img,i)=>{
