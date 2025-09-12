@@ -9,51 +9,6 @@ function initCommon(){
   document.addEventListener('copy',e=>e.preventDefault());
   document.addEventListener('cut',e=>e.preventDefault());
   document.querySelectorAll('[data-year]').forEach(el=>{el.textContent=new Date().getFullYear();});
-  enableInertiaScroll();
-  function enableInertiaScroll(){
-    const scrollEl=document.scrollingElement||document.documentElement;
-    let velocity=0,raf=null,drag=false,lastY=0;
-    const isScrollable=el=>{
-      while(el && el!==document.body){
-        const st=getComputedStyle(el);
-        if((st.overflowY==='auto'||st.overflowY==='scroll')&&el.scrollHeight>el.clientHeight) return true;
-        el=el.parentElement;
-      }
-      return false;
-    };
-    const step=()=>{
-      if(Math.abs(velocity)>0.1&&!drag){
-        scrollEl.scrollTop+=velocity;
-        velocity*=0.95;
-        raf=requestAnimationFrame(step);
-      }else{
-        velocity=0;
-        raf=null;
-      }
-    };
-    window.addEventListener('wheel',e=>{
-      if(isScrollable(e.target)) return;
-      e.preventDefault();
-      velocity+=e.deltaY;
-      if(!raf) step();
-    },{passive:false});
-    window.addEventListener('mousedown',e=>{
-      if(isScrollable(e.target)) return;
-      drag=true;
-      lastY=e.clientY;
-    });
-    window.addEventListener('mousemove',e=>{
-      if(!drag) return;
-      const dy=e.clientY-lastY;
-      scrollEl.scrollTop-=dy;
-      velocity=-dy;
-      lastY=e.clientY;
-    });
-    window.addEventListener('mouseup',()=>{
-      if(drag&&!raf) step();
-      drag=false;
-    });
-  }
   const mast=document.getElementById('masthead'),r=document.documentElement;
   const updateMast=()=>{if(mast) r.style.setProperty('--mast-h',mast.offsetHeight+'px');};
   updateMast();
