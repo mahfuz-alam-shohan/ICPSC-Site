@@ -317,14 +317,21 @@ function initCommon(){
   function launchConfetti(el){
     const card=el.closest('.result-card');
     if(!card) return;
-    for(let i=0;i<12;i++){
+    const rect=card.getBoundingClientRect();
+    for(let i=0;i<20;i++){
       const s=document.createElement('span');
-      s.className='confetti';
-      s.textContent='🎉';
-      s.style.left=Math.random()*100+'%';
-      card.appendChild(s);
-      setTimeout(()=>s.remove(),1500);
+      s.className='streamer';
+      s.style.left=rect.left+Math.random()*rect.width+'px';
+      s.style.top=rect.top+'px';
+      s.style.setProperty('--color',randomColor());
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),2000);
     }
+  }
+
+  function randomColor(){
+    const colors=['#f56565','#48bb78','#4299e1','#ed8936','#9f7aea','#f6e05e'];
+    return colors[Math.floor(Math.random()*colors.length)];
   }
   document.querySelectorAll('.strip.loop').forEach(strip=>{
     const kids=[...strip.children];
