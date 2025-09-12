@@ -387,69 +387,37 @@ function initCommon(){
   const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
   revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
 
-  const gc=document.getElementById('galleryCarousel');
-  if(gc){
-    const imgs=Array.from(gc.querySelectorAll('img'));
+  const gg=document.getElementById('galleryGrid');
+  if(gg){
+    const images=[
+      'assets/galleries/gallery-1.jpg',
+      'assets/galleries/gallery-2.jpg',
+      'assets/galleries/gallery-3.jpg',
+      'assets/galleries/gallery-4.jpg',
+      'assets/galleries/gallery-5.jpg',
+      'assets/galleries/gallery-6.jpg',
+      'assets/galleries/gallery-7.jpg',
+      'assets/galleries/gallery-8.jpg',
+      'assets/galleries/gallery-9.jpg',
+      'assets/galleries/gallery-10.jpg',
+      'assets/galleries/gallery-11.jpg',
+      'assets/galleries/gallery-12.jpg'
+    ];
+    const slots=Array.from(gg.querySelectorAll('img'));
     let idx=0;
-    const getOffset=()=>{
-      return window.innerWidth<640?gc.clientHeight*0.55:gc.clientWidth*0.5+20;
-    };
     const update=()=>{
-      const offset=getOffset();
-      const mobile=window.innerWidth<640;
-      imgs.forEach((img,i)=>{
-        const diff=(i-idx+imgs.length)%imgs.length;
-        img.style.transition='transform .4s,opacity .4s,filter .4s';
-        if(diff===0){
-          img.style.transform='translate(-50%,-50%) scale(1)';
-          img.style.opacity='1';
-          img.style.filter='none';
-          img.style.zIndex='3';
-        }else if(diff===1){
-          img.style.transform=mobile?
-            `translate(-50%,-50%) translateY(${offset}px) scale(.85)`:
-            `translate(-50%,-50%) translateX(${offset}px) scale(.85)`;
-          img.style.opacity='.5';
-          img.style.filter='grayscale(1) blur(2px)';
-          img.style.zIndex='2';
-        }else if(diff===imgs.length-1){
-          img.style.transform=mobile?
-            `translate(-50%,-50%) translateY(-${offset}px) scale(.85)`:
-            `translate(-50%,-50%) translateX(-${offset}px) scale(.85)`;
-          img.style.opacity='.5';
-          img.style.filter='grayscale(1) blur(2px)';
-          img.style.zIndex='2';
-        }else{
-          img.style.transform='translate(-50%,-50%) scale(.4)';
-          img.style.opacity='0';
-          img.style.filter='none';
-          img.style.zIndex='0';
-        }
-      });
+      slots[0].src=images[(idx+1)%images.length];
+      slots[1].src=images[idx];
+      slots[2].src=images[(idx+images.length-1)%images.length];
     };
-    const next=()=>{idx=(idx+1)%imgs.length;update();};
-    const prev=()=>{idx=(idx-1+imgs.length)%imgs.length;update();};
-    let timer=setInterval(next,4000);
-    const reset=()=>{clearInterval(timer);timer=setInterval(next,4000);};
-    gc.querySelector('.gprev').addEventListener('click',()=>{prev();reset();});
-    gc.querySelector('.gnext').addEventListener('click',()=>{next();reset();});
-    window.addEventListener('resize',update);
-    imgs.forEach(img=>img.addEventListener('load',update));
-    gc.addEventListener('pointerdown',e=>{
-      const sx=e.clientX,sy=e.clientY;
-      const onUp=ev=>{
-        const dx=ev.clientX-sx;
-        const dy=ev.clientY-sy;
-        if(window.innerWidth<640){
-          if(dy>50){prev();reset();}
-          else if(dy<-50){next();reset();}
-        }else{
-          if(dx>50){prev();reset();}
-          else if(dx<-50){next();reset();}
-        }
-      };
-      window.addEventListener('pointerup',onUp,{once:true});
-    });
     update();
+    setInterval(()=>{
+      slots[1].classList.add('fade');
+      setTimeout(()=>{
+        idx=(idx+1)%images.length;
+        slots[1].classList.remove('fade');
+        update();
+      },500);
+    },4000);
   }
 }
