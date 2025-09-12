@@ -508,4 +508,18 @@ function initCommon(){
 
     requestAnimationFrame(step);
   }
+
+  const spaceSection=document.getElementById('space');
+  if(spaceSection){
+    const spaceIO=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          document.body.classList.add('space-mode');
+        }else{
+          document.body.classList.remove('space-mode');
+        }
+      });
+    },{threshold:0.1});
+    spaceIO.observe(spaceSection);
+  }
 }
