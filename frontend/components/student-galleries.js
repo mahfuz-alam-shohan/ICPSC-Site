@@ -100,13 +100,29 @@ document.addEventListener('DOMContentLoaded', async () => {
       video.muted = autoPlay;
       video.autoplay = autoPlay;
       video.loop = true;
-      video.controls = true;
+      video.controls = autoPlay;
       video.className = 'w-full h-full object-contain object-center';
 
       video.addEventListener('play', () => {
         video.muted = false;
         pauseOthers(video);
       });
+
+      if (!autoPlay) {
+        const clickPlay = () => {
+          video.controls = true;
+          video.play();
+        };
+        video.addEventListener('click', clickPlay, { once: true });
+        video.addEventListener('loadeddata', () => {
+          video.pause();
+        });
+        video.addEventListener('loadedmetadata', () => {
+          try {
+            video.currentTime = 0;
+          } catch {}
+        });
+      }
 
       io.observe(video);
       card.appendChild(video);
