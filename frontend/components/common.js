@@ -276,6 +276,56 @@ function initCommon(){
     });
   },{threshold:.4});
   counters.forEach(c=>io.observe(c));
+
+  const rates=document.querySelectorAll('#academics .rate[data-count]');
+  const rateIO=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target,end=parseInt(el.dataset.count,10);
+        let start=null;
+        const duration=2500;
+        const step=t=>{
+          if(start===null) start=t;
+          const progress=Math.min((t-start)/duration,1);
+          const val=Math.floor(progress*end);
+          el.textContent=val;
+          if(progress<0.33){
+            el.classList.add('text-yellow-500');
+            el.classList.remove('text-green-600','text-red-600');
+          }else if(progress<0.66){
+            el.classList.add('text-green-600');
+            el.classList.remove('text-yellow-500','text-red-600');
+          }else{
+            el.classList.add('text-red-600');
+            el.classList.remove('text-yellow-500','text-green-600');
+          }
+          if(progress<1){
+            requestAnimationFrame(step);
+          }else{
+            el.classList.add('celebrate');
+            gsap.fromTo(el,{scale:1.4},{scale:1,duration:.6,ease:'bounce.out'});
+            launchConfetti(el);
+          }
+        };
+        requestAnimationFrame(step);
+        rateIO.unobserve(el);
+      }
+    });
+  },{threshold:.6});
+  rates.forEach(r=>rateIO.observe(r));
+
+  function launchConfetti(el){
+    const card=el.closest('.result-card');
+    if(!card) return;
+    for(let i=0;i<12;i++){
+      const s=document.createElement('span');
+      s.className='confetti';
+      s.textContent='🎉';
+      s.style.left=Math.random()*100+'%';
+      card.appendChild(s);
+      setTimeout(()=>s.remove(),1500);
+    }
+  }
   document.querySelectorAll('.strip.loop').forEach(strip=>{
     const kids=[...strip.children];
     kids.forEach(el=>strip.appendChild(el.cloneNode(true)));
