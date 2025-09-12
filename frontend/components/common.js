@@ -391,7 +391,9 @@ function initCommon(){
   if(gc){
     const imgs=Array.from(gc.querySelectorAll('img'));
     let idx=0;
+    const getOffset=()=>imgs[0].clientWidth-60;
     const update=()=>{
+      const offset=getOffset();
       imgs.forEach((img,i)=>{
         const diff=(i-idx+imgs.length)%imgs.length;
         img.style.transition='transform .4s,opacity .4s,filter .4s';
@@ -401,12 +403,12 @@ function initCommon(){
           img.style.filter='none';
           img.style.zIndex='3';
         }else if(diff===1){
-          img.style.transform='translate(-50%,-50%) translateX(300px) scale(.8)';
+          img.style.transform=`translate(-50%,-50%) translateX(${offset}px) scale(.8)`;
           img.style.opacity='.5';
           img.style.filter='grayscale(1)';
           img.style.zIndex='2';
         }else if(diff===imgs.length-1){
-          img.style.transform='translate(-50%,-50%) translateX(-300px) scale(.8)';
+          img.style.transform=`translate(-50%,-50%) translateX(-${offset}px) scale(.8)`;
           img.style.opacity='.5';
           img.style.filter='grayscale(1)';
           img.style.zIndex='2';
@@ -424,6 +426,7 @@ function initCommon(){
     const reset=()=>{clearInterval(timer);timer=setInterval(next,4000);};
     gc.querySelector('.gprev').addEventListener('click',()=>{prev();reset();});
     gc.querySelector('.gnext').addEventListener('click',()=>{next();reset();});
+    window.addEventListener('resize',update);
     gc.addEventListener('pointerdown',e=>{
       const sx=e.clientX;
       const onUp=ev=>{
