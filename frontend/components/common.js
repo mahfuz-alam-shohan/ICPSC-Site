@@ -326,9 +326,11 @@ function initCommon(){
     const rect=card.getBoundingClientRect();
     const originX=rect.left+rect.width/2;
     const originY=rect.top+rect.height/2;
-    for(let i=0;i<25;i++){
+    for(let i=0;i<120;i++){
       const s=document.createElement('span');
-      s.className='streamer';
+      s.className='particle';
+      const size=4+Math.random()*4;
+      s.style.width=s.style.height=size+'px';
       s.style.left=originX+'px';
       s.style.top=originY+'px';
       s.style.setProperty('--color',randomColor());
@@ -344,14 +346,14 @@ function initCommon(){
         {x:dx,y:dy},
         {x:dx+bend*0.5,y:dy+600}
       ];
-      gsap.to(s,{motionPath:{path,curviness:1.25},duration:2,ease:'power1.inOut',onComplete:()=>s.remove()});
-      gsap.to(s,{rotation:()=>Math.random()*60-30,skewX:15,skewY:-15,repeat:-1,yoyo:true,duration:.25,ease:'sine.inOut'});
+      gsap.to(s,{motionPath:{path,curviness:1.25},duration:3,ease:'power1.inOut',onComplete:()=>s.remove()});
+      gsap.to(s,{rotation:()=>Math.random()*360,repeat:-1,duration:1,ease:'linear'});
     }
   }
 
   function randomColor(){
-    const colors=['#f56565','#48bb78','#4299e1','#ed8936','#9f7aea','#f6e05e'];
-    return colors[Math.floor(Math.random()*colors.length)];
+    const h=Math.floor(Math.random()*360);
+    return `hsl(${h},70%,60%)`;
   }
   document.querySelectorAll('.strip.loop').forEach(strip=>{
     const kids=[...strip.children];
