@@ -393,7 +393,7 @@ function initCommon(){
     let idx=0;
     const getOffset=()=>{
       const w=imgs[0].clientWidth;
-      return (window.innerWidth<640?w*0.9:w*0.5+20);
+      return (window.innerWidth<640?w*0.55:w*0.5+20);
     };
     const update=()=>{
       const offset=getOffset();
