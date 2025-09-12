@@ -311,7 +311,7 @@ function initCommon(){
         rateIO.unobserve(el);
       }
     });
-  },{threshold:.6});
+  },{threshold:.2});
   rates.forEach(r=>rateIO.observe(r));
 
   function launchConfetti(el){
