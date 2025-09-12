@@ -407,13 +407,13 @@ function initCommon(){
           img.style.zIndex='3';
         }else if(diff===1){
           img.style.transform=`translate(-50%,-50%) translateX(${offset}px) scale(.85)`;
-          img.style.opacity='.8';
-          img.style.filter='grayscale(.3)';
+          img.style.opacity='.5';
+          img.style.filter='grayscale(1) blur(2px)';
           img.style.zIndex='2';
         }else if(diff===imgs.length-1){
           img.style.transform=`translate(-50%,-50%) translateX(-${offset}px) scale(.85)`;
-          img.style.opacity='.8';
-          img.style.filter='grayscale(.3)';
+          img.style.opacity='.5';
+          img.style.filter='grayscale(1) blur(2px)';
           img.style.zIndex='2';
         }else{
           img.style.transform='translate(-50%,-50%) scale(.4)';
