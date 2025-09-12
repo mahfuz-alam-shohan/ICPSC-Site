@@ -3,7 +3,9 @@
     html,body{overflow-x:hidden}
     .hidden{display:none}
     [id]{scroll-margin-top:calc(var(--mast-h,0) + 1rem)}
-    *{box-sizing:border-box}body{font-family:"Times New Roman","Noto Serif Bengali",serif;line-height:1.5;padding-top:var(--mast-h,0);background:#f8fafc;background-image:radial-gradient(circle at 20% 20%,rgba(127,29,29,.08),transparent 60%),radial-gradient(circle at 80% 80%,rgba(20,83,45,.08),transparent 60%);background-attachment:fixed;}
+    *{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+    body{font-family:"Times New Roman","Noto Serif Bengali",serif;line-height:1.5;padding-top:var(--mast-h,0);background:#f8fafc;background-image:radial-gradient(circle at 20% 20%,rgba(127,29,29,.08),transparent 60%),radial-gradient(circle at 80% 80%,rgba(20,83,45,.08),transparent 60%);background-attachment:fixed;}
+    img{-webkit-user-drag:none}
     .wrap{max-width:1200px;margin:0 auto;padding:0 1rem}
     #masthead{position:fixed;top:0;left:0;width:100%;z-index:70}
     .topbar{background:var(--brand-green);color:#fff;font-size:.8rem}
