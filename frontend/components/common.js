@@ -392,11 +392,11 @@ function initCommon(){
     const imgs=Array.from(gc.querySelectorAll('img'));
     let idx=0;
     const getOffset=()=>{
-      const w=gc.clientWidth;
-      return (window.innerWidth<640?w*0.55:w*0.5+20);
+      return window.innerWidth<640?gc.clientHeight*0.55:gc.clientWidth*0.5+20;
     };
     const update=()=>{
       const offset=getOffset();
+      const mobile=window.innerWidth<640;
       imgs.forEach((img,i)=>{
         const diff=(i-idx+imgs.length)%imgs.length;
         img.style.transition='transform .4s,opacity .4s,filter .4s';
@@ -406,12 +406,16 @@ function initCommon(){
           img.style.filter='none';
           img.style.zIndex='3';
         }else if(diff===1){
-          img.style.transform=`translate(-50%,-50%) translateX(${offset}px) scale(.85)`;
+          img.style.transform=mobile?
+            `translate(-50%,-50%) translateY(${offset}px) scale(.85)`:
+            `translate(-50%,-50%) translateX(${offset}px) scale(.85)`;
           img.style.opacity='.5';
           img.style.filter='grayscale(1) blur(2px)';
           img.style.zIndex='2';
         }else if(diff===imgs.length-1){
-          img.style.transform=`translate(-50%,-50%) translateX(-${offset}px) scale(.85)`;
+          img.style.transform=mobile?
+            `translate(-50%,-50%) translateY(-${offset}px) scale(.85)`:
+            `translate(-50%,-50%) translateX(-${offset}px) scale(.85)`;
           img.style.opacity='.5';
           img.style.filter='grayscale(1) blur(2px)';
           img.style.zIndex='2';
@@ -422,7 +426,7 @@ function initCommon(){
           img.style.zIndex='0';
         }
       });
-    }; 
+    };
     const next=()=>{idx=(idx+1)%imgs.length;update();};
     const prev=()=>{idx=(idx-1+imgs.length)%imgs.length;update();};
     let timer=setInterval(next,4000);
@@ -432,11 +436,17 @@ function initCommon(){
     window.addEventListener('resize',update);
     imgs.forEach(img=>img.addEventListener('load',update));
     gc.addEventListener('pointerdown',e=>{
-      const sx=e.clientX;
+      const sx=e.clientX,sy=e.clientY;
       const onUp=ev=>{
         const dx=ev.clientX-sx;
-        if(dx>50){prev();reset();}
-        else if(dx<-50){next();reset();}
+        const dy=ev.clientY-sy;
+        if(window.innerWidth<640){
+          if(dy>50){prev();reset();}
+          else if(dy<-50){next();reset();}
+        }else{
+          if(dx>50){prev();reset();}
+          else if(dx<-50){next();reset();}
+        }
       };
       window.addEventListener('pointerup',onUp,{once:true});
     });
