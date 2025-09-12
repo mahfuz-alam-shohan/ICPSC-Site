@@ -17,7 +17,6 @@
     .controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
     .nav{display:none;gap:.25rem;align-items:center;flex:1;justify-content:flex-end}@media(min-width:768px){.nav{display:flex}}.nav-btn{padding:.4rem .6rem;border-radius:.75rem;font-weight:500;font-size:.95rem}
     .nav-btn.icon{padding:.5rem;font-size:1.25rem;line-height:1}
-    .nav-btn i,.mlink i,.mhead i{font-weight:400;font-size:.9em}
     .mega>.nav-btn::after{content:"\25BE";margin-left:.25rem;font-size:.65em;display:inline-block;transition:transform .2s}
     .mega.open>.nav-btn::after{transform:rotate(180deg)}
     .cta{padding:.55rem 1rem;border-radius:.8rem;font-weight:800;text-decoration:none;box-shadow:0 4px 8px rgba(2,6,23,.08);color:#fff}
