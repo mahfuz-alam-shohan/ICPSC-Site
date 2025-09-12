@@ -413,6 +413,18 @@ function initCommon(){
     });
     const kids=[...gr.children];
     kids.forEach(el=>gr.appendChild(el.cloneNode(true)));
+    const update3d=()=>{
+      const center=gr.scrollLeft+gr.clientWidth/2;
+      gr.querySelectorAll('img').forEach(img=>{
+        const ic=img.offsetLeft+img.clientWidth/2;
+        const offset=(ic-center)/gr.clientWidth;
+        const angle=offset*40;
+        const scale=1-Math.min(Math.abs(offset),0.5)*0.5;
+        img.style.transform=`rotateY(${angle}deg) scale(${scale})`;
+        img.style.zIndex=Math.round((1-Math.abs(offset))*100);
+      });
+    };
+    update3d();
     const imgModal=document.getElementById('imgModal');
     const modalImg=document.getElementById('imgModalImg');
     const imgClose=document.getElementById('imgClose');
@@ -453,6 +465,7 @@ function initCommon(){
       } else {
         pos=gr.scrollLeft;
       }
+      update3d();
       requestAnimationFrame(step);
     };
 
