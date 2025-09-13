@@ -191,6 +191,27 @@
     </div>
   </section>
 
+  <section id="learning-zone" class="section">
+    <div class="wrap">
+      <div class="head"><h2>Learning Zone</h2><span class="muted">Practice &amp; explore</span></div>
+      <p class="section-desc">Sharpen your skills with our online code editors and journey through space.</p>
+      <div class="grid gap-4 md:grid-cols-3">
+        <a href="pages/html-editor.html" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 hover:shadow-lg transition">
+          <i class="fa-brands fa-html5 text-4xl mb-2 text-orange-500"></i>
+          <span class="font-semibold">HTML Editor</span>
+        </a>
+        <a href="pages/c-editor.html" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 hover:shadow-lg transition">
+          <i class="fa-solid fa-code text-4xl mb-2 text-sky-700"></i>
+          <span class="font-semibold">C/C++ Editor</span>
+        </a>
+        <a href="pages/solar-system.html" class="flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-xl shadow p-6 hover:shadow-lg transition">
+          <i class="fa-solid fa-earth-asia text-4xl mb-2 text-green-700"></i>
+          <span class="font-semibold">Solar System</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section id="houses" class="section">
     <div class="wrap">
       <div class="head"><h2>Houses</h2></div>
@@ -309,7 +330,11 @@
     <div class="wrap text-center">
       <h2 class="text-3xl font-bold mb-4">Want to explore more?</h2>
       <p class="section-desc mb-6">এই অংশে আরও আকর্ষণীয় ও শিক্ষামূলক বিষয়ের সাথে পরিচিত হওয়ার সুযোগ রয়েছে, যা আপনার জ্ঞানকে আরও সমৃদ্ধ করবে। নতুন বিষয় ও প্রযুক্তির বিস্তৃত জগৎ অন্বেষণে এটি আপনার পথপ্রদর্শক হিসাবে কাজ করবে।</p>
-      <a class="cta green" href="pages/solar-system.html">Explore the Solar System</a>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a class="cta green" href="pages/solar-system.html">Explore the Solar System</a>
+        <a class="cta blue" href="pages/html-editor.html">Try HTML Editor</a>
+        <a class="cta red" href="pages/c-editor.html">Run C/C++ Code</a>
+      </div>
     </div>
   </section>
 <footer class="footer">
@@ -342,5 +367,16 @@
     <script src="components/student-galleries.js" defer></script>
     <script src="components/teachers.js" defer></script>
     <script src="components/common.js" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toast=document.createElement('div');
+        toast.className='fixed bottom-4 right-4 bg-white border border-gray-300 rounded-lg shadow-lg p-4 text-sm z-[300] space-y-2 relative';
+        toast.innerHTML='<button class="absolute top-1 right-2 text-lg leading-none">&times;</button><p class="font-semibold mb-1">Check out our learning tools:</p><ul class="list-disc list-inside text-blue-700"><li><a class="underline" href="pages/html-editor.html">HTML Editor</a></li><li><a class="underline" href="pages/c-editor.html">C/C++ Editor</a></li><li><a class="underline" href="pages/solar-system.html">Solar System</a></li></ul>';
+        document.body.appendChild(toast);
+        const hide=()=>toast.remove();
+        toast.querySelector('button').addEventListener('click', hide);
+        setTimeout(hide,15000);
+      });
+    </script>
   </body>
   </html>
