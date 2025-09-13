@@ -77,18 +77,15 @@
   </header>
 </div>
 
-<button id="runBtnMobile" class="md:hidden fixed right-2 z-10 px-3 py-1 text-sm rounded bg-blue-600 text-white" style="top:calc(var(--mast-h) + 0.5rem);">Run</button>
-<button id="backBtn" class="hidden md:hidden fixed left-2 z-10 px-3 py-1 text-sm rounded bg-gray-600 text-white" style="top:calc(var(--mast-h) + 0.5rem);">Back</button>
-
 <main class="flex flex-col" style="height:calc(100vh - var(--mast-h));">
-  <div class="hidden md:flex items-center justify-end p-2 gap-2">
+  <div class="flex items-center justify-end p-2 gap-2">
       <select id="langSelect" class="border rounded px-2 py-1 text-sm">
         <option value="c">C</option>
         <option value="c++">C++</option>
       </select>
-      <button id="runBtnDesk" class="px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
+      <button id="runBtn" class="px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
   </div>
-  <div id="workArea" class="flex-1 p-2 md:p-4 pt-8 md:pt-0">
+  <div id="workArea" class="flex-1 p-2 md:p-4">
     <textarea id="editor" class="w-full h-full p-2 border rounded font-mono text-sm" placeholder="Write code here..."></textarea>
   </div>
 </main>
@@ -97,10 +94,9 @@
   <div class="bg-white w-full md:w-3/4 h-full md:h-3/4 rounded flex flex-col">
     <div class="flex items-center justify-between p-2 border-b">
       <span class="font-medium">Console</span>
-      <button id="closeConsole" class="hidden md:block text-sm px-2">✖</button>
+      <button id="closeConsole" class="text-sm px-2">✖</button>
     </div>
-    <textarea id="consoleInput" class="w-full h-24 p-2 border-b font-mono text-sm" placeholder="Input (stdin)..."></textarea>
-    <textarea id="consoleOutput" class="flex-1 w-full p-2 font-mono text-sm bg-black text-green-200 overflow-auto" readonly></textarea>
+    <textarea id="consoleArea" class="flex-1 w-full p-2 font-mono text-sm bg-black text-green-200 overflow-auto"></textarea>
     <div class="p-2 border-t flex justify-end">
       <button id="consoleRunBtn" class="px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
     </div>
@@ -110,32 +106,19 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const editor = document.getElementById('editor');
-  const runBtnDesk = document.getElementById('runBtnDesk');
-  const runBtnMobile = document.getElementById('runBtnMobile');
-  const backBtn = document.getElementById('backBtn');
+  const runBtn = document.getElementById('runBtn');
   const consoleModal = document.getElementById('consoleModal');
-  const consoleInput = document.getElementById('consoleInput');
-  const consoleOutput = document.getElementById('consoleOutput');
+  const consoleArea = document.getElementById('consoleArea');
   const consoleRunBtn = document.getElementById('consoleRunBtn');
   const closeConsole = document.getElementById('closeConsole');
   const langSelect = document.getElementById('langSelect');
 
   function showConsole(){
     consoleModal.classList.remove('hidden');
-    if(!window.matchMedia('(min-width:768px)').matches){
-      editor.classList.add('hidden');
-      runBtnMobile.classList.add('hidden');
-      backBtn.classList.remove('hidden');
-    }
   }
 
   function hideConsole(){
     consoleModal.classList.add('hidden');
-    if(!window.matchMedia('(min-width:768px)').matches){
-      editor.classList.remove('hidden');
-      runBtnMobile.classList.remove('hidden');
-      backBtn.classList.add('hidden');
-    }
   }
 
   async function runCode(){
@@ -143,8 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const language = langSelect.value;
     const filename = language === 'c' ? 'main.c' : 'main.cpp';
     const code = editor.value;
-    const stdin = consoleInput.value;
-    consoleOutput.value = 'Running...\n';
+    const stdin = consoleArea.value;
+    consoleArea.value = 'Running...\n';
     try {
       const res = await fetch('https://emkc.org/api/v2/piston/execute', {
         method: 'POST',
@@ -154,16 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       const compileOut = data.compile ? (data.compile.stdout || '') + (data.compile.stderr || '') : '';
       const runOut = data.run ? (data.run.stdout || '') + (data.run.stderr || '') : '';
-      consoleOutput.value = compileOut + runOut;
+      consoleArea.value = compileOut + runOut;
     } catch(err){
-      consoleOutput.value = 'Error: ' + err;
+      consoleArea.value = 'Error: ' + err;
     }
   }
 
-  runBtnDesk?.addEventListener('click', runCode);
-  runBtnMobile?.addEventListener('click', runCode);
+  runBtn?.addEventListener('click', runCode);
   consoleRunBtn?.addEventListener('click', runCode);
-  backBtn?.addEventListener('click', hideConsole);
   closeConsole?.addEventListener('click', hideConsole);
   ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt=>{
     editor.addEventListener(evt,e=>e.stopPropagation());
