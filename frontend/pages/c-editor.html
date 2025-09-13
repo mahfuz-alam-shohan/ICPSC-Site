@@ -17,6 +17,7 @@
     .CodeMirror { height: 100%; }
     .error-marker { color: #f00; }
     .CodeMirror-gutter.error-gutter { width: 16px; }
+    .error-line { background-color: rgba(255,0,0,0.15); }
     .progress-bar { animation: progress 1.5s ease-in-out infinite; transform-origin: left; }
     @keyframes progress {
       0% { transform: scaleX(0); }
@@ -138,7 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const cm = CodeMirror.fromTextArea(editorText, {
     lineNumbers: true,
     mode: 'text/x-csrc',
+    lineWrapping: true,
     gutters: ['CodeMirror-linenumbers','error-gutter']
+  });
+
+  cm.on('cursorActivity', () => {
+    const coords = cm.cursorCoords(null, 'local');
+    const scroller = cm.getScrollerElement();
+    scroller.scrollTop = coords.top - scroller.clientHeight / 2;
   });
 
   function setMode(){
@@ -156,7 +164,12 @@ document.addEventListener('DOMContentLoaded', () => {
     consoleModal.classList.add('hidden');
   }
 
-  function clearErrors(){ cm.clearGutter('error-gutter'); }
+  function clearErrors(){
+    cm.clearGutter('error-gutter');
+    cm.eachLine(line => {
+      cm.removeLineClass(line, 'background', 'error-line');
+    });
+  }
 
   function showProgress(){ progressOverlay.classList.remove('hidden'); }
   function hideProgress(){ progressOverlay.classList.add('hidden'); }
@@ -185,11 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const regex = /main\.(?:c|cpp):(\d+):/g;
         let match;
         while((match = regex.exec(data.compile.stderr)) !== null){
-          const line = parseInt(match[1],10);
+          const line = parseInt(match[1],10) - 1;
           const marker = document.createElement('div');
           marker.className = 'error-marker';
           marker.textContent = '●';
-          cm.setGutterMarker(line-1,'error-gutter',marker);
+          cm.setGutterMarker(line,'error-gutter',marker);
+          cm.addLineClass(line,'background','error-line');
         }
         hideProgress();
         showConsole();
