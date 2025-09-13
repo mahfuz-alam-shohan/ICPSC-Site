@@ -304,7 +304,7 @@ function initCommon(){
       if(e.isIntersecting){
         const el=e.target,end=parseInt(el.dataset.count,10);
         let start=null;
-        const duration=2500;
+        const duration=1500;
         const step=t=>{
           if(start===null) start=t;
           const progress=Math.min((t-start)/duration,1);
