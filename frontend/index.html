@@ -10,7 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script type="module" src="components/vendor/model-viewer.min.js"></script>
   <link rel="stylesheet" href="components/common.css"/>
   </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
@@ -87,7 +87,7 @@
 
   <div id="imgModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[200] p-4">
     <div class="img-box">
-      <img id="imgModalImg" src="" alt="Expanded view" />
+      <img id="imgModalImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Expanded view" />
       <a id="imgSave" class="save" href="#" download>Save</a>
       <button id="imgClose" class="close" aria-label="Close">×</button>
     </div>
