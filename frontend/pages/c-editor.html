@@ -18,11 +18,13 @@
     .error-marker { color: #f00; }
     .CodeMirror-gutter.error-gutter { width: 16px; }
     .error-line { background-color: rgba(255,0,0,0.15); }
-    .progress-bar { animation: progress 1.5s ease-in-out infinite; transform-origin: left; }
+    .progress-bar {
+      width: 40%;
+      animation: progress 1.5s linear infinite;
+    }
     @keyframes progress {
-      0% { transform: scaleX(0); }
-      50% { transform: scaleX(1); }
-      100% { transform: scaleX(0); }
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
   </style>
 </head>
@@ -180,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const code = cm.getValue();
     const stdin = stdinField.value;
     clearErrors();
+    consoleArea.value = '';
     showProgress();
     try {
       const res = await fetch('https://emkc.org/api/v2/piston/execute', {
@@ -194,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const data = await res.json();
       if(data.compile && data.compile.stderr){
-        consoleArea.value = data.compile.stderr;
         const regex = /main\.(?:c|cpp):(\d+):/g;
         let match;
         while((match = regex.exec(data.compile.stderr)) !== null){
@@ -205,22 +207,19 @@ document.addEventListener('DOMContentLoaded', () => {
           cm.setGutterMarker(line,'error-gutter',marker);
           cm.addLineClass(line,'background','error-line');
         }
-        hideProgress();
-        showConsole();
         return;
       }
       let output = '';
-      if(data.run){
-        if(data.run.stdout){ output += data.run.stdout; }
-        if(data.run.stderr){ output += data.run.stderr; }
-        if(data.run.code !== undefined){ output += `\nProcess exited with code ${data.run.code}`; }
+      if(data.run && data.run.stdout){
+        output = data.run.stdout;
       }
       consoleArea.value = output;
+      showConsole();
     } catch(err){
-      consoleArea.value = 'Error: ' + err.message;
+      // ignore errors and do not show console
+    } finally {
+      hideProgress();
     }
-    hideProgress();
-    showConsole();
   }
 
   runBtn?.addEventListener('click', runCode);
