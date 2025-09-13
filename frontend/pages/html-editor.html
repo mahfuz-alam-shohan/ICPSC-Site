@@ -5,166 +5,95 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HTML Editor - Ispahani Public School & College</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
-  <link rel="stylesheet" href="../components/common.css"/>
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
-  <div id="decor"></div>
-<div id="masthead">
-  <div class="topbar"><div class="wrap"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div></div>
-  <header class="header">
-  <div class="wrap">
-    <a href="../index.html" class="brand">
-      <img id="logoImg" loading="eager" src="../assets/ipsc-logo.png" alt="Logo">
-      <div class="btext"><strong>Ispahani Public School & College</strong><span>Comilla Cantonment</span></div>
-    </a>
-    <div class="controls">
-      <nav class="nav" aria-label="Primary">
-        <a class="nav-btn" href="../index.html"><i class="fa-solid fa-house"></i>Home</a>
-        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-graduation-cap"></i>Academics</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="../index.html#houses">Houses</a><a href="../index.html#classes">Classes</a></div><div class="col"><h4>Resources</h4><a href="../index.html#resources">Syllabus (PDF)</a><a href="../index.html#resources">Question Bank</a><a href="../index.html#resources">e-Library</a></div></div></div>
-        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-school"></i>Campus</button><div class="panel two"><div class="col"><h4>Facilities</h4><a href="../index.html#facilities">Labs & Library</a><a href="../index.html#facilities">Playgrounds</a></div><div class="col"><h4>Activities</h4><a href="clubs.html">Clubs & Societies</a><a href="../index.html#gallery">Gallery</a></div></div></div>
-        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-screwdriver-wrench"></i>Facilities</button><div class="panel"><div class="col"><a href="facilities.html">Overview</a><a href="transport.html">Transport</a><a href="staff-quarter.html">Staff Quarter</a></div></div></div>
-        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-users-gear"></i>Administration</button><div class="panel"><div class="col"><a href="governing.html">Governing Body</a><a href="teachers.html">Teachers</a><a href="staffs.html">Staffs</a></div></div></div>
-        <a class="nav-btn" href="https://vortibd.com/institute/39/96" target="_blank" rel="noopener"><i class="fa-solid fa-file-pen"></i>Apply</a>
-        <a class="nav-btn login" href="https://portal.cloudcampus24.com/UserAuth/Login?ReturnUrl=%2F" target="_blank" rel="noopener"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
-      </nav>
-      <a href="../index.html" class="nav-btn icon mobile-home" aria-label="Home"><i class="fa-solid fa-house"></i></a>
-      <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
-    </div>
-  </div>
-  <div id="mobileNav" class="mob hidden">
-    <a class="mlink" href="../index.html"><i class="fa-solid fa-house"></i>Home</a>
-    <div class="mitem">
-      <button class="mhead"><i class="fa-solid fa-graduation-cap"></i><span>Academics</span></button>
-      <div class="msub">
-        <a class="mlink" href="../index.html#houses">Houses</a>
-        <a class="mlink" href="../index.html#classes">Classes</a>
-        <a class="mlink" href="../index.html#resources">Syllabus (PDF)</a>
-        <a class="mlink" href="../index.html#resources">Question Bank</a>
-        <a class="mlink" href="../index.html#resources">e-Library</a>
-      </div>
-    </div>
-    <div class="mitem">
-      <button class="mhead"><i class="fa-solid fa-school"></i><span>Campus</span></button>
-      <div class="msub">
-        <a class="mlink" href="../index.html#facilities">Labs &amp; Library</a>
-        <a class="mlink" href="../index.html#facilities">Playgrounds</a>
-        <a class="mlink" href="clubs.html">Clubs &amp; Societies</a>
-        <a class="mlink" href="../index.html#gallery">Gallery</a>
-      </div>
-    </div>
-    <div class="mitem">
-      <button class="mhead"><i class="fa-solid fa-screwdriver-wrench"></i><span>Facilities</span></button>
-      <div class="msub">
-        <a class="mlink" href="facilities.html">Overview</a>
-        <a class="mlink" href="transport.html">Transport</a>
-        <a class="mlink" href="staff-quarter.html">Staff Quarter</a>
-      </div>
-    </div>
-    <div class="mitem">
-      <button class="mhead"><i class="fa-solid fa-users-gear"></i><span>Administration</span></button>
-      <div class="msub">
-        <a class="mlink" href="governing.html">Governing Body</a>
-        <a class="mlink" href="teachers.html">Teachers</a>
-        <a class="mlink" href="staffs.html">Staffs</a>
-      </div>
-    </div>
-    <a class="mlink" href="https://vortibd.com/institute/39/96" target="_blank" rel="noopener"><i class="fa-solid fa-file-pen"></i>Apply</a>
-    <a class="mlink login" href="https://portal.cloudcampus24.com/UserAuth/Login?ReturnUrl=%2F" target="_blank" rel="noopener"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
-  </div>
-  </header>
-  <div class="ticker" role="region" aria-label="Latest notices"><div class="wrap"><div id="tickerTrack" class="ticker-track"><a href="../index.html#" class="tick">একাদশ শ্রেণিতে ভর্তি (২০২৫–২৬) — Apply now</a><a href="../index.html#" class="tick">HSC Model Test Routine — Download PDF</a><a href="../index.html#" class="tick">Science Fair — Registration open (Robotics, IoT, AI)</a><a href="../index.html#" class="tick">Holiday Notice — Campus closed on Friday</a></div></div></div>
-</div>  </div>
-</div>
-<div id="msgModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-[100] p-4">
-  <div class="msg-box text-[#0f172a] p-6 rounded-xl shadow relative w-full max-w-lg h-96 overflow-y-auto">
-    <button id="msgClose" class="absolute top-2 right-2 text-2xl leading-none" aria-label="Close">×</button>
-    <h3 id="msgTitle" class="font-bold text-center mb-4"></h3>
-    <div id="msgText" class="whitespace-pre-line"></div>
-  </div>
-</div>
 
-<section class="section">
-  <div class="wrap">
-    <div class="text-center mb-8">
-      <h1 class="grad text-4xl font-extrabold leading-tight">HTML Editor</h1>
-      <p class="mt-2 text-lg text-gray-700">Create and experiment with HTML.</p>
-    </div>
-    <div class="mb-4 flex items-center justify-between">
-      <label class="flex items-center gap-2">
-        <input id="liveToggle" type="checkbox" class="sr-only peer">
-        <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-green-500 relative transition-colors">
-          <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
-        </div>
-        <span>Live update</span>
-      </label>
-      <button id="runBtn" class="md:hidden px-4 py-2 rounded bg-blue-600 text-white">Run</button>
-    </div>
-    <div class="flex flex-col md:flex-row gap-4">
-      <textarea id="editor" class="w-full md:w-1/2 h-64 md:h-[70vh] p-3 border rounded font-mono" placeholder="Write HTML here..."></textarea>
-      <iframe id="preview" class="w-full md:w-1/2 h-64 md:h-[70vh] border rounded bg-white"></iframe>
-    </div>
-  </div>
-</section>
+  <button id="runBtnMobile" class="md:hidden fixed top-2 right-2 z-10 px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
+  <button id="backBtn" class="hidden md:hidden fixed top-2 left-2 z-10 px-3 py-1 text-sm rounded bg-gray-600 text-white">Back</button>
 
-<footer class="footer">
-  <div class="wrap">
-    <div class="grid gap-6 md:grid-cols-2 text-center md:text-left">
-      <div class="contact">
-        <h4 class="font-bold mb-2">Contact</h4>
-        <p>Cumilla Cantonment 3501, Cumilla</p>
-        <p>Phone: 03239933170</p>
-        <p>Mobile: 01733063001</p>
-        <p>Email: ipscm1@gmail.com</p>
-      </div>
-      <div class="links">
-        <h4 class="font-bold mb-2">গুরুত্বপূর্ণ লিঙ্ক</h4>
-        <ul class="space-y-1">
-          <li><a class="link" href="https://comillaboard.portal.gov.bd/" target="_blank" rel="noopener">Comilla Education Board</a></li>
-          <li><a class="link" href="https://shed.gov.bd/" target="_blank" rel="noopener">মাধ্যমিক ও উচ্চ শিক্ষা বিভাগ</a></li>
-          <li><a class="link" href="https://bangladesh.gov.bd/index.php" target="_blank" rel="noopener">বাংলদেশ জাতীয় শিক্ষা বাতায়ন</a></li>
-          <li><a class="link" href="https://portal.cloudcampus24.com/UserAuth/Login?ReturnUrl=%2F" target="_blank" rel="noopener">CloudCampus Portal</a></li>
-          <li><a class="link" href="https://vortibd.com/institute/39/96" target="_blank" rel="noopener">VortiBD Apply</a></li>
-        </ul>
+  <main class="h-screen flex flex-col">
+    <div class="hidden md:flex items-center justify-between p-2">
+      <h1 class="text-lg font-semibold">HTML Editor</h1>
+      <div class="flex items-center gap-4">
+        <label class="flex items-center gap-2">
+          <input id="liveToggle" type="checkbox" class="sr-only peer">
+          <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-green-500 relative transition-colors">
+            <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform transform translate-x-0 peer-checked:translate-x-5"></div>
+          </div>
+          <span>Live update</span>
+        </label>
+        <button id="runBtnDesk" class="hidden px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
       </div>
     </div>
-    <div class="copyright">© <span data-year></span> IPSC</div>
-  </div>
-</footer>
-<script src="../components/common.js" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const editor = document.getElementById('editor');
-  const preview = document.getElementById('preview');
-  const runBtn = document.getElementById('runBtn');
-  const liveToggle = document.getElementById('liveToggle');
+    <div id="workArea" class="flex-1 flex flex-col md:flex-row gap-2 p-2 md:p-4 pt-8 md:pt-0">
+      <textarea id="editor" class="flex-1 md:w-1/2 h-full p-2 border rounded font-mono text-sm" placeholder="Write HTML here..."></textarea>
+      <iframe id="preview" class="hidden md:block md:w-1/2 h-full border rounded bg-white"></iframe>
+    </div>
+  </main>
 
-  const update = () => { preview.srcdoc = editor.value; };
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('preview');
+    const runBtnMobile = document.getElementById('runBtnMobile');
+    const runBtnDesk = document.getElementById('runBtnDesk');
+    const backBtn = document.getElementById('backBtn');
+    const liveToggle = document.getElementById('liveToggle');
 
-  function setupLive(){
-    if(liveToggle.checked){
-      editor.addEventListener('input', update);
-      update();
-    } else {
-      editor.removeEventListener('input', update);
+    const update = () => { preview.srcdoc = editor.value; };
+
+    function setupLive(){
+      if(liveToggle && liveToggle.checked){
+        editor.addEventListener('input', update);
+        update();
+      }else{
+        editor.removeEventListener('input', update);
+      }
+      if(runBtnDesk){
+        if(liveToggle && liveToggle.checked){
+          runBtnDesk.classList.add('hidden');
+        }else{
+          runBtnDesk.classList.remove('hidden');
+        }
+      }
     }
-  }
 
-  runBtn.addEventListener('click', update);
-  liveToggle.addEventListener('change', setupLive);
+    runBtnDesk?.addEventListener('click', update);
 
-  ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt=>{
-    editor.addEventListener(evt, e=>e.stopPropagation());
+    runBtnMobile?.addEventListener('click', () => {
+      update();
+      editor.classList.add('hidden');
+      preview.classList.remove('hidden');
+      backBtn.classList.remove('hidden');
+      runBtnMobile.classList.add('hidden');
+    });
+
+    backBtn?.addEventListener('click', () => {
+      preview.classList.add('hidden');
+      editor.classList.remove('hidden');
+      backBtn.classList.add('hidden');
+      runBtnMobile.classList.remove('hidden');
+    });
+
+    liveToggle?.addEventListener('change', setupLive);
+
+    ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt => {
+      editor.addEventListener(evt, e => e.stopPropagation());
+    });
+
+    if(window.matchMedia('(min-width: 768px)').matches){
+      if(liveToggle){
+        liveToggle.checked = true;
+        setupLive();
+      }
+    } else {
+      if(liveToggle){
+        liveToggle.checked = false;
+      }
+    }
   });
-
-  if(window.matchMedia('(min-width: 768px)').matches){
-    liveToggle.checked = true;
-    setupLive();
-  }
-});
-</script>
+  </script>
 </body>
 </html>
+
