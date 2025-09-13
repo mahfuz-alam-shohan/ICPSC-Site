@@ -10,6 +10,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
   <link rel="stylesheet" href="../components/common.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/htmlhint/0.16.4/htmlhint.min.js"></script>
+  <style>
+    .CodeMirror { height: 100%; }
+    .error-marker { color: #f00; }
+    .CodeMirror-gutter.error-gutter { width: 16px; }
+    .error-line { background-color: rgba(255,0,0,0.15); }
+  </style>
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
 
@@ -99,21 +109,56 @@
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const editor = document.getElementById('editor');
+    const editorText = document.getElementById('editor');
     const preview = document.getElementById('preview');
     const runBtnMobile = document.getElementById('runBtnMobile');
     const runBtnDesk = document.getElementById('runBtnDesk');
     const backBtn = document.getElementById('backBtn');
     const liveToggle = document.getElementById('liveToggle');
 
-    const update = () => { preview.srcdoc = editor.value; };
+    const cm = CodeMirror.fromTextArea(editorText, {
+      lineNumbers: true,
+      mode: 'htmlmixed',
+      lineWrapping: true,
+      gutters: ['CodeMirror-linenumbers','error-gutter']
+    });
+    const editorWrap = cm.getWrapperElement();
+
+    cm.on('cursorActivity', () => {
+      const coords = cm.cursorCoords(null, 'local');
+      const scroller = cm.getScrollerElement();
+      scroller.scrollTop = coords.top - scroller.clientHeight / 2;
+    });
+
+    function clearErrors(){
+      cm.clearGutter('error-gutter');
+      cm.eachLine(line => cm.removeLineClass(line, 'background', 'error-line'));
+    }
+
+    function showErrors(){
+      clearErrors();
+      const errs = HTMLHint.verify(cm.getValue());
+      errs.forEach(e => {
+        const line = e.line - 1;
+        const marker = document.createElement('div');
+        marker.className = 'error-marker';
+        marker.textContent = '●';
+        cm.setGutterMarker(line,'error-gutter',marker);
+        cm.addLineClass(line,'background','error-line');
+      });
+    }
+
+    const update = () => {
+      showErrors();
+      preview.srcdoc = cm.getValue();
+    };
 
     function setupLive(){
       if(liveToggle && liveToggle.checked){
-        editor.addEventListener('input', update);
+        cm.on('change', update);
         update();
       }else{
-        editor.removeEventListener('input', update);
+        cm.off('change', update);
       }
       if(runBtnDesk){
         if(liveToggle && liveToggle.checked){
@@ -128,7 +173,7 @@
 
     runBtnMobile?.addEventListener('click', () => {
       update();
-      editor.classList.add('hidden');
+      editorWrap.classList.add('hidden');
       preview.classList.remove('hidden');
       backBtn.classList.remove('hidden');
       runBtnMobile.classList.add('hidden');
@@ -136,15 +181,16 @@
 
     backBtn?.addEventListener('click', () => {
       preview.classList.add('hidden');
-      editor.classList.remove('hidden');
+      editorWrap.classList.remove('hidden');
       backBtn.classList.add('hidden');
       runBtnMobile.classList.remove('hidden');
+      cm.refresh();
     });
 
     liveToggle?.addEventListener('change', setupLive);
 
     ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt => {
-      editor.addEventListener(evt, e => e.stopPropagation());
+      editorWrap.addEventListener(evt, e => e.stopPropagation());
     });
 
     if(window.matchMedia('(min-width: 768px)').matches){
