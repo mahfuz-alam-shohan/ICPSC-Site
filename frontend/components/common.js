@@ -398,8 +398,12 @@ function initCommon(){
   });
   gsap.from('#masthead',{y:-60,opacity:0,duration:.6});
   const revealItems=document.querySelectorAll('.section,.card');
-  const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
-  revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
+  if('IntersectionObserver' in window){
+    const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
+    revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
+  }else{
+    revealItems.forEach(el=>{gsap.set(el,{opacity:1,y:0});});
+  }
 
   const gr=document.getElementById('galleryRow');
   if(gr){
