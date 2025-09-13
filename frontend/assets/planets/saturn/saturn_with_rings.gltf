@@ -353,15 +353,30 @@
     },
     {
       "name": "RingC",
-      "mesh": 1
+      "mesh": 1,
+      "translation": [
+        0,
+        0,
+        0.002
+      ]
     },
     {
       "name": "RingB",
-      "mesh": 2
+      "mesh": 2,
+      "translation": [
+        0,
+        0,
+        0.001
+      ]
     },
     {
       "name": "RingA",
-      "mesh": 3
+      "mesh": 3,
+      "translation": [
+        0,
+        0,
+        -0.001
+      ]
     }
   ],
   "buffers": [
