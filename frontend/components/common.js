@@ -17,6 +17,21 @@ function initCommon(){
     window.addEventListener('load',updateMast);
   }
   const mobileNav=document.getElementById('mobileNav');
+  const mainNav=document.querySelector('nav.nav');
+  if(mainNav){
+    const funMega=document.createElement('div');
+    funMega.className='mega';
+    funMega.innerHTML=`<button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-earth-americas"></i>Fun Zone</button><div class="panel"><div class="col"><a href="${root}index.html#overview">Overview</a><a href="${root}pages/solar-system.html">Solar System</a></div></div>`;
+    const applyLink=mainNav.querySelector('a.nav-btn[href^="https://vortibd.com"]');
+    mainNav.insertBefore(funMega, applyLink);
+  }
+  if(mobileNav){
+    const funItem=document.createElement('div');
+    funItem.className='mitem';
+    funItem.innerHTML=`<button class="mhead"><i class="fa-solid fa-earth-americas"></i><span>Fun Zone</span></button><div class="msub"><a class="mlink" href="${root}index.html#overview">Overview</a><a class="mlink" href="${root}pages/solar-system.html">Solar System</a></div>`;
+    const applyMobile=mobileNav.querySelector('a.mlink[href^="https://vortibd.com"]');
+    mobileNav.insertBefore(funItem, applyMobile);
+  }
   const handleResize=()=>{
     if(window.innerWidth>=768 && mobileNav && !mobileNav.classList.contains('hidden')) mobileNav.classList.add('hidden');
     updateMast();
