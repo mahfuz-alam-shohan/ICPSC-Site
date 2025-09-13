@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1" />
   <title>C/C++ Editor - Ispahani Public School & College</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -93,15 +93,15 @@
 
 <main class="flex flex-col" style="height:calc(100vh - var(--mast-h));">
   <div class="flex items-center justify-end p-2 gap-2">
-      <input id="stdinField" class="border rounded px-2 py-1 text-sm" placeholder="Input (optional)" />
-      <select id="langSelect" class="border rounded px-2 py-1 text-sm">
+      <input id="stdinField" class="border rounded px-2 py-1 text-base" placeholder="Input (optional)" />
+      <select id="langSelect" class="border rounded px-2 py-1 text-base">
         <option value="c">C</option>
         <option value="c++">C++</option>
       </select>
       <button id="runBtn" class="px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
   </div>
   <div id="workArea" class="flex-1 p-2 md:p-4">
-    <textarea id="editor" class="w-full h-full p-2 border rounded font-mono text-sm" placeholder="Write code here..."></textarea>
+    <textarea id="editor" class="w-full h-full p-2 border rounded font-mono text-base" placeholder="Write code here..."></textarea>
   </div>
 </main>
 
@@ -111,7 +111,7 @@
       <span class="font-medium">Console</span>
       <button id="closeConsole" class="text-sm px-2">✖</button>
     </div>
-    <textarea id="consoleArea" class="flex-1 w-full p-2 font-mono text-sm bg-black text-green-200 overflow-auto" readonly></textarea>
+    <textarea id="consoleArea" class="flex-1 w-full p-2 font-mono text-base bg-black text-green-200 overflow-auto" readonly></textarea>
   </div>
 </div>
 
