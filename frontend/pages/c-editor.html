@@ -10,6 +10,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
   <link rel="stylesheet" href="../components/common.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+  <style>
+    .CodeMirror { height: 100%; }
+    .error-marker { color: #f00; }
+    .CodeMirror-gutter.error-gutter { width: 16px; }
+  </style>
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
 
@@ -96,43 +104,54 @@
       <span class="font-medium">Console</span>
       <button id="closeConsole" class="text-sm px-2">✖</button>
     </div>
-    <textarea id="consoleArea" class="flex-1 w-full p-2 font-mono text-sm bg-black text-green-200 overflow-auto"></textarea>
-    <div class="p-2 border-t flex justify-end">
-      <button id="consoleRunBtn" class="px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
+    <textarea id="consoleArea" class="flex-1 w-full p-2 font-mono text-sm bg-black text-green-200 overflow-auto" readonly></textarea>
+    <div class="p-2 border-t">
+      <input id="stdinField" class="w-full p-2 font-mono text-sm border rounded" placeholder="Enter input and press Enter" />
     </div>
   </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const editor = document.getElementById('editor');
+  const editorText = document.getElementById('editor');
   const runBtn = document.getElementById('runBtn');
   const consoleModal = document.getElementById('consoleModal');
   const consoleArea = document.getElementById('consoleArea');
-  const consoleRunBtn = document.getElementById('consoleRunBtn');
+  const stdinField = document.getElementById('stdinField');
   const closeConsole = document.getElementById('closeConsole');
   const langSelect = document.getElementById('langSelect');
 
+  const cm = CodeMirror.fromTextArea(editorText, {
+    lineNumbers: true,
+    mode: 'text/x-csrc',
+    gutters: ['CodeMirror-linenumbers','error-gutter']
+  });
+
+  function setMode(){
+    const lang = langSelect.value;
+    cm.setOption('mode', lang === 'c' ? 'text/x-csrc' : 'text/x-c++src');
+  }
+  setMode();
+  langSelect.addEventListener('change', setMode);
+
   function showConsole(){
     consoleModal.classList.remove('hidden');
-    consoleArea.focus();
+    stdinField.focus();
   }
 
   function hideConsole(){
     consoleModal.classList.add('hidden');
   }
 
-  function openConsole(){
-    consoleArea.value='';
-    showConsole();
-  }
+  function clearErrors(){ cm.clearGutter('error-gutter'); }
 
   async function runCode(){
     const language = langSelect.value;
     const filename = language === 'c' ? 'main.c' : 'main.cpp';
-    const code = editor.value;
-    const stdin = consoleArea.value;
+    const code = cm.getValue();
+    const stdin = stdinField.value;
     consoleArea.value = 'Running...\n';
+    clearErrors();
     try {
       const res = await fetch('https://emkc.org/api/v2/piston/execute', {
         method: 'POST',
@@ -143,16 +162,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const compileOut = data.compile ? (data.compile.stdout || '') + (data.compile.stderr || '') : '';
       const runOut = data.run ? (data.run.stdout || '') + (data.run.stderr || '') : '';
       consoleArea.value = compileOut + runOut;
+      const errText = compileOut + runOut;
+      const regex = /main\.(?:c|cpp):(\d+):/g;
+      let match;
+      while((match = regex.exec(errText)) !== null){
+        const line = parseInt(match[1],10);
+        const marker = document.createElement('div');
+        marker.className = 'error-marker';
+        marker.textContent = '●';
+        cm.setGutterMarker(line-1,'error-gutter',marker);
+      }
     } catch(err){
       consoleArea.value = 'Error: ' + err;
     }
   }
 
-  runBtn?.addEventListener('click', openConsole);
-  consoleRunBtn?.addEventListener('click', runCode);
+  runBtn?.addEventListener('click', () => {
+    consoleArea.value='';
+    stdinField.value='';
+    showConsole();
+  });
+  stdinField?.addEventListener('keydown', e => {
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      runCode();
+    }
+  });
   closeConsole?.addEventListener('click', hideConsole);
   ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt=>{
-    editor.addEventListener(evt,e=>e.stopPropagation());
+    cm.getWrapperElement().addEventListener(evt,e=>e.stopPropagation());
   });
 });
 </script>
