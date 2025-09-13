@@ -6,22 +6,87 @@
   <title>C/C++ Editor - Ispahani Public School & College</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
+  <link rel="stylesheet" href="../components/common.css"/>
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
 
-<button id="runBtnMobile" class="md:hidden fixed top-2 right-2 z-10 px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
-<button id="backBtn" class="hidden md:hidden fixed top-2 left-2 z-10 px-3 py-1 text-sm rounded bg-gray-600 text-white">Back</button>
+<div id="masthead">
+  <header class="header">
+  <div class="wrap">
+    <a href="../index.html" class="brand">
+      <img id="logoImg" loading="eager" src="../assets/ipsc-logo.png" alt="Logo">
+      <div class="btext"><strong>Ispahani Public School & College</strong><span>Comilla Cantonment</span></div>
+    </a>
+    <div class="controls">
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-btn" href="../index.html"><i class="fa-solid fa-house"></i>Home</a>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-graduation-cap"></i>Academics</button><div class="panel two"><div class="col"><h4>Programs</h4><a href="../index.html#houses">Houses</a><a href="../index.html#classes">Classes</a></div><div class="col"><h4>Resources</h4><a href="../index.html#resources">Syllabus (PDF)</a><a href="../index.html#resources">Question Bank</a><a href="../index.html#resources">e-Library</a></div></div></div>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-school"></i>Campus</button><div class="panel two"><div class="col"><h4>Facilities</h4><a href="../index.html#facilities">Labs & Library</a><a href="../index.html#facilities">Playgrounds</a></div><div class="col"><h4>Activities</h4><a href="clubs.html">Clubs & Societies</a><a href="../index.html#gallery">Gallery</a></div></div></div>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-screwdriver-wrench"></i>Facilities</button><div class="panel"><div class="col"><a href="facilities.html">Overview</a><a href="transport.html">Transport</a><a href="staff-quarter.html">Staff Quarter</a></div></div></div>
+        <div class="mega"><button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-users-gear"></i>Administration</button><div class="panel"><div class="col"><a href="governing.html">Governing Body</a><a href="teachers.html">Teachers</a><a href="staffs.html">Staffs</a></div></div></div>
+        <a class="nav-btn" href="https://vortibd.com/institute/39/96" target="_blank" rel="noopener"><i class="fa-solid fa-file-pen"></i>Apply</a>
+        <a class="nav-btn login" href="https://portal.cloudcampus24.com/UserAuth/Login?ReturnUrl=%2F" target="_blank" rel="noopener"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
+      </nav>
+      <a href="../index.html" class="nav-btn icon mobile-home" aria-label="Home"><i class="fa-solid fa-house"></i></a>
+      <button id="mobileToggle" class="hamb" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+  <div id="mobileNav" class="mob hidden">
+    <a class="mlink" href="../index.html"><i class="fa-solid fa-house"></i>Home</a>
+    <div class="mitem">
+      <button class="mhead"><i class="fa-solid fa-graduation-cap"></i><span>Academics</span></button>
+      <div class="msub">
+        <a class="mlink" href="../index.html#houses">Houses</a>
+        <a class="mlink" href="../index.html#classes">Classes</a>
+        <a class="mlink" href="../index.html#resources">Syllabus (PDF)</a>
+        <a class="mlink" href="../index.html#resources">Question Bank</a>
+        <a class="mlink" href="../index.html#resources">e-Library</a>
+      </div>
+    </div>
+    <div class="mitem">
+      <button class="mhead"><i class="fa-solid fa-school"></i><span>Campus</span></button>
+      <div class="msub">
+        <a class="mlink" href="../index.html#facilities">Labs &amp; Library</a>
+        <a class="mlink" href="../index.html#facilities">Playgrounds</a>
+        <a class="mlink" href="clubs.html">Clubs &amp; Societies</a>
+        <a class="mlink" href="../index.html#gallery">Gallery</a>
+      </div>
+    </div>
+    <div class="mitem">
+      <button class="mhead"><i class="fa-solid fa-screwdriver-wrench"></i><span>Facilities</span></button>
+      <div class="msub">
+        <a class="mlink" href="facilities.html">Overview</a>
+        <a class="mlink" href="transport.html">Transport</a>
+        <a class="mlink" href="staff-quarter.html">Staff Quarter</a>
+      </div>
+    </div>
+    <div class="mitem">
+      <button class="mhead"><i class="fa-solid fa-users-gear"></i><span>Administration</span></button>
+      <div class="msub">
+        <a class="mlink" href="governing.html">Governing Body</a>
+        <a class="mlink" href="teachers.html">Teachers</a>
+        <a class="mlink" href="staffs.html">Staffs</a>
+      </div>
+    </div>
+    <a class="mlink" href="https://vortibd.com/institute/39/96" target="_blank" rel="noopener"><i class="fa-solid fa-file-pen"></i>Apply</a>
+    <a class="mlink login" href="https://portal.cloudcampus24.com/UserAuth/Login?ReturnUrl=%2F" target="_blank" rel="noopener"><i class="fa-solid fa-right-to-bracket"></i>Login</a>
+  </div>
+  </header>
+</div>
 
-<main class="h-screen flex flex-col">
-  <div class="hidden md:flex items-center justify-between p-2">
-    <h1 class="text-lg font-semibold">C/C++ Editor</h1>
-    <div class="flex items-center gap-2">
+<button id="runBtnMobile" class="md:hidden fixed right-2 z-10 px-3 py-1 text-sm rounded bg-blue-600 text-white" style="top:calc(var(--mast-h) + 0.5rem);">Run</button>
+<button id="backBtn" class="hidden md:hidden fixed left-2 z-10 px-3 py-1 text-sm rounded bg-gray-600 text-white" style="top:calc(var(--mast-h) + 0.5rem);">Back</button>
+
+<main class="flex flex-col" style="height:calc(100vh - var(--mast-h));">
+  <div class="hidden md:flex items-center justify-end p-2 gap-2">
       <select id="langSelect" class="border rounded px-2 py-1 text-sm">
         <option value="c">C</option>
         <option value="c++">C++</option>
       </select>
       <button id="runBtnDesk" class="px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
-    </div>
   </div>
   <div id="workArea" class="flex-1 p-2 md:p-4 pt-8 md:pt-0">
     <textarea id="editor" class="w-full h-full p-2 border rounded font-mono text-sm" placeholder="Write code here..."></textarea>
@@ -100,7 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
   consoleRunBtn?.addEventListener('click', runCode);
   backBtn?.addEventListener('click', hideConsole);
   closeConsole?.addEventListener('click', hideConsole);
+  ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt=>{
+    editor.addEventListener(evt,e=>e.stopPropagation());
+  });
 });
 </script>
+<script src="../components/common.js" defer></script>
 </body>
 </html>
