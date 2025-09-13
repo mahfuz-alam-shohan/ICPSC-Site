@@ -90,7 +90,7 @@
   </div>
 </main>
 
-<div id="consoleModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center md:p-4">
+<div id="consoleModal" class="hidden fixed inset-x-0 bottom-0 bg-black/50 flex items-center justify-center md:p-4 z-[80]" style="top:var(--mast-h);">
   <div class="bg-white w-full md:w-3/4 h-full md:h-3/4 rounded flex flex-col">
     <div class="flex items-center justify-between p-2 border-b">
       <span class="font-medium">Console</span>
@@ -115,14 +115,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showConsole(){
     consoleModal.classList.remove('hidden');
+    consoleArea.focus();
   }
 
   function hideConsole(){
     consoleModal.classList.add('hidden');
   }
 
-  async function runCode(){
+  function openConsole(){
+    consoleArea.value='';
     showConsole();
+  }
+
+  async function runCode(){
     const language = langSelect.value;
     const filename = language === 'c' ? 'main.c' : 'main.cpp';
     const code = editor.value;
@@ -143,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  runBtn?.addEventListener('click', runCode);
+  runBtn?.addEventListener('click', openConsole);
   consoleRunBtn?.addEventListener('click', runCode);
   closeConsole?.addEventListener('click', hideConsole);
   ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt=>{
