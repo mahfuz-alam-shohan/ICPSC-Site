@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Solar System - Ispahani Public School & College</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -45,7 +45,9 @@
     }
     .shooting-star {
       position: absolute;
-      top: -10px;
+      left: -10px;
+      top: 0;
+      --shoot-end-y: 0;
       width: 2px;
       height: 2px;
       background: #fff;
@@ -54,8 +56,8 @@
       animation: shoot 3s linear forwards;
     }
     @keyframes shoot {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(100vh); opacity: 0; }
+      from { transform: translate(0, 0); opacity: 1; }
+      to { transform: translate(100vw, var(--shoot-end-y)); opacity: 0; }
     }
   </style>
 </head>
@@ -276,7 +278,10 @@
       for (let i = 0; i < 2; i++) {
         const star = document.createElement('div');
         star.className = 'shooting-star';
-        star.style.left = Math.random() * 100 + 'vw';
+        const startY = Math.random() * 100;
+        const endY = Math.random() * 100;
+        star.style.top = startY + 'vh';
+        star.style.setProperty('--shoot-end-y', (endY - startY) + 'vh');
         starField.appendChild(star);
         setTimeout(() => star.remove(), 3000);
       }
