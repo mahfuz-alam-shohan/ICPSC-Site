@@ -17,6 +17,12 @@
     .CodeMirror { height: 100%; }
     .error-marker { color: #f00; }
     .CodeMirror-gutter.error-gutter { width: 16px; }
+    .progress-bar { animation: progress 1.5s ease-in-out infinite; transform-origin: left; }
+    @keyframes progress {
+      0% { transform: scaleX(0); }
+      50% { transform: scaleX(1); }
+      100% { transform: scaleX(0); }
+    }
   </style>
 </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
@@ -109,6 +115,15 @@
   </div>
 </div>
 
+<div id="progressOverlay" class="hidden fixed inset-x-0 bottom-0 bg-black/50 flex items-center justify-center md:p-4 z-[90]" style="top:var(--mast-h);height:calc(100vh - var(--mast-h));">
+  <div class="bg-white w-1/2 md:w-1/3 rounded p-4">
+    <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+      <div class="progress-bar h-2 bg-blue-600 rounded-full"></div>
+    </div>
+    <p class="text-center mt-2">Running...</p>
+  </div>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const editorText = document.getElementById('editor');
@@ -118,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const stdinField = document.getElementById('stdinField');
   const closeConsole = document.getElementById('closeConsole');
   const langSelect = document.getElementById('langSelect');
+  const progressOverlay = document.getElementById('progressOverlay');
 
   const cm = CodeMirror.fromTextArea(editorText, {
     lineNumbers: true,
@@ -142,14 +158,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function clearErrors(){ cm.clearGutter('error-gutter'); }
 
+  function showProgress(){ progressOverlay.classList.remove('hidden'); }
+  function hideProgress(){ progressOverlay.classList.add('hidden'); }
+
   async function runCode(){
     const language = langSelect.value;
     const filename = language === 'c' ? 'main.c' : 'main.cpp';
     const code = cm.getValue();
     const stdin = stdinField.value;
-    consoleArea.value = 'Running...\n';
     clearErrors();
-    showConsole();
+    showProgress();
     try {
       const res = await fetch('https://emkc.org/api/v2/piston/execute', {
         method: 'POST',
@@ -163,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const data = await res.json();
       if(data.compile && data.compile.stderr){
-        consoleArea.value += data.compile.stderr;
+        consoleArea.value = data.compile.stderr;
         const regex = /main\.(?:c|cpp):(\d+):/g;
         let match;
         while((match = regex.exec(data.compile.stderr)) !== null){
@@ -173,15 +191,22 @@ document.addEventListener('DOMContentLoaded', () => {
           marker.textContent = '●';
           cm.setGutterMarker(line-1,'error-gutter',marker);
         }
+        hideProgress();
+        showConsole();
+        return;
       }
+      let output = '';
       if(data.run){
-        if(data.run.stdout){ consoleArea.value += data.run.stdout; }
-        if(data.run.stderr){ consoleArea.value += data.run.stderr; }
-        if(data.run.code !== undefined){ consoleArea.value += `\nProcess exited with code ${data.run.code}`; }
+        if(data.run.stdout){ output += data.run.stdout; }
+        if(data.run.stderr){ output += data.run.stderr; }
+        if(data.run.code !== undefined){ output += `\nProcess exited with code ${data.run.code}`; }
       }
+      consoleArea.value = output;
     } catch(err){
-      consoleArea.value += 'Error: ' + err.message;
+      consoleArea.value = 'Error: ' + err.message;
     }
+    hideProgress();
+    showConsole();
   }
 
   runBtn?.addEventListener('click', runCode);
