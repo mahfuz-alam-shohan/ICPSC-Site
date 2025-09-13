@@ -21,14 +21,14 @@ function initCommon(){
   if(mainNav){
     const learnMega=document.createElement('div');
     learnMega.className='mega';
-    learnMega.innerHTML=`<button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-earth-americas"></i>Learning Zone</button><div class="panel"><div class="col"><a href="${root}pages/solar-system.html">Solar System</a><a href="${root}pages/html-editor.html">HTML Editor</a></div></div>`;
+      learnMega.innerHTML=`<button class="nav-btn" aria-haspopup="true"><i class="fa-solid fa-earth-americas"></i>Learning Zone</button><div class="panel"><div class="col"><a href="${root}pages/solar-system.html">Solar System</a><a href="${root}pages/html-editor.html">HTML Editor</a><a href="${root}pages/c-editor.html">C/C++ Editor</a></div></div>`;
     const applyLink=mainNav.querySelector('a.nav-btn[href^="https://vortibd.com"]');
     mainNav.insertBefore(learnMega, applyLink);
   }
   if(mobileNav){
     const learnItem=document.createElement('div');
     learnItem.className='mitem';
-    learnItem.innerHTML=`<button class="mhead"><i class="fa-solid fa-earth-americas"></i><span>Learning Zone</span></button><div class="msub"><a class="mlink" href="${root}pages/solar-system.html">Solar System</a><a class="mlink" href="${root}pages/html-editor.html">HTML Editor</a></div>`;
+      learnItem.innerHTML=`<button class="mhead"><i class="fa-solid fa-earth-americas"></i><span>Learning Zone</span></button><div class="msub"><a class="mlink" href="${root}pages/solar-system.html">Solar System</a><a class="mlink" href="${root}pages/html-editor.html">HTML Editor</a><a class="mlink" href="${root}pages/c-editor.html">C/C++ Editor</a></div>`;
     const applyMobile=mobileNav.querySelector('a.mlink[href^="https://vortibd.com"]');
     mobileNav.insertBefore(learnItem, applyMobile);
   }
