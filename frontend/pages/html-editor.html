@@ -124,7 +124,7 @@
       gutters: ['CodeMirror-linenumbers','error-gutter']
     });
     const editorWrap = cm.getWrapperElement();
-    editorWrap.className = editorText.className;
+    editorText.classList.forEach(cls => editorWrap.classList.add(cls));
 
     cm.on('cursorActivity', () => {
       const coords = cm.cursorCoords(null, 'local');
@@ -139,15 +139,17 @@
 
     function showErrors(){
       clearErrors();
-      const errs = HTMLHint.verify(cm.getValue());
-      errs.forEach(e => {
-        const line = e.line - 1;
-        const marker = document.createElement('div');
-        marker.className = 'error-marker';
-        marker.textContent = '●';
-        cm.setGutterMarker(line,'error-gutter',marker);
-        cm.addLineClass(line,'background','error-line');
-      });
+      if(window.HTMLHint){
+        const errs = HTMLHint.verify(cm.getValue());
+        errs.forEach(e => {
+          const line = e.line - 1;
+          const marker = document.createElement('div');
+          marker.className = 'error-marker';
+          marker.textContent = '●';
+          cm.setGutterMarker(line,'error-gutter',marker);
+          cm.addLineClass(line,'background','error-line');
+        });
+      }
     }
 
     const update = () => {
