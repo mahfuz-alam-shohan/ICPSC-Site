@@ -98,7 +98,7 @@
   </div>
 </main>
 
-<div id="consoleModal" class="hidden fixed inset-x-0 bottom-0 bg-black/50 flex items-center justify-center md:p-4 z-[80]" style="top:var(--mast-h);">
+<div id="consoleModal" class="hidden fixed inset-x-0 bottom-0 bg-black/50 flex items-center justify-center md:p-4 z-[80]" style="top:var(--mast-h);height:calc(100vh - var(--mast-h));">
   <div class="bg-white w-full md:w-3/4 h-full md:h-3/4 rounded flex flex-col">
     <div class="flex items-center justify-between p-2 border-b">
       <span class="font-medium">Console</span>
@@ -145,50 +145,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function clearErrors(){ cm.clearGutter('error-gutter'); }
 
-  async function runCode(){
+  let ws;
+
+  function startExecution(){
     const language = langSelect.value;
     const filename = language === 'c' ? 'main.c' : 'main.cpp';
     const code = cm.getValue();
-    const stdin = stdinField.value;
-    consoleArea.value = 'Running...\n';
+    consoleArea.value = '';
     clearErrors();
-    try {
-      const res = await fetch('https://emkc.org/api/v2/piston/execute', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ language, version: '10.2.0', files: [{ name: filename, content: code }], stdin })
-      });
-      const data = await res.json();
-      const compileOut = data.compile ? (data.compile.stdout || '') + (data.compile.stderr || '') : '';
-      const runOut = data.run ? (data.run.stdout || '') + (data.run.stderr || '') : '';
-      consoleArea.value = compileOut + runOut;
-      const errText = compileOut + runOut;
-      const regex = /main\.(?:c|cpp):(\d+):/g;
-      let match;
-      while((match = regex.exec(errText)) !== null){
-        const line = parseInt(match[1],10);
-        const marker = document.createElement('div');
-        marker.className = 'error-marker';
-        marker.textContent = '●';
-        cm.setGutterMarker(line-1,'error-gutter',marker);
-      }
-    } catch(err){
-      consoleArea.value = 'Error: ' + err;
-    }
+    ws = new WebSocket('wss://emkc.org/api/v2/piston/execute');
+    ws.addEventListener('open', () => {
+      ws.send(JSON.stringify({ language, version: '10.2.0', files: [{ name: filename, content: code }] }));
+    });
+    ws.addEventListener('message', evt => {
+      try {
+        const msg = JSON.parse(evt.data);
+        if(msg.stdout){ consoleArea.value += msg.stdout; }
+        if(msg.stderr){ consoleArea.value += msg.stderr; }
+        if(msg.exit != null){ consoleArea.value += `\nProcess exited with code ${msg.exit}`; ws.close(); }
+        if(msg.compile_output){
+          consoleArea.value += msg.compile_output;
+          const regex = /main\.(?:c|cpp):(\d+):/g;
+          let match;
+          while((match = regex.exec(msg.compile_output)) !== null){
+            const line = parseInt(match[1],10);
+            const marker = document.createElement('div');
+            marker.className = 'error-marker';
+            marker.textContent = '●';
+            cm.setGutterMarker(line-1,'error-gutter',marker);
+          }
+        }
+      } catch(e){ consoleArea.value += evt.data; }
+    });
+    ws.addEventListener('close', () => { ws = null; });
   }
 
   runBtn?.addEventListener('click', () => {
     consoleArea.value='';
     stdinField.value='';
     showConsole();
+    startExecution();
   });
+
   stdinField?.addEventListener('keydown', e => {
-    if(e.key === 'Enter'){
+    if(e.key === 'Enter' && ws){
       e.preventDefault();
-      runCode();
+      ws.send(stdinField.value + '\n');
+      stdinField.value='';
     }
   });
-  closeConsole?.addEventListener('click', hideConsole);
+
+  closeConsole?.addEventListener('click', () => {
+    if(ws){ ws.close(); }
+    hideConsole();
+  });
   ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt=>{
     cm.getWrapperElement().addEventListener(evt,e=>e.stopPropagation());
   });
