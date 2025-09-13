@@ -92,10 +92,11 @@
 
   <main class="flex flex-col" style="height:calc(100vh - var(--mast-h));">
     <div class="hidden md:flex items-center justify-end p-2 gap-4">
-      <label class="flex items-center gap-2">
-        <input id="liveToggle" type="checkbox" class="sr-only peer">
-        <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-green-500 relative transition-colors">
-          <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform transform translate-x-0 peer-checked:translate-x-5"></div>
+      <label class="flex items-center gap-2 cursor-pointer">
+        <div class="relative w-10 h-5">
+          <input id="liveToggle" type="checkbox" class="sr-only peer">
+          <div class="w-10 h-5 bg-gray-300 rounded-full transition-colors peer-checked:bg-green-500"></div>
+          <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
         </div>
         <span>Live update</span>
       </label>
@@ -123,6 +124,7 @@
       gutters: ['CodeMirror-linenumbers','error-gutter']
     });
     const editorWrap = cm.getWrapperElement();
+    editorWrap.className = editorText.className;
 
     cm.on('cursorActivity', () => {
       const coords = cm.cursorCoords(null, 'local');
