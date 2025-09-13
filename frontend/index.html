@@ -10,7 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script type="module" src="components/vendor/model-viewer.min.js"></script>
   <link rel="stylesheet" href="components/common.css"/>
   </head>
 <body class="text-slate-800 selection:bg-[#ffd166]/60">
@@ -326,6 +326,23 @@
             </div>
           </div>
           <div class="item flex flex-col md:flex-row items-center gap-6">
+            <div class="planet venus"><model-viewer src="assets/planets/venus/venus.gltf" alt="Venus" auto-rotate camera-controls disable-zoom></model-viewer></div>
+            <div class="max-w-md space-y-2 text-justify">
+              <h3 class="planet-name">Venus</h3>
+              <p>Venus is the second planet from the Sun, often called Earth's twin due to its similar size.</p>
+              <p>Its surface temperature averages around 465°C, hot enough to melt lead.</p>
+              <p>A dense atmosphere of carbon dioxide creates a runaway greenhouse effect.</p>
+              <p>Thick clouds of sulfuric acid reflect sunlight, making Venus the brightest planet in the night sky.</p>
+              <p>A day on Venus is longer than its year; it rotates once every 243 Earth days.</p>
+              <p>The planet spins retrograde, rotating opposite its orbit around the Sun.</p>
+              <p>Radar mapping reveals vast plains, highland regions, and thousands of volcanoes.</p>
+              <p>Venus lacks a global magnetic field, leaving its atmosphere exposed to solar winds.</p>
+              <p>Probes like Magellan and Venus Express have studied its surface and atmosphere.</p>
+              <p>Future missions aim to uncover how Venus evolved so differently from Earth.</p>
+              <p>Understanding Venus helps scientists learn about greenhouse effects on other worlds.</p>
+            </div>
+          </div>
+          <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
             <div class="planet earth"><model-viewer src="assets/planets/earth/earth.gltf" alt="Earth" auto-rotate camera-controls disable-zoom></model-viewer></div>
             <div class="max-w-md space-y-2 text-justify">
               <h3 class="planet-name">Earth</h3>
@@ -340,6 +357,23 @@
               <p>Diverse ecosystems from rainforests to deserts support millions of species.</p>
               <p>Human civilization has developed complex cultures, technologies, and societies on Earth.</p>
               <p>Ongoing climate change poses challenges that require global cooperation to address.</p>
+            </div>
+          </div>
+          <div class="item flex flex-col md:flex-row items-center gap-6">
+            <div class="planet mars"><model-viewer src="assets/planets/mars/mars.gltf" alt="Mars" auto-rotate camera-controls disable-zoom></model-viewer></div>
+            <div class="max-w-md space-y-2 text-justify">
+              <h3 class="planet-name">Mars</h3>
+              <p>Mars is the fourth planet from the Sun and known as the Red Planet.</p>
+              <p>Its reddish color comes from iron oxide dust covering its surface.</p>
+              <p>Mars has a thin atmosphere mostly composed of carbon dioxide.</p>
+              <p>The planet features the largest volcano in the solar system, Olympus Mons.</p>
+              <p>Valles Marineris, a canyon system, stretches over 4,000 kilometers across Mars.</p>
+              <p>Polar ice caps made of water and dry ice grow and shrink with the seasons.</p>
+              <p>Mars has two small moons, Phobos and Deimos, likely captured asteroids.</p>
+              <p>Dust storms can engulf the entire planet and last for months.</p>
+              <p>Robotic missions like Perseverance and Curiosity explore its surface for signs of past life.</p>
+              <p>Evidence suggests liquid water once flowed on Mars billions of years ago.</p>
+              <p>Studying Mars prepares humanity for potential future crewed missions to the planet.</p>
             </div>
           </div>
           <div class="item flex flex-col md:flex-row-reverse items-center gap-6">
