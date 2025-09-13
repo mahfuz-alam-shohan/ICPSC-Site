@@ -57,7 +57,7 @@ function createCard(t,root,full){
   const img=document.createElement('img');
   img.src=root+'assets/teachers/pictures/'+t.id+'.jpg';
   img.alt=t.name;
-  img.loading='lazy';
+  img.loading='eager';
   img.decoding='async';
   img.className='w-32 h-32 object-cover rounded-full mb-3 cursor-pointer ring-4 ring-white';
   img.style.boxShadow='0 0 0 4px #fff,0 0 20px rgba(20,83,45,0.45)';

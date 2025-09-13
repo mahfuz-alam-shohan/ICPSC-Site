@@ -137,7 +137,7 @@ function initCommon(){
         const img=document.createElement('img');
         img.src=root+'assets/staffs/pictures/'+s.id+'.jpg';
         img.alt=s.name;
-        img.loading='lazy';
+        img.loading='eager';
         img.decoding='async';
         img.className=full?'w-24 h-24 object-cover rounded-lg ring-2 ring-white':'w-24 h-24 object-cover rounded-lg mb-3 ring-2 ring-white';
         img.onerror=()=>{img.remove();};
@@ -243,7 +243,7 @@ function initCommon(){
         const img=document.createElement('img');
         img.src=root+'assets/governing/pictures/'+m.id+'.jpg';
         img.alt=m.name;
-        img.loading='lazy';
+          img.loading='eager';
         img.decoding='async';
         img.className='w-24 h-24 object-cover rounded-full';
         img.onerror=()=>{img.remove();};
@@ -445,7 +445,7 @@ function initCommon(){
     ];
     images.forEach(src=>{
       const img=document.createElement('img');
-      img.loading='lazy';
+      img.loading='eager';
       img.decoding='async';
       img.alt='Gallery image';
       img.src=src;

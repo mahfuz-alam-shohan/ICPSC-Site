@@ -149,6 +149,11 @@ body.space-mode .nav-btn,body.space-mode .nav-btn i,body.space-mode .mlink,body.
 body.space-mode .nav-btn:hover,body.space-mode .nav-btn:focus,body.space-mode .mlink:hover{background:rgba(255,255,255,.2)}
 body.space-mode .mob{background:rgba(0,0,0,.8);border-color:rgba(255,255,255,.2)}
 body.space-mode .footer a.link{color:#93c5fd}
+body.space-mode .mega .panel{background:rgba(0,0,0,.8);border-color:rgba(255,255,255,.2)}
+body.space-mode .mega .panel .col h4{color:#e2e8f0}
+body.space-mode .mega .panel .col a{color:#fff}
+body.space-mode .mega .panel .col a:hover{background:rgba(255,255,255,.1)}
+body.space-mode .mob .msub .mlink{border-color:rgba(255,255,255,.2)}
 
 #space{background:transparent;color:#fff}
 #space .planet{position:relative;border-radius:50%;overflow:hidden}
