@@ -399,7 +399,14 @@ function initCommon(){
   gsap.from('#masthead',{y:-60,opacity:0,duration:.6});
   const revealItems=document.querySelectorAll('.section,.card');
   if('IntersectionObserver' in window){
-    const io2=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){gsap.to(e.target,{opacity:1,y:0,duration:.6});io2.unobserve(e.target);}})},{threshold:.2});
+    const io2=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          gsap.to(e.target,{opacity:1,y:0,duration:.6});
+          io2.unobserve(e.target);
+        }
+      });
+    },{threshold:.01});
     revealItems.forEach(el=>{gsap.set(el,{opacity:0,y:40});io2.observe(el);});
   }else{
     revealItems.forEach(el=>{gsap.set(el,{opacity:1,y:0});});
@@ -523,7 +530,7 @@ function initCommon(){
           document.body.classList.remove('space-mode');
         }
       });
-    },{threshold:0.1});
+    },{threshold:0.01});
     spaceIO.observe(spaceSection);
   }
 }
