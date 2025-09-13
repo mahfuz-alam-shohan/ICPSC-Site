@@ -196,8 +196,8 @@
           1.0,
           1.0
         ],
-        "metallicFactor": 0,
-        "roughnessFactor": 1,
+        "metallicFactor": 0.1,
+        "roughnessFactor": 0.6,
         "baseColorTexture": {
           "index": 1
         }
@@ -207,7 +207,7 @@
         0.0,
         0.0
       ],
-      "alphaMode": "OPAQUE",
+      "alphaMode": "BLEND",
       "doubleSided": true,
       "name": "SaturnRing"
     }
@@ -245,7 +245,8 @@
   "nodes": [
     {
       "mesh": 0,
-      "name": "Saturn"
+      "name": "Saturn",
+      "scale": [1.5, 1.5, 1.5]
     },
     {
       "mesh": 1,
