@@ -48,7 +48,7 @@
       background: #fff;
       box-shadow: 0 0 6px 2px rgba(255,255,255,0.5);
       opacity: 0;
-      animation: shoot 1s linear forwards;
+      animation: shoot 3s linear forwards;
     }
     @keyframes shoot {
       0% { transform: translate(0,0) rotate(45deg); opacity: 1; }
@@ -258,7 +258,7 @@
   <script src="../components/common.js" defer></script>
   <script>
     const starField = document.getElementById('star-field');
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 200; i++) {
       const star = document.createElement('div');
       star.className = 'star';
       star.style.left = Math.random() * 100 + 'vw';
@@ -267,13 +267,15 @@
       starField.appendChild(star);
     }
     function shootingStar() {
-      const star = document.createElement('div');
-      star.className = 'shooting-star';
-      star.style.left = Math.random() * 100 + 'vw';
-      starField.appendChild(star);
-      setTimeout(() => star.remove(), 1000);
+      for (let i = 0; i < 2; i++) {
+        const star = document.createElement('div');
+        star.className = 'shooting-star';
+        star.style.left = Math.random() * 100 + 'vw';
+        starField.appendChild(star);
+        setTimeout(() => star.remove(), 3000);
+      }
     }
-    setInterval(shootingStar, 4000);
+    setInterval(shootingStar, 2000);
   </script>
   </body>
   </html>
