@@ -93,7 +93,20 @@
       <h1 class="grad text-4xl font-extrabold leading-tight">HTML Editor</h1>
       <p class="mt-2 text-lg text-gray-700">Create and experiment with HTML.</p>
     </div>
-    <p class="text-center text-gray-600">This feature is under development. Please check back later.</p>
+    <div class="mb-4 flex items-center justify-between">
+      <label class="flex items-center gap-2">
+        <input id="liveToggle" type="checkbox" class="sr-only peer">
+        <div class="w-10 h-5 bg-gray-300 rounded-full peer-checked:bg-green-500 relative transition-colors">
+          <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
+        </div>
+        <span>Live update</span>
+      </label>
+      <button id="runBtn" class="md:hidden px-4 py-2 rounded bg-blue-600 text-white">Run</button>
+    </div>
+    <div class="flex flex-col md:flex-row gap-4">
+      <textarea id="editor" class="w-full md:w-1/2 h-64 md:h-[70vh] p-3 border rounded font-mono" placeholder="Write HTML here..."></textarea>
+      <iframe id="preview" class="w-full md:w-1/2 h-64 md:h-[70vh] border rounded bg-white"></iframe>
+    </div>
   </div>
 </section>
 
@@ -122,5 +135,36 @@
   </div>
 </footer>
 <script src="../components/common.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const editor = document.getElementById('editor');
+  const preview = document.getElementById('preview');
+  const runBtn = document.getElementById('runBtn');
+  const liveToggle = document.getElementById('liveToggle');
+
+  const update = () => { preview.srcdoc = editor.value; };
+
+  function setupLive(){
+    if(liveToggle.checked){
+      editor.addEventListener('input', update);
+      update();
+    } else {
+      editor.removeEventListener('input', update);
+    }
+  }
+
+  runBtn.addEventListener('click', update);
+  liveToggle.addEventListener('change', setupLive);
+
+  ['contextmenu','selectstart','dragstart','copy','cut'].forEach(evt=>{
+    editor.addEventListener(evt, e=>e.stopPropagation());
+  });
+
+  if(window.matchMedia('(min-width: 768px)').matches){
+    liveToggle.checked = true;
+    setupLive();
+  }
+});
+</script>
 </body>
 </html>
