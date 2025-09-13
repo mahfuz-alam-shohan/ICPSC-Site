@@ -165,3 +165,4 @@ body.space-mode .footer a.link{color:#93c5fd}
 #space .neptune{width:100px;height:100px}
 #space .item{margin:2rem 0}
 
+#space .item p{flex:1;max-width:100%}
