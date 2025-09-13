@@ -155,14 +155,14 @@ body.space-mode .footer a.link{color:#93c5fd}
 #space .planet::before{content:none}
 #space .planet model-viewer{width:100%;height:100%;background:transparent}
 #space .sun{width:160px;height:160px}
-#space .mercury{width:70px;height:70px}
-#space .venus{width:80px;height:80px}
-#space .earth{width:90px;height:90px}
-#space .mars{width:80px;height:80px}
-#space .jupiter{width:120px;height:120px}
-#space .saturn{width:110px;height:110px}
-#space .uranus{width:100px;height:100px}
-#space .neptune{width:100px;height:100px}
+#space .mercury{width:160px;height:160px}
+#space .venus{width:160px;height:160px}
+#space .earth{width:160px;height:160px}
+#space .mars{width:160px;height:160px}
+#space .jupiter{width:160px;height:160px}
+#space .saturn{width:160px;height:160px}
+#space .uranus{width:160px;height:160px}
+#space .neptune{width:160px;height:160px}
 #space .item{margin:3rem 0}
 
 #space .item p{flex:1;max-width:60ch}
