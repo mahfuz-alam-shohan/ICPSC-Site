@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>C/C++ Editor - Ispahani Public School & College</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-slate-800 selection:bg-[#ffd166]/60">
+
+<button id="runBtnMobile" class="md:hidden fixed top-2 right-2 z-10 px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
+<button id="backBtn" class="hidden md:hidden fixed top-2 left-2 z-10 px-3 py-1 text-sm rounded bg-gray-600 text-white">Back</button>
+
+<main class="h-screen flex flex-col">
+  <div class="hidden md:flex items-center justify-between p-2">
+    <h1 class="text-lg font-semibold">C/C++ Editor</h1>
+    <div class="flex items-center gap-2">
+      <select id="langSelect" class="border rounded px-2 py-1 text-sm">
+        <option value="c">C</option>
+        <option value="c++">C++</option>
+      </select>
+      <button id="runBtnDesk" class="px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
+    </div>
+  </div>
+  <div id="workArea" class="flex-1 p-2 md:p-4 pt-8 md:pt-0">
+    <textarea id="editor" class="w-full h-full p-2 border rounded font-mono text-sm" placeholder="Write code here..."></textarea>
+  </div>
+</main>
+
+<div id="consoleModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center md:p-4">
+  <div class="bg-white w-full md:w-3/4 h-full md:h-3/4 rounded flex flex-col">
+    <div class="flex items-center justify-between p-2 border-b">
+      <span class="font-medium">Console</span>
+      <button id="closeConsole" class="hidden md:block text-sm px-2">✖</button>
+    </div>
+    <textarea id="consoleInput" class="w-full h-24 p-2 border-b font-mono text-sm" placeholder="Input (stdin)..."></textarea>
+    <textarea id="consoleOutput" class="flex-1 w-full p-2 font-mono text-sm bg-black text-green-200 overflow-auto" readonly></textarea>
+    <div class="p-2 border-t flex justify-end">
+      <button id="consoleRunBtn" class="px-3 py-1 text-sm rounded bg-blue-600 text-white">Run</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const editor = document.getElementById('editor');
+  const runBtnDesk = document.getElementById('runBtnDesk');
+  const runBtnMobile = document.getElementById('runBtnMobile');
+  const backBtn = document.getElementById('backBtn');
+  const consoleModal = document.getElementById('consoleModal');
+  const consoleInput = document.getElementById('consoleInput');
+  const consoleOutput = document.getElementById('consoleOutput');
+  const consoleRunBtn = document.getElementById('consoleRunBtn');
+  const closeConsole = document.getElementById('closeConsole');
+  const langSelect = document.getElementById('langSelect');
+
+  function showConsole(){
+    consoleModal.classList.remove('hidden');
+    if(!window.matchMedia('(min-width:768px)').matches){
+      editor.classList.add('hidden');
+      runBtnMobile.classList.add('hidden');
+      backBtn.classList.remove('hidden');
+    }
+  }
+
+  function hideConsole(){
+    consoleModal.classList.add('hidden');
+    if(!window.matchMedia('(min-width:768px)').matches){
+      editor.classList.remove('hidden');
+      runBtnMobile.classList.remove('hidden');
+      backBtn.classList.add('hidden');
+    }
+  }
+
+  async function runCode(){
+    showConsole();
+    const language = langSelect.value;
+    const filename = language === 'c' ? 'main.c' : 'main.cpp';
+    const code = editor.value;
+    const stdin = consoleInput.value;
+    consoleOutput.value = 'Running...\n';
+    try {
+      const res = await fetch('https://emkc.org/api/v2/piston/execute', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ language, version: '10.2.0', files: [{ name: filename, content: code }], stdin })
+      });
+      const data = await res.json();
+      const compileOut = data.compile ? (data.compile.stdout || '') + (data.compile.stderr || '') : '';
+      const runOut = data.run ? (data.run.stdout || '') + (data.run.stderr || '') : '';
+      consoleOutput.value = compileOut + runOut;
+    } catch(err){
+      consoleOutput.value = 'Error: ' + err;
+    }
+  }
+
+  runBtnDesk?.addEventListener('click', runCode);
+  runBtnMobile?.addEventListener('click', runCode);
+  consoleRunBtn?.addEventListener('click', runCode);
+  backBtn?.addEventListener('click', hideConsole);
+  closeConsole?.addEventListener('click', hideConsole);
+});
+</script>
+</body>
+</html>
