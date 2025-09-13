@@ -11,8 +11,53 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" defer></script>
   <script type="module" src="../components/vendor/model-viewer.min.js"></script>
   <link rel="stylesheet" href="../components/common.css"/>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    #star-field {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(#0d0d2b, #000);
+      overflow: hidden;
+    }
+    #star-field .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.2; }
+    }
+    .shooting-star {
+      position: absolute;
+      top: -10px;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      box-shadow: 0 0 6px 2px rgba(255,255,255,0.5);
+      opacity: 0;
+      animation: shoot 1s linear forwards;
+    }
+    @keyframes shoot {
+      0% { transform: translate(0,0) rotate(45deg); opacity: 1; }
+      100% { transform: translate(150vw,100vh) rotate(45deg); opacity: 0; }
+    }
+  </style>
 </head>
-<body class="text-slate-800 selection:bg-[#ffd166]/60">
+<body class="text-white selection:bg-[#ffd166]/60">
+  <div id="star-field"></div>
   <div id="decor"></div>
 <div id="masthead">
   <div class="topbar"><div class="wrap"><span>EIIN 105826</span><span>College 7925</span><span>School 7801</span></div></div>
@@ -90,7 +135,9 @@
 
   <section id="space" class="section">
     <div class="wrap">
-      <div class="head"><h2>Let's Visit the Space</h2></div>
+      <div class="head text-center mb-8">
+        <h2 class="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-500 drop-shadow-lg">Explore the Solar System</h2>
+      </div>
         <div class="space-items space-y-16">
           <div class="item flex flex-col md:flex-row items-center gap-8">
             <div class="flex flex-col items-center text-center">
@@ -206,40 +253,27 @@
     </div>
   </div>
   </footer>
-    <script src="components/student-galleries.js" defer></script>
-    <script src="components/teachers.js" defer></script>
-    <script src="components/common.js" defer></script>
+  <script src="../components/student-galleries.js" defer></script>
+  <script src="../components/teachers.js" defer></script>
+  <script src="../components/common.js" defer></script>
+  <script>
+    const starField = document.getElementById('star-field');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      starField.appendChild(star);
+    }
+    function shootingStar() {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+      star.style.left = Math.random() * 100 + 'vw';
+      starField.appendChild(star);
+      setTimeout(() => star.remove(), 1000);
+    }
+    setInterval(shootingStar, 4000);
+  </script>
   </body>
   </html>
-
-
-<footer class="footer">
-  <div class="wrap">
-    <div class="grid gap-6 md:grid-cols-2 text-center md:text-left">
-      <div class="contact">
-        <h4 class="font-bold mb-2">Contact</h4>
-        <p>Cumilla Cantonment 3501, Cumilla</p>
-        <p>Phone: 03239933170</p>
-        <p>Mobile: 01733063001</p>
-        <p>Email: ipscm1@gmail.com</p>
-      </div>
-      <div class="links">
-        <h4 class="font-bold mb-2">গুরুত্বপূর্ণ লিঙ্ক</h4>
-        <ul class="space-y-1">
-          <li><a class="link" href="https://comillaboard.portal.gov.bd/" target="_blank" rel="noopener">Comilla Education Board</a></li>
-          <li><a class="link" href="https://shed.gov.bd/" target="_blank" rel="noopener">মাধ্যমিক ও উচ্চ শিক্ষা বিভাগ</a></li>
-          <li><a class="link" href="https://bangladesh.gov.bd/index.php" target="_blank" rel="noopener">বাংলাদেশ জাতীয় শিক্ষা বাতায়ন</a></li>
-          <li><a class="link" href="https://portal.cloudcampus24.com/UserAuth/Login?ReturnUrl=%2F" target="_blank" rel="noopener">CloudCampus Portal</a></li>
-          <li><a class="link" href="https://vortibd.com/institute/39/96" target="_blank" rel="noopener">VortiBD Apply</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="mt-6 pt-4 border-t flex flex-col md:flex-row justify-between items-center text-sm">
-      <span>© <span data-year></span> Mahfuz Alam Shohan</span>
-      <span>© <span data-year></span> Ispahani Public School & College</span>
-    </div>
-  </div>
-</footer>
-<script src="../components/common.js" defer></script>
-</body>
-</html>
